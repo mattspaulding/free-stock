@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
-import { NbMenuService, NbSidebarService } from '@nebular/theme';
-import { UserService } from '../../../@core/data/users.service';
-import { AnalyticsService } from '../../../@core/utils/analytics.service';
+import {NbMenuService, NbSidebarService} from '@nebular/theme';
+import {UserService} from '../../../@core/data/users.service';
+import {AnalyticsService} from '../../../@core/utils/analytics.service';
 
 @Component({
   selector: 'ngx-header',
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
 
   user: any;
 
-  userMenu = [{ title: 'Profile' }, { title: 'Log out' }];
+  userMenu = [{title: 'Profile'}, {title: 'Log out'}];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -25,8 +25,26 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getUsers()
-      .subscribe((users: any) => this.user = users.nick);
+    this.tryLogin();
+  }
+
+  tryLogin(): void {
+    this.userService.getUser()
+      .subscribe(
+        user => {
+          if (user) {
+            this.user = user;
+            this.user.picture = 'http://graph.facebook.com/' + user.fbId + '/picture?type=square'
+          } else {
+            // let keepLogin = localStorage.getItem('keepLogin');
+            // if (keepLogin) {
+            this.userService.loginFacebook();
+            //}
+          }
+          // this.getPortfolio();
+        },
+        error => console.error(error)
+      );
   }
 
   toggleSidebar(): boolean {
@@ -46,4 +64,22 @@ export class HeaderComponent implements OnInit {
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
   }
+
+  getPortfolio() {
+    this.userService.getPortfolio()
+      .subscribe(data => {
+        debugger;
+        // this.portfolio = data.portfolio;
+        let body = document.getElementById("body");
+        // if (this.portfolio.account.isMarketOpen !== undefined) {
+        //     if (this.portfolio.account.isMarketOpen) {
+        //         body.className = "fixed-sn white-skin";
+        //     } else {
+        //         body.className = "fixed-sn black-skin";
+        //     }
+        // }
+      });
+  }
+
+
 }
