@@ -5,4 +5,5 @@
  */
 export const environment = {
   production: true,
+  apiBaseUrl: 'https://sherwood-investments.herokuapp.com'
 };
