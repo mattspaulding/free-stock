@@ -62,4 +62,4 @@ We're always happy to receive your feedback!
 # free-stock
 # free-stock
 
-ng build --prod --base-href "https://mattspaulding.github.io/free-stock/" && angular-cli-ghpages
+
