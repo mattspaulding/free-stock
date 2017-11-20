@@ -25,7 +25,7 @@ export class UserService {
     console.log('Initializing Facebook');
 
     fb.init({
-      appId: '1123046611129559',
+      appId: environment.fbAppId,
       version: 'v2.9'
     });
   }

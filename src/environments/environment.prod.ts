@@ -5,5 +5,6 @@
  */
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://sherwood-investments.herokuapp.com'
+  apiBaseUrl: 'https://sherwood-investments.herokuapp.com',
+  fbAppId:'252450371930672'
 };
