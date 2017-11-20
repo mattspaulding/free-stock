@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
         user => {
           if (user) {
             this.user = user;
-            this.user.picture = 'http://graph.facebook.com/' + user.fbId + '/picture?type=square'
+            this.user.picture = '//graph.facebook.com/' + user.fbId + '/picture?type=square'
           } else {
             // let keepLogin = localStorage.getItem('keepLogin');
             // if (keepLogin) {

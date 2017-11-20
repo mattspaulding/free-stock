@@ -39,7 +39,7 @@ export class UserService {
 
   // getUser(): Observable<any> {
   //   debugger;
-  //   const domain = 'http://localhost:3000';
+  //   const domain = '//localhost:3000';
   //
   //   return this.http.get(domain + '/api/stock/user')
   //     .map((response: Response) => {
@@ -57,7 +57,7 @@ export class UserService {
 
   getUser() {
     if (localStorage.accessToken) {
-      const domain = 'http://localhost:3000';
+      const domain = '//localhost:3000';
       const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
 
       return this.http.get(domain + '/user', {headers: headers})
@@ -80,7 +80,7 @@ export class UserService {
     localStorage.setItem('keepLogin', 'keepLogin')
     // }
     //
-    // const domain = 'http://localhost:3000';
+    // const domain = '//localhost:3000';
     //
     // window.location.href = domain + '/login/facebook'
 
@@ -108,7 +108,7 @@ export class UserService {
 
   getPortfolio() {
     let anonId = localStorage.getItem('anonId')
-    let domain = 'http://localhost:3000'
+    let domain = '//localhost:3000'
     const headers = new Headers({'Authorization': 'Authorization: Bearer ' + JSON.parse(localStorage.fbAuth).accessToken});
 
     // if (anonId) {
