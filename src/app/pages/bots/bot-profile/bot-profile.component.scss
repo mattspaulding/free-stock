@@ -1,0 +1,119 @@
+@import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/bootstrap/hero-buttons';
+
+@include nb-install-component() {
+
+  nb-card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+  }
+
+  .picture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    border-top-left-radius: nb-theme(card-border-radius);
+    border-top-right-radius: nb-theme(card-border-radius);
+    flex: 1;
+
+    &.primary {
+      @include btn-hero-primary-gradient();
+      @include btn-hero-primary-bevel-glow-shadow();
+    }
+    &.success {
+      @include btn-hero-success-gradient();
+      @include btn-hero-success-bevel-glow-shadow();
+    }
+    &.info {
+      @include btn-hero-info-gradient();
+      @include btn-hero-info-bevel-glow-shadow();
+    }
+    &.warning {
+      @include btn-hero-warning-gradient();
+      @include btn-hero-warning-bevel-glow-shadow();
+    }
+  }
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5.75rem;
+    height: 4.75rem;
+    font-size: 3.75rem;
+    border-radius: nb-theme(card-border-radius);
+    transition: width 0.4s ease;
+    transform: translate3d(0, 0, 0);
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    color: nb-theme(color-white);
+
+    &.primary {
+      @include btn-hero-primary-gradient();
+      @include btn-hero-primary-bevel-glow-shadow();
+    }
+    &.success {
+      @include btn-hero-success-gradient();
+      @include btn-hero-success-bevel-glow-shadow();
+    }
+    &.info {
+      @include btn-hero-info-gradient();
+      @include btn-hero-info-bevel-glow-shadow();
+    }
+    &.warning {
+      @include btn-hero-warning-gradient();
+      @include btn-hero-warning-bevel-glow-shadow();
+    }
+  }
+
+  .details {
+    padding: 1.25rem 1.25rem 0;
+
+    .title {
+      font-family: nb-theme(font-secondary);
+      font-weight: nb-theme(font-weight-bold);
+      color: nb-theme(color-fg-heading);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+
+      @include nb-for-theme(cosmic) {
+        font-weight: nb-theme(font-weight-bolder);
+      }
+    }
+
+    .description {
+      text-align: justify;
+      color: nb-theme(color-fg-text);
+      font-weight: nb-theme(font-weight-light);
+
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-height: calc(1rem * 8 * #{nb-theme(line-height)});
+    }
+  }
+
+  nb-card-footer {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.75rem 0;
+    border: none;
+
+    a {
+      text-decoration: none;
+      color: nb-theme(color-fg);
+
+      &:hover {
+        color: nb-theme(color-fg-heading);
+      }
+
+      i {
+        font-size: 1.75rem;
+      }
+    }
+  }
+}

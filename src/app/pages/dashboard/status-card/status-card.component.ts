@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
     <nb-card (click)="on = !on" [ngClass]="{'off': !on}">
       <div class="icon-container">
         <div class="icon {{ type }}">
-          <ng-content></ng-content>
+          <img src="{{pictureUrl}}">
         </div>
       </div>
 
@@ -23,4 +23,5 @@ export class StatusCardComponent {
   @Input() title: string;
   @Input() type: string;
   @Input() on = true;
+  @Input() pictureUrl:string;
 }

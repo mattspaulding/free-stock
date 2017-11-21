@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {
   NbMediaBreakpoint,
   NbMediaBreakpointsService,
@@ -8,9 +8,9 @@ import {
   NbThemeService,
 } from '@nebular/theme';
 
-import { StateService } from '../../../@core/data/state.service';
+import {StateService} from '../../../@core/data/state.service';
 
-import { Subscription } from 'rxjs/Subscription';
+import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/withLatestFrom';
 import 'rxjs/add/operator/delay';
 
@@ -25,12 +25,12 @@ import 'rxjs/add/operator/delay';
       </nb-layout-header>
 
       <nb-sidebar class="menu-sidebar"
-                   tag="menu-sidebar"
-                   responsive
-                   [right]="sidebar.id === 'right'">
+                  tag="menu-sidebar"
+                  responsive
+                  [right]="sidebar.id === 'right'">
         <nb-sidebar-header>
-          <a href="#" class="btn btn-hero-success main-btn">
-            <i class="ion ion-social-github"></i> <span>Support Us</span>
+          <a href="https://www.facebook.com/FreeStockMarket" target="_blank" class="btn btn-hero-success main-btn">
+            <i class="ion ion-social-facebook"></i> <span>Community</span>
           </a>
         </nb-sidebar-header>
         <ng-content select="nb-menu"></ng-content>
@@ -53,16 +53,16 @@ import 'rxjs/add/operator/delay';
       </nb-layout-footer>
 
       <nb-sidebar class="settings-sidebar"
-                   tag="settings-sidebar"
-                   state="collapsed"
-                   fixed
-                   [right]="sidebar.id !== 'right'">
+                  tag="settings-sidebar"
+                  state="collapsed"
+                  fixed
+                  [right]="sidebar.id !== 'right'">
         <ngx-theme-settings></ngx-theme-settings>
       </nb-sidebar>
     </nb-layout>
   `,
 })
-export class SampleLayoutComponent  implements OnDestroy {
+export class SampleLayoutComponent implements OnDestroy {
 
   subMenu: NbMenuItem[] = [
     {

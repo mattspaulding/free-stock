@@ -4,7 +4,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
   {
     title: 'Dashboard',
     icon: 'nb-home',
-    link: '/pages/dashboard',
+    link: '/dashboard',
     home: true,
   },
   {
@@ -12,147 +12,170 @@ export const MENU_ITEMS: NbMenuItem[] = [
     group: true,
   },
   {
-    title: 'UI Features',
-    icon: 'nb-keypad',
-    link: '/pages/ui-features',
+    title: 'Bots',
+    icon: 'nb-power',
+    link: '/bots',
     children: [
       {
-        title: 'Buttons',
-        link: '/pages/ui-features/buttons',
+        title: 'Alfred',
+        link: '/bots/alfred',
       },
       {
-        title: 'Grid',
-        link: '/pages/ui-features/grid',
+        title: 'Geoffrey',
+        link: '/bots/geofrey',
       },
       {
-        title: 'Icons',
-        link: '/pages/ui-features/icons',
+        title: 'Dot',
+        link: '/bots/dot',
       },
       {
-        title: 'Modals',
-        link: '/pages/ui-features/modals',
-      },
-      {
-        title: 'Typography',
-        link: '/pages/ui-features/typography',
-      },
-      {
-        title: 'Animated Searches',
-        link: '/pages/ui-features/search-fields',
-      },
-      {
-        title: 'Tabs',
-        link: '/pages/ui-features/tabs',
-      },
+        title: 'Rocket',
+        link: '/bots/rocket',
+      }
     ],
   },
-  {
-    title: 'Forms',
-    icon: 'nb-compose',
-    children: [
-      {
-        title: 'Form Inputs',
-        link: '/pages/forms/inputs',
-      },
-      {
-        title: 'Form Layouts',
-        link: '/pages/forms/layouts',
-      },
-    ],
-  },
-  {
-    title: 'Components',
-    icon: 'nb-gear',
-    children: [
-      {
-        title: 'Tree',
-        link: '/pages/components/tree',
-      }, {
-        title: 'Notifications',
-        link: '/pages/components/notifications',
-      },
-    ],
-  },
-  {
-    title: 'Maps',
-    icon: 'nb-location',
-    children: [
-      {
-        title: 'Google Maps',
-        link: '/pages/maps/gmaps',
-      },
-      {
-        title: 'Leaflet Maps',
-        link: '/pages/maps/leaflet',
-      },
-      {
-        title: 'Bubble Maps',
-        link: '/pages/maps/bubble',
-      },
-    ],
-  },
-  {
-    title: 'Charts',
-    icon: 'nb-bar-chart',
-    children: [
-      {
-        title: 'Echarts',
-        link: '/pages/charts/echarts',
-      },
-      {
-        title: 'Charts.js',
-        link: '/pages/charts/chartjs',
-      },
-      {
-        title: 'D3',
-        link: '/pages/charts/d3',
-      },
-    ],
-  },
-  {
-    title: 'Editors',
-    icon: 'nb-title',
-    children: [
-      {
-        title: 'TinyMCE',
-        link: '/pages/editors/tinymce',
-      },
-      {
-        title: 'CKEditor',
-        link: '/pages/editors/ckeditor',
-      },
-    ],
-  },
-  {
-    title: 'Tables',
-    icon: 'nb-tables',
-    children: [
-      {
-        title: 'Smart Table',
-        link: '/pages/tables/smart-table',
-      },
-    ],
-  },
-  {
-    title: 'Auth',
-    icon: 'nb-locked',
-    children: [
-      {
-        title: 'Login',
-        link: '/auth/login',
-      },
-      {
-        title: 'Register',
-        link: '/auth/register',
-      },
-      {
-        title: 'Request Password',
-        link: '/auth/request-password',
-      },
-      {
-        title: 'Reset Password',
-        link: '/auth/reset-password',
-      },
-    ],
-  },
+  // {
+  //   title: 'UI Features',
+  //   icon: 'nb-keypad',
+  //   link: '/ui-features',
+  //   children: [
+  //     {
+  //       title: 'Buttons',
+  //       link: '/ui-features/buttons',
+  //     },
+  //     {
+  //       title: 'Grid',
+  //       link: '/ui-features/grid',
+  //     },
+  //     {
+  //       title: 'Icons',
+  //       link: '/ui-features/icons',
+  //     },
+  //     {
+  //       title: 'Modals',
+  //       link: '/ui-features/modals',
+  //     },
+  //     {
+  //       title: 'Typography',
+  //       link: '/ui-features/typography',
+  //     },
+  //     {
+  //       title: 'Animated Searches',
+  //       link: '/ui-features/search-fields',
+  //     },
+  //     {
+  //       title: 'Tabs',
+  //       link: '/ui-features/tabs',
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Forms',
+  //   icon: 'nb-compose',
+  //   children: [
+  //     {
+  //       title: 'Form Inputs',
+  //       link: '/forms/inputs',
+  //     },
+  //     {
+  //       title: 'Form Layouts',
+  //       link: '/forms/layouts',
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Components',
+  //   icon: 'nb-gear',
+  //   children: [
+  //     {
+  //       title: 'Tree',
+  //       link: '/components/tree',
+  //     }, {
+  //       title: 'Notifications',
+  //       link: '/components/notifications',
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Maps',
+  //   icon: 'nb-location',
+  //   children: [
+  //     {
+  //       title: 'Google Maps',
+  //       link: '/maps/gmaps',
+  //     },
+  //     {
+  //       title: 'Leaflet Maps',
+  //       link: '/maps/leaflet',
+  //     },
+  //     {
+  //       title: 'Bubble Maps',
+  //       link: '/maps/bubble',
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Charts',
+  //   icon: 'nb-bar-chart',
+  //   children: [
+  //     {
+  //       title: 'Echarts',
+  //       link: '/charts/echarts',
+  //     },
+  //     {
+  //       title: 'Charts.js',
+  //       link: '/charts/chartjs',
+  //     },
+  //     {
+  //       title: 'D3',
+  //       link: '/charts/d3',
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Editors',
+  //   icon: 'nb-title',
+  //   children: [
+  //     {
+  //       title: 'TinyMCE',
+  //       link: '/editors/tinymce',
+  //     },
+  //     {
+  //       title: 'CKEditor',
+  //       link: '/editors/ckeditor',
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Tables',
+  //   icon: 'nb-tables',
+  //   children: [
+  //     {
+  //       title: 'Smart Table',
+  //       link: '/tables/smart-table',
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: 'Auth',
+  //   icon: 'nb-locked',
+  //   children: [
+  //     {
+  //       title: 'Login',
+  //       link: '/auth/login',
+  //     },
+  //     {
+  //       title: 'Register',
+  //       link: '/auth/register',
+  //     },
+  //     {
+  //       title: 'Request Password',
+  //       link: '/auth/request-password',
+  //     },
+  //     {
+  //       title: 'Reset Password',
+  //       link: '/auth/reset-password',
+  //     },
+  //   ],
+  // },
 ];

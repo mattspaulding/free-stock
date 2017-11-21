@@ -8,8 +8,11 @@ const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [{
-    path: 'dashboard',
+    path: '',
     component: DashboardComponent,
+  }, {
+    path: 'bots',
+    loadChildren: './bots/bots.module#BotsModule',
   }, {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
