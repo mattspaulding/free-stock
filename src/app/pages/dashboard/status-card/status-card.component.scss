@@ -12,6 +12,13 @@
     $shadow: nb-theme(btn-hero-shadow);
     box-shadow: $bevel, $shadow;
 
+    img {
+      height:64px;
+      width:64px;
+      -webkit-filter: invert(1);
+      filter: invert(1);
+    }
+
     .icon-container {
       height: 100%;
       padding: 0.625rem;
@@ -70,6 +77,10 @@
 
     &.off {
       color: nb-theme(card-fg);
+      img {
+        -webkit-filter: invert(.8);
+        filter: invert(.8);
+      }
 
       .icon {
         color: nb-theme(card-fg);
@@ -140,3 +151,4 @@
     }
   }
 }
+

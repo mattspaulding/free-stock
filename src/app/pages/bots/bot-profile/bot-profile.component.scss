@@ -21,37 +21,10 @@
     border-top-right-radius: nb-theme(card-border-radius);
     flex: 1;
 
-    &.primary {
-      @include btn-hero-primary-gradient();
-      @include btn-hero-primary-bevel-glow-shadow();
-    }
-    &.success {
-      @include btn-hero-success-gradient();
-      @include btn-hero-success-bevel-glow-shadow();
-    }
-    &.info {
-      @include btn-hero-info-gradient();
-      @include btn-hero-info-bevel-glow-shadow();
-    }
-    &.warning {
-      @include btn-hero-warning-gradient();
-      @include btn-hero-warning-bevel-glow-shadow();
-    }
-  }
-
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 5.75rem;
-    height: 4.75rem;
-    font-size: 3.75rem;
-    border-radius: nb-theme(card-border-radius);
-    transition: width 0.4s ease;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform-style: preserve-3d;
-    -webkit-backface-visibility: hidden;
-    color: nb-theme(color-white);
+    img {
+      height:256px;
+      width:256px;
+      }
 
     &.primary {
       @include btn-hero-primary-gradient();
@@ -70,6 +43,38 @@
       @include btn-hero-warning-bevel-glow-shadow();
     }
   }
+
+  //.icon {
+  //  display: flex;
+  //  align-items: center;
+  //  justify-content: center;
+  //  width: 5.75rem;
+  //  height: 4.75rem;
+  //  font-size: 3.75rem;
+  //  border-radius: nb-theme(card-border-radius);
+  //  transition: width 0.4s ease;
+  //  transform: translate3d(0, 0, 0);
+  //  -webkit-transform-style: preserve-3d;
+  //  -webkit-backface-visibility: hidden;
+  //  color: nb-theme(color-white);
+  //
+  //  &.primary {
+  //    @include btn-hero-primary-gradient();
+  //    @include btn-hero-primary-bevel-glow-shadow();
+  //  }
+  //  &.success {
+  //    @include btn-hero-success-gradient();
+  //    @include btn-hero-success-bevel-glow-shadow();
+  //  }
+  //  &.info {
+  //    @include btn-hero-info-gradient();
+  //    @include btn-hero-info-bevel-glow-shadow();
+  //  }
+  //  &.warning {
+  //    @include btn-hero-warning-gradient();
+  //    @include btn-hero-warning-bevel-glow-shadow();
+  //  }
+  //}
 
   .details {
     padding: 1.25rem 1.25rem 0;

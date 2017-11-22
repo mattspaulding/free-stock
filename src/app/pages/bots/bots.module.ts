@@ -2,16 +2,20 @@ import { NgModule } from '@angular/core';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import {BotsRoutingModule} from "./bots-routing.module";
-import {AlfredComponent} from "./alfred/alfred.component";
+import {BrunoComponent} from "./bruno/bruno.component";
 import {BotsComponent} from "./bots.component";
 import {BotProfileComponent} from "./bot-profile/bot-profile.component";
 import {RocketComponent} from "./rocket/rocket.component";
 import {OverviewComponent} from "./overview/overview.component";
+import {GeoffreyComponent} from "./geoffrey/geoffrey.component";
+import {DotComponent} from "./dot/dot.component";
 
 const components = [
   BotsComponent,
   OverviewComponent,
-  AlfredComponent,
+  BrunoComponent,
+  GeoffreyComponent,
+  DotComponent,
   RocketComponent,
   BotProfileComponent
 ];
@@ -25,7 +29,7 @@ const components = [
     ...components,
   ],
   entryComponents: [
-    AlfredComponent,
+    BrunoComponent,
   ],
 })
 export class BotsModule { }

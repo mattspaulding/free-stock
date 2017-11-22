@@ -21,12 +21,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/bots/overview',
       },
       {
-        title: 'Alfred',
-        link: '/bots/alfred',
+        title: 'Bruno',
+        link: '/bots/bruno',
       },
       {
         title: 'Geoffrey',
-        link: '/bots/geofrey',
+        link: '/bots/geoffrey',
       },
       {
         title: 'Dot',
