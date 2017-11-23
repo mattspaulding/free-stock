@@ -11,6 +11,14 @@ export const COSMIC_THEME = {
       '#f7bd59',
     ],
 
+    stopLoss: [
+      '#2ec7fe',
+      '#31ffad',
+      '#7bff24',
+      '#fff024',
+      '#f7bd59',
+    ],
+
     solar: {
       gradientLeft: '#7bff24',
       gradientRight: '#2ec7fe',

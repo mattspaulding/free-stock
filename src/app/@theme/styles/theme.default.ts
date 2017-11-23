@@ -12,6 +12,14 @@ export const DEFAULT_THEME = {
       '#42db7d',
     ],
 
+    stopLoss: [
+      '#42db7d',
+      '#42db7d',
+      '#42db7d',
+      '#42db7d',
+      '#42db7d',
+    ],
+
     solar: {
       gradientLeft: '#42db7d',
       gradientRight: '#42db7d',

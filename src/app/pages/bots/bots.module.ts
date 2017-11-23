@@ -9,6 +9,8 @@ import {RocketComponent} from "./rocket/rocket.component";
 import {OverviewComponent} from "./overview/overview.component";
 import {GeoffreyComponent} from "./geoffrey/geoffrey.component";
 import {DotComponent} from "./dot/dot.component";
+import {StopLossComponent} from "./geoffrey/stop-loss/stop-loss.component";
+import {StopLossDraggerComponent} from "./geoffrey/stop-loss/stop-loss-dragger/stop-loss-dragger.component";
 
 const components = [
   BotsComponent,
@@ -17,7 +19,9 @@ const components = [
   GeoffreyComponent,
   DotComponent,
   RocketComponent,
-  BotProfileComponent
+  BotProfileComponent,
+  StopLossComponent,
+  StopLossDraggerComponent
 ];
 
 @NgModule({

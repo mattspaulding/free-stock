@@ -19,12 +19,15 @@ import { SolarComponent } from './solar/solar.component';
 import { PlayerComponent } from './rooms/player/player.component';
 import { TrafficComponent } from './traffic/traffic.component';
 import { TrafficChartComponent } from './traffic/traffic-chart.component';
+import { InvestmentsComponent} from "./investments/investments.component";
+import {Ng2SmartTableModule} from "ng2-smart-table";
 
 
 @NgModule({
   imports: [
     ThemeModule,
     AngularEchartsModule,
+    Ng2SmartTableModule,
   ],
   declarations: [
     DashboardComponent,
@@ -44,6 +47,7 @@ import { TrafficChartComponent } from './traffic/traffic-chart.component';
     SolarComponent,
     TrafficComponent,
     TrafficChartComponent,
+    InvestmentsComponent
   ],
 })
 export class DashboardModule { }
