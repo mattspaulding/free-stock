@@ -96,6 +96,8 @@
   }
 
   @include media-breakpoint-down(xs) {
-      align-items: flex-end;
+      //align-items: flex-end;
+
+      display: none;
   }
 }
