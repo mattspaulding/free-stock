@@ -36,11 +36,15 @@ export class InvestmentsComponent implements OnChanges {
         type: 'string',
       },
       amountChange: {
-        title: 'Change',
+        title: '$ Change',
         type: 'string',
       },
       quantity: {
         title: 'Quantity',
+        type: 'string',
+      },
+      totalAmountChange: {
+        title: 'Tot $Chng',
         type: 'string',
       },
       price: {

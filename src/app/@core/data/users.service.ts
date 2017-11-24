@@ -115,28 +115,6 @@ export class UserService {
     return Observable.of(this.users);
   }
 
-  getUserArray(): Observable<any[]> {
-    return Observable.of(this.userArray);
-  }
-
-  // getUser(): Observable<any> {
-  //   debugger;
-  //   const domain = '//localhost:3000';
-  //
-  //   return this.http.get(domain + '/api/stock/user')
-  //     .map((response: Response) => {
-  //     debugger;
-  //         return response.json();
-  //       }
-  //     )
-  //     .catch((error: Response) => {
-  //       debugger;
-  //       return Observable.throw(error.json());
-  //     });
-  //   // counter = (counter + 1) % this.userArray.length;
-  //   // return Observable.of(this.userArray[counter]);
-  // }
-
   getUser() {
     if (localStorage.accessToken) {
       const domain = '//localhost:3000';
@@ -146,32 +124,6 @@ export class UserService {
         .map((response: Response) => {
           let user = response.json().obj;
           localStorage.setItem('anonId', user.anonId);
-          // user.portfolio.strategies = [];
-          // user.portfolio.buyChartData = [];
-          // user.portfolio.sellCollars = [];
-          // user.portfolio.collars.forEach((collar) => {
-          //   if (collar.sellOrder) {
-          //     user.portfolio.sellCollars.push(collar)
-          //   } else if (collar.buyOrder) {
-          //     debugger;
-          //     let buyChartDatum={
-          //       symbol:collar.symbol,
-          //       price:collar.currentQuote.last_trade_price,
-          //       quantity:collar.buyOrder.quantity,
-          //       status:collar.buyOrder.status,
-          //       percentChange:null,
-          //       amountChange:null,
-          //       totalAmountChange:null
-          //     }
-          //     buyChartDatum.percentChange = (buyChartDatum.price - collar.buyOrder.price) / collar.buyOrder.price * 100;
-          //     buyChartDatum.amountChange = buyChartDatum.price - collar.buyOrder.price;
-          //     buyChartDatum.totalAmountChange = (buyChartDatum.price - collar.buyOrder.price) * buyChartDatum.quantity;
-          //
-          //     user.portfolio.buyChartData.push(buyChartDatum)
-          //   } else {
-          //     user.portfolio.strategies.push(collar)
-          //   }
-          //})
           return user;
         })
         .catch((error: Response) => {
@@ -184,76 +136,4 @@ export class UserService {
     }
   }
 
-  // loginFacebook(): void {
-  //   // if (this.keepLogin) {
-  //   localStorage.setItem('keepLogin', 'keepLogin')
-  //   // }
-  //   //
-  //   // const domain = '//localhost:3000';
-  //   //
-  //   // window.location.href = domain + '/login/facebook'
-  //
-  //   const loginOptions: LoginOptions = {
-  //     enable_profile_selector: true,
-  //     return_scopes: true,
-  //     scope: 'email'
-  //   };
-  //
-  //   this.fb.login(loginOptions)
-  //     .then((res: LoginResponse) => {
-  //       console.log('Logged in', res);
-  //       localStorage.setItem('accessToken', res.authResponse.accessToken);
-  //       this.getUser();
-  //     })
-  //     .catch(this.handleError);
-  //
-  // }
-
-  logoutFacebook(): void {
-    // FB.logout(function (response) {
-    //   // Person is now logged out
-    // });
-  }
-  //
-  // getPortfolio() {
-  //   debugger;
-  //   let anonId = localStorage.getItem('anonId')
-  //   let domain = '//localhost:3000'
-  //   const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
-  //   debugger;
-  //   // if (anonId) {
-  //   return this.http.get(domain + '/api/stock/account', {headers: headers})
-  //     .map((response: Response) => {
-  //         debugger;
-  //         let user = response.json().obj;
-  //         localStorage.setItem('anonId', user.anonId);
-  //         user.portfolio.strategies = [];
-  //         user.portfolio.buyCollars = [];
-  //         user.portfolio.sellCollars = [];
-  //         user.portfolio.collars.forEach((collar) => {
-  //           if (collar.sellOrder) {
-  //             user.portfolio.sellCollars.push(collar)
-  //           } else if (collar.buyOrder) {
-  //             user.portfolio.buyCollars.push(collar)
-  //           } else {
-  //             user.portfolio.strategies.push(collar)
-  //           }
-  //         })
-  //         return user;
-  //       }
-  //     )
-  //     .catch((error: Response) => {
-  //
-  //       return Observable.throw(error.json());
-  //     });
-  // }
-
-  // /**
-  //  * This is a convenience method for the sake of this example project.
-  //  * Do not use this in production, it's better to handle errors separately.
-  //  * @param error
-  //  */
-  // private handleError(error) {
-  //   console.error('Error processing action', error);
-  // }
 }
