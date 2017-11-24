@@ -11,21 +11,9 @@ import {SmartTableService} from '../../../@core/data/smart-table.service';
 })
 export class InvestmentsComponent implements OnChanges {
 
-  settings = {
-    add: {
-      addButtonContent: '<i class="nb-plus"></i>',
-      createButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
-    },
+  settingsLg = {
+    actions: null,
+    hideSubHeader: true,
     columns: {
       symbol: {
         title: 'Symbol',
@@ -58,16 +46,72 @@ export class InvestmentsComponent implements OnChanges {
     },
   };
 
+  settingsMd = {
+    actions: null,
+    hideSubHeader: true,
+    columns: {
+      symbol: {
+        title: 'Symbol',
+        type: 'string',
+      },
+      percentChange: {
+        title: '% Change',
+        type: 'string',
+      },
+      amountChange: {
+        title: '$ Change',
+        type: 'string',
+      },
+       bots: {
+        title: 'Bots',
+        type: 'html'
+      },
+    },
+  };
+
+
+  settingsSm = {
+    actions: null,
+    hideSubHeader: true,
+    columns: {
+      symbol: {
+        title: 'Sym',
+        type: 'string',
+      },
+      percentChange: {
+        title: '% Chg',
+        type: 'string',
+      },
+      amountChange: {
+        title: '$ Chg',
+        type: 'string',
+      },
+    },
+  };
+
   @Input() user;
+  size: string;
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private service: SmartTableService) {
-    // const data1 = this.user;
-    //
-    // const data = this.service.getData();
-    //
-    //  this.source.load(data);
+  constructor() {
+    if (window.innerWidth < 667) {
+      this.size = 'sm';
+    } else if (window.innerWidth < 1024) {
+      this.size = 'md';
+    } else {
+      this.size = 'lg';
+    }
+
+    window.onresize = (e) => {
+      if (window.innerWidth < 667) {
+        this.size = 'sm';
+      } else if (window.innerWidth < 1024) {
+        this.size = 'md';
+      } else {
+        this.size = 'lg';
+      }
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -80,10 +124,16 @@ export class InvestmentsComponent implements OnChanges {
     }
   }
 
+  onUserRowSelect(event): void {
+    debugger;
+  }
+
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')) {
+    if (window.confirm('Are you sure you want to delete?')
+    ) {
       event.confirm.resolve();
-    } else {
+    }
+    else {
       event.confirm.reject();
     }
   }

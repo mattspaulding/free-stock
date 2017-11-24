@@ -117,7 +117,7 @@ export class UserService {
 
   getUser() {
     if (localStorage.accessToken) {
-      const domain = '//localhost:3000';
+
       const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
 
       return this.http.get(environment.apiBaseUrl + '/api/stock/account', {headers: headers})

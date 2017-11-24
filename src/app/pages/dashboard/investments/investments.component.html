@@ -4,8 +4,12 @@
   </nb-card-header>
 
   <nb-card-body>
-    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)">
+    <ng2-smart-table *ngIf="size==='lg'" [settings]="settingsLg" [source]="source" (userRowSelect)="onUserRowSelect($event)">
     </ng2-smart-table>
+    <ng2-smart-table *ngIf="size==='md'" [settings]="settingsMd" [source]="source" (userRowSelect)="onUserRowSelect($event)">
+    </ng2-smart-table>
+    <ng2-smart-table *ngIf="size==='sm'" [settings]="settingsSm" [source]="source" (userRowSelect)="onUserRowSelect($event)">
+      </ng2-smart-table>
 
   </nb-card-body>
 </nb-card>
