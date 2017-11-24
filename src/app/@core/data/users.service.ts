@@ -146,18 +146,32 @@ export class UserService {
         .map((response: Response) => {
           let user = response.json().obj;
           localStorage.setItem('anonId', user.anonId);
-          user.portfolio.strategies = [];
-          user.portfolio.buyCollars = [];
-          user.portfolio.sellCollars = [];
-          user.portfolio.collars.forEach((collar) => {
-            if (collar.sellOrder) {
-              user.portfolio.sellCollars.push(collar)
-            } else if (collar.buyOrder) {
-              user.portfolio.buyCollars.push(collar)
-            } else {
-              user.portfolio.strategies.push(collar)
-            }
-          })
+          // user.portfolio.strategies = [];
+          // user.portfolio.buyChartData = [];
+          // user.portfolio.sellCollars = [];
+          // user.portfolio.collars.forEach((collar) => {
+          //   if (collar.sellOrder) {
+          //     user.portfolio.sellCollars.push(collar)
+          //   } else if (collar.buyOrder) {
+          //     debugger;
+          //     let buyChartDatum={
+          //       symbol:collar.symbol,
+          //       price:collar.currentQuote.last_trade_price,
+          //       quantity:collar.buyOrder.quantity,
+          //       status:collar.buyOrder.status,
+          //       percentChange:null,
+          //       amountChange:null,
+          //       totalAmountChange:null
+          //     }
+          //     buyChartDatum.percentChange = (buyChartDatum.price - collar.buyOrder.price) / collar.buyOrder.price * 100;
+          //     buyChartDatum.amountChange = buyChartDatum.price - collar.buyOrder.price;
+          //     buyChartDatum.totalAmountChange = (buyChartDatum.price - collar.buyOrder.price) * buyChartDatum.quantity;
+          //
+          //     user.portfolio.buyChartData.push(buyChartDatum)
+          //   } else {
+          //     user.portfolio.strategies.push(collar)
+          //   }
+          //})
           return user;
         })
         .catch((error: Response) => {

@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
 import {LocalDataSource} from 'ng2-smart-table';
 
-import { SmartTableService } from '../../../@core/data/smart-table.service';
+import {SmartTableService} from '../../../@core/data/smart-table.service';
 
 @Component({
   selector: 'ngx-investments',
@@ -9,7 +9,7 @@ import { SmartTableService } from '../../../@core/data/smart-table.service';
   styleUrls: ['./investments.component.scss'],
 
 })
-export class InvestmentsComponent {
+export class InvestmentsComponent implements OnChanges {
 
   settings = {
     add: {
@@ -27,29 +27,25 @@ export class InvestmentsComponent {
       confirmDelete: true,
     },
     columns: {
-      id: {
-        title: 'ID',
-        type: 'number',
-      },
-      firstName: {
-        title: 'First Name',
+      symbol: {
+        title: 'Symbol',
         type: 'string',
       },
-      lastName: {
-        title: 'Last Name',
+      percentChange: {
+        title: '% Change',
         type: 'string',
       },
-      username: {
-        title: 'Username',
+      amountChange: {
+        title: 'Change',
         type: 'string',
       },
-      email: {
-        title: 'E-mail',
+      quantity: {
+        title: 'Quantity',
         type: 'string',
       },
-      age: {
-        title: 'Age',
-        type: 'number',
+      price: {
+        title: 'Price',
+        type: 'string',
       },
       bots: {
         title: 'Bots',
@@ -58,11 +54,26 @@ export class InvestmentsComponent {
     },
   };
 
+  @Input() user;
+
   source: LocalDataSource = new LocalDataSource();
 
   constructor(private service: SmartTableService) {
-    const data = this.service.getData();
-    this.source.load(data);
+    // const data1 = this.user;
+    //
+    // const data = this.service.getData();
+    //
+    //  this.source.load(data);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.user) {
+      let buyChartData = [];
+      this.user.portfolio.collars.forEach(collar => {
+        buyChartData.push(collar.buyChartDatum)
+      });
+      this.source.load(buyChartData)
+    }
   }
 
   onDeleteConfirm(event): void {

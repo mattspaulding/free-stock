@@ -54,6 +54,10 @@
         @include btn-hero-warning-gradient();
         @include btn-hero-warning-bevel-glow-shadow();
       }
+      &.danger {
+        @include btn-hero-danger-gradient();
+        @include btn-hero-danger-bevel-glow-shadow();
+      }
     }
 
     &:hover {
@@ -71,6 +75,9 @@
         }
         &.warning {
           background-image: btn-hero-warning-light-gradient();
+        }
+        &.danger {
+          background-image: btn-hero-danger-light-gradient();
         }
       }
     }

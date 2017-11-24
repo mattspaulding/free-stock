@@ -113,7 +113,6 @@ export class HeaderComponent implements OnInit {
   getUser() {
     this.userService.getUser()
       .subscribe(data => {
-        debugger;
         this.user = data;
       });
   }
