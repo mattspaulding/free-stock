@@ -1,7 +1,5 @@
-import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {LocalDataSource} from 'ng2-smart-table';
-
-import {SmartTableService} from '../../../@core/data/smart-table.service';
 
 @Component({
   selector: 'ngx-investments',

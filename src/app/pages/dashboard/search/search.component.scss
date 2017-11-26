@@ -1,0 +1,10 @@
+@import '../../../@theme/styles/themes';
+@import '~@nebular/theme/styles/global/bootstrap/hero-buttons';
+
+@include nb-install-component() {
+  nb-card {
+    nb-card-body {
+      overflow: visible;
+    }
+  }
+}
