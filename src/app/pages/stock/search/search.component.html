@@ -21,7 +21,6 @@
              [(ngModel)]="model"
              [ngbTypeahead]="search"
              [resultTemplate]="rt"
-             [inputFormatter]="formatter"
              (selectItem)="changeRoute($event.item.symbol)"
       />
       <span *ngIf="searching">searching...</span>
