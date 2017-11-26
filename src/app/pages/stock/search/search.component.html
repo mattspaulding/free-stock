@@ -1,0 +1,45 @@
+<ng-template #rt let-r="result" let-t="term">
+  <div class="text text-xl-left">{{r.name}}</div>
+  <div class="text text-secondary">{{r.symbol}}</div>
+</ng-template>
+
+<nb-card>
+  <nb-card-header>
+    Search for a stock
+  </nb-card-header>
+
+  <nb-card-body>
+    <div class="form-group" [class.has-danger]="searchFailed">
+      <input id="stockTypeahead"
+             type="text"
+             class="form-control"
+             autofocus="true"
+             autocapitalize="none"
+             autocorrect="off"
+             autocomplete="off"
+             typeahead
+             [(ngModel)]="searchModel"
+             [ngbTypeahead]="search"
+             [resultTemplate]="rt"
+             [inputFormatter]="formatter"
+             (selectItem)="changeRoute($event.item.symbol)"
+      />
+      <span *ngIf="searching">searching...</span>
+      <div class="form-control-feedback" *ngIf="searchFailed">Sorry, suggestions could not be
+        loaded.
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+
+<nb-card *ngIf="investmentOrderModel">
+  <nb-card-header>
+    {{investmentOrderModel.symbol}}
+  </nb-card-header>
+
+  <nb-card-body>
+Price: {{investmentOrderModel.bid}}
+  </nb-card-body>
+</nb-card>
+

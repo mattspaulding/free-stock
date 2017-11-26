@@ -38,6 +38,17 @@ export const MENU_ITEMS: NbMenuItem[] = [
       }
     ],
   },
+  {
+    title: 'Stock',
+    icon: 'nb-bar-chart',
+    link: '/stock',
+    children: [
+      {
+        title: 'Search',
+        link: '/stock/search',
+      },
+    ],
+  },
   // {
   //   title: 'UI Features',
   //   icon: 'nb-keypad',

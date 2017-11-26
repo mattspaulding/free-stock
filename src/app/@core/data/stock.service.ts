@@ -37,5 +37,22 @@ export class StockService {
       });
   }
 
+  getQuotes(symbols: String) {
+    return this.http.get(environment.apiBaseUrl +  '/api/stock/quote/' + symbols)
+      .map((response: Response) => {
+        const obj = response.json().obj;
+        let quote = {
+          name: obj.name,
+          symbol: obj.symbol,
+          price: obj.last_trade_price
+        }
+        return quote;
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+
 
 }

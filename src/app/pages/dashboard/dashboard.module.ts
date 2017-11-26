@@ -21,7 +21,6 @@ import {TrafficComponent} from './traffic/traffic.component';
 import {TrafficChartComponent} from './traffic/traffic-chart.component';
 import {InvestmentsComponent} from "./investments/investments.component";
 import {Ng2SmartTableModule} from "ng2-smart-table";
-import {SearchComponent} from "./search/search.component";
 
 
 @NgModule({
@@ -49,7 +48,6 @@ import {SearchComponent} from "./search/search.component";
     TrafficComponent,
     TrafficChartComponent,
     InvestmentsComponent,
-    SearchComponent
   ],
 })
 export class DashboardModule {
