@@ -33,6 +33,18 @@
     </nb-card>
 
     <nb-card *ngIf="stockQuoteModel" size="xxsmall">
+      <div class="icon-container">
+        <div class="icon warning">
+          <img src="../../../../assets/images/rocket-outline.svg">
+        </div>
+      </div>
+      <div class="rocket-rating">
+        A+
+      </div>
+    </nb-card>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <nb-card *ngIf="stockQuoteModel" size="small">
       <nb-card-body>
         <h5><b>{{stockQuoteModel.instrumentBody.simple_name}} ({{stockQuoteModel.symbol}})</b></h5> <br><span
         class="pull-right">${{stockQuoteModel.last_trade_price}}</span>
@@ -54,38 +66,6 @@
       </nb-card-body>
     </nb-card>
   </div>
-
-  <!--<div class="col-xl-6">-->
-    <!--<nb-card *ngIf="investmentOrderModel">-->
-      <!--<nb-card-header>Create Investment</nb-card-header>-->
-      <!--<nb-card-body>-->
-        <!--<form class="form-horizontal">-->
-          <!--<div class="form-group row">-->
-            <!--<label for="bid" class="col-sm-3 form-control-label">Bid</label>-->
-            <!--<div class="col-sm-9">-->
-              <!--<input type="text" class="form-control" id="bid" name="bid" placeholder="Bid"-->
-                     <!--[ngModel]="investmentOrderModel.bid" disabled="disabled">-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="form-group row">-->
-            <!--<label for="quantity" class="col-sm-3 form-control-label">Quantity</label>-->
-            <!--<div class="col-sm-9">-->
-              <!--<input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity"-->
-                     <!--[ngModel]="investmentOrderModel.quantity">-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--&lt;!&ndash;<div class="form-group row">&ndash;&gt;-->
-          <!--&lt;!&ndash;<div class="offset-sm-3 col-sm-9">&ndash;&gt;-->
-          <!--&lt;!&ndash;<button type="submit" class="btn btn-warning pull-right">Buy Now</button>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-        <!--</form>-->
-      <!--</nb-card-body>-->
-      <!--<nb-card-footer>-->
-        <!--<button class="btn btn-secondary pull-right" (click)="buyNow()">Buy Now</button>-->
-      <!--</nb-card-footer>-->
-    <!--</nb-card>-->
-  <!--</div>-->
 </div>
 
 <div class="row">

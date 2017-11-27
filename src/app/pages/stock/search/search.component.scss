@@ -15,6 +15,13 @@
       box-shadow: $bevel, $shadow;
     }
 
+    .rocket-rating {
+      position: absolute;
+      right: 40px;
+      padding-top: 15px;
+      font-size: 50px;
+    }
+
     nb-card-body {
       overflow: visible;
     }
