@@ -95,7 +95,7 @@
       <nb-card-body>
         <div class="row">
           <div class="col-md-6 col-lg-3" style="height: 216px;">
-            <div class="form-group">
+            <div class="form-group" style="height: 96px;">
               <label for="quantity" class="col-sm-3 form-control-label">Quantity</label>
               <div class="col-sm-9">
                 <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity"
@@ -176,7 +176,7 @@
          </div>
       </nb-card-body>
       <nb-card-footer>
-        <button class="btn btn-secondary pull-right" (click)="buyNow()" *ngIf="!investmentOrderModel.brunoOn">Buy Now</button>
+        <button class="btn btn-secondary pull-right" (click)="buyNow()" *ngIf="!investmentOrderModel.brunoOn">Place Limit Order</button>
         <button class="btn btn-primary pull-right" (click)="createStrategy()" *ngIf="investmentOrderModel.brunoOn">Create Strategy</button>
       </nb-card-footer>
     </nb-card>
