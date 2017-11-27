@@ -34,6 +34,7 @@ import {
 } from './layouts';
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
+import {StatusCardComponent} from "./components/status-card/status-card.component";
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -62,6 +63,7 @@ const COMPONENTS = [
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  StatusCardComponent
 ];
 
 const PIPES = [

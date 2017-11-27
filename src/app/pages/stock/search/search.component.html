@@ -3,42 +3,195 @@
   <div class="text text-secondary">{{r.symbol}}</div>
 </ng-template>
 
-<nb-card>
-  <nb-card-header>
-    Search for a stock
-  </nb-card-header>
+<div class="row">
+  <div class="col-xl-3 col-lg-6">
+    <nb-card size="xsmall">
+      <nb-card-header>
+        Search for a stock
+      </nb-card-header>
+      <nb-card-body>
+        <div class="form-group" [class.has-danger]="searchFailed">
+          <input id="stockTypeahead"
+                 type="text"
+                 class="form-control"
+                 autofocus="true"
+                 autocapitalize="none"
+                 autocorrect="off"
+                 autocomplete="off"
+                 typeahead
+                 [(ngModel)]="model"
+                 [ngbTypeahead]="search"
+                 [resultTemplate]="rt"
+                 (selectItem)="changeRoute($event.item.symbol)"
+          />
+          <span *ngIf="searching">searching...</span>
+          <div class="form-control-feedback" *ngIf="searchFailed">Sorry, suggestions could not be
+            loaded.
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
 
-  <nb-card-body>
-    <div class="form-group" [class.has-danger]="searchFailed">
-      <input id="stockTypeahead"
-             type="text"
-             class="form-control"
-             autofocus="true"
-             autocapitalize="none"
-             autocorrect="off"
-             autocomplete="off"
-             typeahead
-             [(ngModel)]="model"
-             [ngbTypeahead]="search"
-             [resultTemplate]="rt"
-             (selectItem)="changeRoute($event.item.symbol)"
-      />
-      <span *ngIf="searching">searching...</span>
-      <div class="form-control-feedback" *ngIf="searchFailed">Sorry, suggestions could not be
-        loaded.
-      </div>
-    </div>
-  </nb-card-body>
-</nb-card>
+    <nb-card *ngIf="stockQuoteModel" size="xxsmall">
+      <nb-card-body>
+        <h5><b>{{stockQuoteModel.instrumentBody.simple_name}} ({{stockQuoteModel.symbol}})</b></h5> <br><span
+        class="pull-right">${{stockQuoteModel.last_trade_price}}</span>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-xl-3 col-lg-6">
+    <nb-card *ngIf="stockQuoteModel" size="small">
+      <nb-card-header>
+        Stats
+      </nb-card-header>
+      <nb-card-body>
+        Open: {{stockQuoteModel.instrumentBody.fundamentalsBody.open}} <br>
+        High: {{stockQuoteModel.instrumentBody.fundamentalsBody.high}} <br>
+        Low: {{stockQuoteModel.instrumentBody.fundamentalsBody.low}} <br>
+        Volume: {{stockQuoteModel.instrumentBody.fundamentalsBody.volume}} <br>
+        Avg Vol: {{stockQuoteModel.instrumentBody.fundamentalsBody.average_volume}}<br>
+        Mkt Cap: {{stockQuoteModel.instrumentBody.fundamentalsBody.market_cap}}<br>
+      </nb-card-body>
+    </nb-card>
+  </div>
 
+  <!--<div class="col-xl-6">-->
+    <!--<nb-card *ngIf="investmentOrderModel">-->
+      <!--<nb-card-header>Create Investment</nb-card-header>-->
+      <!--<nb-card-body>-->
+        <!--<form class="form-horizontal">-->
+          <!--<div class="form-group row">-->
+            <!--<label for="bid" class="col-sm-3 form-control-label">Bid</label>-->
+            <!--<div class="col-sm-9">-->
+              <!--<input type="text" class="form-control" id="bid" name="bid" placeholder="Bid"-->
+                     <!--[ngModel]="investmentOrderModel.bid" disabled="disabled">-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="form-group row">-->
+            <!--<label for="quantity" class="col-sm-3 form-control-label">Quantity</label>-->
+            <!--<div class="col-sm-9">-->
+              <!--<input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity"-->
+                     <!--[ngModel]="investmentOrderModel.quantity">-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--&lt;!&ndash;<div class="form-group row">&ndash;&gt;-->
+          <!--&lt;!&ndash;<div class="offset-sm-3 col-sm-9">&ndash;&gt;-->
+          <!--&lt;!&ndash;<button type="submit" class="btn btn-warning pull-right">Buy Now</button>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+          <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</form>-->
+      <!--</nb-card-body>-->
+      <!--<nb-card-footer>-->
+        <!--<button class="btn btn-secondary pull-right" (click)="buyNow()">Buy Now</button>-->
+      <!--</nb-card-footer>-->
+    <!--</nb-card>-->
+  <!--</div>-->
+</div>
 
-<nb-card *ngIf="investmentOrderModel">
-  <nb-card-header>
-    {{investmentOrderModel.symbol}}
-  </nb-card-header>
+<div class="row">
+  <div class="col-sm-12">
+    <nb-card *ngIf="investmentOrderModel">
+      <nb-card-header>Create Investment</nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-md-6 col-lg-3" style="height: 216px;">
+            <div class="form-group">
+              <label for="quantity" class="col-sm-3 form-control-label">Quantity</label>
+              <div class="col-sm-9">
+                <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Quantity"
+                       [ngModel]="investmentOrderModel.quantity">
+              </div>
+            </div>
+            <div class="form-group" *ngIf="!investmentOrderModel.brunoOn">
+              <label for="bid" class="col-sm-3 form-control-label">Bid</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="bid" name="bid" placeholder="Bid"
+                       [ngModel]="investmentOrderModel.bid">
+              </div>
+            </div>
+            </div>
+          <div class="col-md-6 col-lg-3" style="height: 216px;">
+            <nb-card (click)="investmentOrderModel.brunoOn = !investmentOrderModel.brunoOn" [ngClass]="{'off': !investmentOrderModel.brunoOn}" class="bot-card">
+              <div class="icon-container">
+                <div class="icon primary">
+                  <img src="../../../../assets/images/bruno-outline.svg">
+                </div>
+              </div>
 
-  <nb-card-body>
-Price: {{investmentOrderModel.bid}}
-  </nb-card-body>
-</nb-card>
+              <div class="details">
+                <div class="title">Bruno</div>
+                <div class="status">{{ investmentOrderModel.brunoOn ? 'ON' : 'OFF' }}</div>
+              </div>
+            </nb-card>
+            <div class="form-group" *ngIf="investmentOrderModel.brunoOn">
+              <label for="buyAt" class="col-sm-12 form-control-label">Buy At (or lower)</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="buyAt" name="buyAt" placeholder="Buy At Price"
+                       [ngModel]="investmentOrderModel.buyAt">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" style="height: 216px;">
+            <nb-card (click)="investmentOrderModel.geoffreyOn = !investmentOrderModel.geoffreyOn" [ngClass]="{'off': !investmentOrderModel.geoffreyOn}" class="bot-card">
+              <div class="icon-container">
+                <div class="icon info">
+                  <img src="../../../../assets/images/geoffrey-outline.svg">
+                </div>
+              </div>
 
+              <div class="details">
+                <div class="title">Geoffrey</div>
+                <div class="status">{{ investmentOrderModel.geoffreyOn ? 'ON' : 'OFF' }}</div>
+              </div>
+            </nb-card>
+            <div class="form-group" *ngIf="investmentOrderModel.geoffreyOn">
+              <label for="stopLossPercent" class="col-sm-12 form-control-label">Stop Loss % (below high)</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="stopLossPercent" name="stopLossPercent" placeholder="Stop Loss Below High"
+                       [ngModel]="investmentOrderModel.stopLossPercent">
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3" style="height: 216px;">
+            <nb-card (click)="investmentOrderModel.dotOn = !investmentOrderModel.dotOn" [ngClass]="{'off': !investmentOrderModel.dotOn}" class="bot-card">
+              <div class="icon-container">
+                <div class="icon success">
+                  <img src="../../../../assets/images/dot-outline.svg">
+                </div>
+              </div>
+
+              <div class="details">
+                <div class="title">Dot</div>
+                <div class="status">{{ investmentOrderModel.dotOn ? 'ON' : 'OFF' }}</div>
+              </div>
+            </nb-card>
+            <div class="form-group" *ngIf="investmentOrderModel.dotOn">
+              <label for="sellAt" class="col-sm-12 form-control-label">Sell At (or higher)</label>
+              <div class="col-sm-12">
+                <input type="text" class="form-control" id="sellAt" name="sellAt" placeholder="Sell At Price"
+                       [ngModel]="investmentOrderModel.sellAt">
+              </div>
+            </div>
+          </div>
+         </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button class="btn btn-secondary pull-right" (click)="buyNow()" *ngIf="!investmentOrderModel.brunoOn">Buy Now</button>
+        <button class="btn btn-primary pull-right" (click)="createStrategy()" *ngIf="investmentOrderModel.brunoOn">Create Strategy</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row" *ngIf="stockQuoteModel">
+  <div class="col-sm-12">
+    <nb-card>
+      <nb-card-header>
+        About
+      </nb-card-header>
+      <nb-card-body>
+        {{stockQuoteModel.instrumentBody.fundamentalsBody.description}}
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

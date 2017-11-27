@@ -17,23 +17,24 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./search.component.scss'],
   providers: [StockService]
 })
-export class SearchComponent implements OnInit{
+export class SearchComponent implements OnInit {
   model: any;
-  investmentOrderModel:any;
+  investmentOrderModel: any;
+  stockQuoteModel: any;
   searching = false;
   searchFailed = false;
   hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
 
-  constructor(private stockService: StockService,private router: Router, private route: ActivatedRoute) {
+  constructor(private stockService: StockService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       console.log(params['symbol'])
-      if(params['symbol']){
+      if (params['symbol']) {
         this.getQuote(params['symbol']);
       }
     });
   }
 
-  ngOnInit(){
+  ngOnInit() {
     // // subscribe to router event
     // let sdfsdf=this.route.snapshot.paramMap.get('symbol');
     // debugger;
@@ -44,7 +45,7 @@ export class SearchComponent implements OnInit{
     //     let selectedId = params.get('symbol');
     //    // return this.service.getHeroes();
     //   });
-}
+  }
 
   search = (text$: Observable<string>) =>
     text$
@@ -61,8 +62,8 @@ export class SearchComponent implements OnInit{
       .do(() => this.searching = false)
       .merge(this.hideSearchingWhenUnsubscribed);
 
-  changeRoute(symbol:string){
-    this.router.navigate(['stock/search/'+symbol])
+  changeRoute(symbol: string) {
+    this.router.navigate(['stock/search/' + symbol])
   }
 
 
@@ -70,15 +71,27 @@ export class SearchComponent implements OnInit{
     this.stockService.getQuotes(symbol)
       .subscribe(data => {
           this.model = null;
+          this.stockQuoteModel = data;
           this.investmentOrderModel = {
-            name: data.name,
-            quantity: 1,
+            brunoOn:true,
+            buyAt:data.last_trade_price*0.95,
+            geoffreyOn:true,
+            stopLossPercent:10,
+            dotOn:true,
+            sellAt:data.last_trade_price*1.15,
+            name: data.instrumentBody.name,
+            quantity: 3,
             symbol: data.symbol.toUpperCase(),
-            bid: Number((data.price * 1).toFixed(2))
+            bid: data.last_trade_price
           };
         },
         error => console.error(error)
       );
+  }
+
+  buyNow(){
+    debugger;
+    let sdfsdf=this.investmentOrderModel;
   }
 
 
