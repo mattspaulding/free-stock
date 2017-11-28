@@ -57,7 +57,7 @@ export class HeaderComponent implements OnInit {
 
           this.getProfile();
         }
-      })
+      });
   }
 
   login(): void {
@@ -70,16 +70,16 @@ export class HeaderComponent implements OnInit {
 
           this.getProfile();
         }
-      })
+      });
   }
 
   getProfile(): void {
     this.userService.getProfile()
       .then(data => {
-        this.profilePicture = '//graph.facebook.com/' + data.id + '/picture?type=square'
+        this.profilePicture = '//graph.facebook.com/' + data.id + '/picture?type=square';
         this.username = data.name;
              this.getUser();
-       })
+       });
   }
 
   logout(): void {
@@ -89,7 +89,7 @@ export class HeaderComponent implements OnInit {
           this.profilePicture = null;
           this.username = null;
         }
-      })
+      });
   }
 
   toggleSidebar(): boolean {

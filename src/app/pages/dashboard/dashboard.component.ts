@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../../@core/data/users.service";
+import {UserService} from '../../@core/data/users.service';
 
 @Component({
   selector: 'ngx-dashboard',

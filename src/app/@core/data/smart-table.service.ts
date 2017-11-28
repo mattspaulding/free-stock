@@ -10,7 +10,7 @@ export class SmartTableService {
     username: '@mdo',
     email: 'mdo@gmail.com',
     age: '28',
-    bots:'<div class="bots"><span class="icon primary"><img  src="/assets/images/bruno-outline.svg"></span> <span class="icon info"><img  src="/assets/images/geoffrey-outline.svg"></span> <span class="icon success off"><img  src="/assets/images/dot-outline.svg"></span> <span class="icon warning"><img src="/assets/images/rocket-outline.svg"></span></div>'
+    bots: '<div class="bots"><span class="icon primary"><img  src="/assets/images/bruno-outline.svg"></span> <span class="icon info"><img  src="/assets/images/geoffrey-outline.svg"></span> <span class="icon success off"><img  src="/assets/images/dot-outline.svg"></span> <span class="icon warning"><img src="/assets/images/rocket-outline.svg"></span></div>',
   }, {
     id: 2,
     firstName: 'Jacob',

@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {StockComponent} from "./stock.component";
-import {SearchComponent} from "./search/search.component";
+import {StockComponent} from './stock.component';
+import {SearchComponent} from './search/search.component';
 
 
 
@@ -11,11 +11,11 @@ const routes: Routes = [{
   children: [
     {
       path: 'search',
-      component: SearchComponent
+      component: SearchComponent,
     },
     {
       path: 'search/:symbol',
-      component: SearchComponent
+      component: SearchComponent,
     },
   ],
 }];

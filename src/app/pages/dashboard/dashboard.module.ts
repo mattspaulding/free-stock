@@ -19,8 +19,8 @@ import {SolarComponent} from './solar/solar.component';
 import {PlayerComponent} from './rooms/player/player.component';
 import {TrafficComponent} from './traffic/traffic.component';
 import {TrafficChartComponent} from './traffic/traffic-chart.component';
-import {InvestmentsComponent} from "./investments/investments.component";
-import {Ng2SmartTableModule} from "ng2-smart-table";
+import {InvestmentsComponent} from './investments/investments.component';
+import {Ng2SmartTableModule} from 'ng2-smart-table';
 
 
 @NgModule({

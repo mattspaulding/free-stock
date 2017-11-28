@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers} from "@angular/http";
+import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { environment } from 'environments/environment';
 
-let counter = 0;
+const counter = 0;
 
 @Injectable()
 export class StockService {
@@ -17,17 +17,17 @@ export class StockService {
     return this.http.get(environment.apiBaseUrl + '/api/stock/search/' + term)
       .map((response: Response) => {
         const obj = response.json().obj;
-        let formattedResponse = [];
+        const formattedResponse = [];
         obj.forEach((item) => {
-          let quote = {
+          const quote = {
             name: item.simple_name,
-            symbol: item.symbol
-          }
+            symbol: item.symbol,
+          };
           if (!quote.name) {
             quote.name = item.name;
           }
-          formattedResponse.push(quote)
-        })
+          formattedResponse.push(quote);
+        });
 
         return formattedResponse;
       })
@@ -41,10 +41,23 @@ export class StockService {
     return this.http.get(environment.apiBaseUrl +  '/api/stock/quote/' + symbols)
       .map((response: Response) => {
         const obj = response.json().obj;
-         return obj;
+        return obj;
       })
       .catch((error: Response) => {
         return Observable.throw(error.json());
+      });
+  }
+
+  createInvestment(investmentOrderModel: any) {
+    debugger;
+    const body = JSON.stringify(investmentOrderModel);
+    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+
+    const anonId = localStorage.getItem('anonId');
+    return this.http.post(environment.apiBaseUrl + '/api/stock/investment/?anonId=' + anonId, body, {headers: headers})
+      .map((response: any) => JSON.parse(response._body).obj)
+      .catch((error: Response) => {
+         return Observable.throw(error.json());
       });
   }
 

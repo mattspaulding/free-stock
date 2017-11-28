@@ -39,7 +39,7 @@ export class InvestmentsComponent implements OnChanges {
       },
       bots: {
         title: 'Bots',
-        type: 'html'
+        type: 'html',
       },
     },
   };
@@ -62,7 +62,7 @@ export class InvestmentsComponent implements OnChanges {
       },
        bots: {
         title: 'Bots',
-        type: 'html'
+        type: 'html',
       },
     },
   };
@@ -109,16 +109,16 @@ export class InvestmentsComponent implements OnChanges {
       } else {
         this.size = 'lg';
       }
-    }
+    };
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.user) {
-      let buyChartData = [];
-      this.user.portfolio.collars.forEach(collar => {
-        buyChartData.push(collar.buyChartDatum)
+      const buyChartData = [];
+      this.user.portfolio.investments.forEach(investment => {
+        buyChartData.push(investment.buyChartDatum);
       });
-      this.source.load(buyChartData)
+      this.source.load(buyChartData);
     }
   }
 

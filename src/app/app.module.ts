@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {FacebookModule} from "ngx-facebook";
+import {FacebookModule} from 'ngx-facebook';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +27,7 @@ import {FacebookModule} from "ngx-facebook";
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
   ],
   bootstrap: [AppComponent],
   providers: [

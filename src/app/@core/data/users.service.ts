@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers} from "@angular/http";
+import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {FacebookService, LoginOptions, LoginResponse} from 'ngx-facebook';
 import { environment } from 'environments/environment';
 
-let counter = 0;
+const counter = 0;
 
 @Injectable()
 export class UserService {
@@ -26,7 +26,7 @@ export class UserService {
 
     fb.init({
       appId: environment.fbAppId,
-      version: 'v2.9'
+      version: 'v2.9',
     });
   }
 
@@ -38,7 +38,7 @@ export class UserService {
     const loginOptions: LoginOptions = {
       enable_profile_selector: true,
       return_scopes: true,
-      scope: 'email'
+      scope: 'email',
     };
 
     return this.fb.login(loginOptions)
@@ -56,7 +56,7 @@ export class UserService {
   getLoginStatus() {
     return this.fb.getLoginStatus()
       .then(res => {
-        console.log('login status: ' + res.status)
+        console.log('login status: ' + res.status);
         if (res.authResponse)
           localStorage.accessToken = res.authResponse.accessToken;
 
@@ -87,8 +87,8 @@ export class UserService {
    */
   logout() {
     return this.fb.logout().then((res) => {
-      console.log('Logged out!')
-      return res
+      console.log('Logged out!');
+      return res;
     });
   }
 
@@ -122,7 +122,7 @@ export class UserService {
 
       return this.http.get(environment.apiBaseUrl + '/api/stock/account', {headers: headers})
         .map((response: Response) => {
-          let user = response.json().obj;
+          const user = response.json().obj;
           localStorage.setItem('anonId', user.anonId);
           return user;
         })

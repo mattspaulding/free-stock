@@ -23,5 +23,5 @@ export class StatusCardComponent {
   @Input() title: string;
   @Input() type: string;
   @Input() on = false;
-  @Input() pictureUrl:string;
+  @Input() pictureUrl: string;
 }

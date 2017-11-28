@@ -3,10 +3,10 @@ import {Routes, RouterModule} from '@angular/router';
 
 import {BotsComponent} from './bots.component';
 import {BrunoComponent} from './bruno/bruno.component';
-import {RocketComponent} from "./rocket/rocket.component";
-import {OverviewComponent} from "./overview/overview.component";
-import {DotComponent} from "./dot/dot.component";
-import {GeoffreyComponent} from "./geoffrey/geoffrey.component";
+import {RocketComponent} from './rocket/rocket.component';
+import {OverviewComponent} from './overview/overview.component';
+import {DotComponent} from './dot/dot.component';
+import {GeoffreyComponent} from './geoffrey/geoffrey.component';
 
 
 const routes: Routes = [{
@@ -15,23 +15,23 @@ const routes: Routes = [{
   children: [
     {
       path: 'overview',
-      component: OverviewComponent
+      component: OverviewComponent,
     },
     {
       path: 'bruno',
-      component: BrunoComponent
+      component: BrunoComponent,
     },
     {
       path: 'geoffrey',
-      component: GeoffreyComponent
+      component: GeoffreyComponent,
     },
     {
       path: 'dot',
-      component: DotComponent
+      component: DotComponent,
     },
     {
       path: 'rocket',
-      component: RocketComponent
+      component: RocketComponent,
     },
   ],
 }];
