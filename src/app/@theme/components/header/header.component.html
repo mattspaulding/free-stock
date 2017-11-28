@@ -15,7 +15,7 @@
   [class.left]="position === 'inverse'">
   <nb-action icon="nb-grid-b" class="toggle-layout" (click)="toggleSettings()"></nb-action>
   <nb-action *ngIf="username">
-    <nb-user [menu]="userMenu" [name]="username" [picture]="profilePicture" (click)="logout()"></nb-user>
+    <nb-user [menu]="userMenu" [name]="username" [picture]="profilePicture"></nb-user>
   </nb-action>
   <nb-action *ngIf="!username">
     <nb-user [name]="'Login'" [picture]="'https://cdn2.iconfinder.com/data/icons/rcons-user/32/male-circle-512.png'" (click)="login()"></nb-user>

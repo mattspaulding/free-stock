@@ -11,6 +11,9 @@ const routes: Routes = [{
     path: '',
     component: DashboardComponent,
   }, {
+    path: 'auth',
+    loadChildren: './auth/auth.module#AuthModule',
+  }, {
     path: 'bots',
     loadChildren: './bots/bots.module#BotsModule',
   }, {

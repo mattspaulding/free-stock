@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   profilePicture: string;
   username: string;
 
-  userMenu = [{title: 'Profile'}, {title: 'Log out'}];
+  userMenu = [{title: 'Profile',icon: 'nb-bar-chart'}, {title: 'Log out',icon: 'nb-bar-chart',link:'/auth/logout'}];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
@@ -27,8 +27,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.tryLogin();
-    this.getLoginStatus();
+    if (localStorage.accessToken) {
+      this.getUser();
+    } else {
+      this.getLoginStatus();
+    }
   }
 
   // tryLogin(): void {
@@ -61,16 +64,16 @@ export class HeaderComponent implements OnInit {
   }
 
   login(): void {
-    this.userService.login()
-      .then(data => {
-        if (!data) {
-///TODO throw toastr
-        }
-        else if (data.status === 'connected') {
-
-          this.getProfile();
-        }
-      });
+    this.userService.goToLogin()
+//       .then(data => {
+//         if (!data) {
+// ///TODO throw toastr
+//         }
+//         else if (data.status === 'connected') {
+//
+//           this.getProfile();
+//         }
+//       });
   }
 
   getProfile(): void {
@@ -78,18 +81,12 @@ export class HeaderComponent implements OnInit {
       .then(data => {
         this.profilePicture = '//graph.facebook.com/' + data.id + '/picture?type=square';
         this.username = data.name;
-             this.getUser();
-       });
+        this.getUser();
+      });
   }
 
   logout(): void {
     this.userService.logout()
-      .then(data => {
-        if (data.status === 'unknown') {
-          this.profilePicture = null;
-          this.username = null;
-        }
-      });
   }
 
   toggleSidebar(): boolean {
@@ -113,6 +110,8 @@ export class HeaderComponent implements OnInit {
   getUser() {
     this.userService.getUser()
       .subscribe(data => {
+        this.profilePicture = '//graph.facebook.com/' + data.fbId + '/picture?type=square';
+        this.username = data.name;
         this.user = data;
       });
   }

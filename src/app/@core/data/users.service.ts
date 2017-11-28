@@ -3,7 +3,8 @@ import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import {FacebookService, LoginOptions, LoginResponse} from 'ngx-facebook';
-import { environment } from 'environments/environment';
+import {environment} from 'environments/environment';
+import {Router} from "@angular/router";
 
 const counter = 0;
 
@@ -21,13 +22,18 @@ export class UserService {
 
   private userArray: any[];
 
-  constructor(private http: Http, private fb: FacebookService) {
+  constructor(private http: Http, private fb: FacebookService, private router: Router) {
     console.log('Initializing Facebook');
 
     fb.init({
       appId: environment.fbAppId,
       version: 'v2.9',
     });
+  }
+
+  goToLogin(){
+    this.router.navigate(["auth/login"]);
+
   }
 
   /**
@@ -45,6 +51,8 @@ export class UserService {
       .then((res: LoginResponse) => {
         console.log('Logged in', res);
         localStorage.accessToken = res.authResponse.accessToken;
+        this.router.navigate([""]);
+        location.reload()
         return res;
       })
       .catch(() => {
@@ -86,10 +94,15 @@ export class UserService {
    * logout
    */
   logout() {
-    return this.fb.logout().then((res) => {
-      console.log('Logged out!');
-      return res;
-    });
+    // return this.fb.logout().then((res) => {
+    //   console.log('Logged out!');
+    //   return res;
+    // });
+    if (localStorage.accessToken) {
+      localStorage.removeItem('accessToken');
+      this.router.navigate(["auth/logout"]);
+      location.reload();
+    }
   }
 
   // /**
@@ -120,7 +133,7 @@ export class UserService {
 
       const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
 
-      return this.http.get(environment.apiBaseUrl + '/api/stock/account', {headers: headers})
+      return this.http.get(environment.apiBaseUrl + '/api/stock/user', {headers: headers})
         .map((response: Response) => {
           const user = response.json().obj;
           localStorage.setItem('anonId', user.anonId);
@@ -128,7 +141,28 @@ export class UserService {
         })
         .catch((error: Response) => {
           // this.errorService.handleError(error.json());
-          localStorage.removeItem('accessToken');
+          //localStorage.removeItem('accessToken');
+          return Observable.throw(error.json());
+        });
+    } else {
+      return Observable.of(null);
+    }
+  }
+
+  getUserUpdated() {
+    if (localStorage.accessToken) {
+
+      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+
+      return this.http.get(environment.apiBaseUrl + '/api/stock/userupdated', {headers: headers})
+        .map((response: Response) => {
+          const user = response.json().obj;
+          localStorage.setItem('anonId', user.anonId);
+          return user;
+        })
+        .catch((error: Response) => {
+          // this.errorService.handleError(error.json());
+          //localStorage.removeItem('accessToken');
           return Observable.throw(error.json());
         });
     } else {
