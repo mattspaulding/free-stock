@@ -47,6 +47,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Search',
         link: '/stock/search',
       },
+      {
+        title: 'Active Investments',
+        link: '/stock/active-investments',
+      },
+      {
+        title: 'Strategies',
+        link: '/stock/strategies',
+      },
     ],
   },
   // {

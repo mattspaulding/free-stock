@@ -1,13 +1,16 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {LocalDataSource} from 'ng2-smart-table';
+import {UserService} from "../../../@core/data/users.service";
 
 @Component({
-  selector: 'ngx-investments',
-  templateUrl: './investments.component.html',
-  styleUrls: ['./investments.component.scss'],
+  selector: 'ngx-active-investments',
+  templateUrl: './active-investments.component.html',
+  styleUrls: ['./active-investments.component.scss'],
 
 })
-export class InvestmentsComponent implements OnChanges {
+export class ActiveInvestmentsComponent implements OnInit {
+
+  user: any;
 
   settingsLg = {
     actions: null,
@@ -60,7 +63,7 @@ export class InvestmentsComponent implements OnChanges {
         title: '$ Change',
         type: 'string',
       },
-       bots: {
+      bots: {
         title: 'Bots',
         type: 'html',
       },
@@ -87,12 +90,12 @@ export class InvestmentsComponent implements OnChanges {
     },
   };
 
-  @Input() user;
   size: string;
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor() {
+  constructor(private userService: UserService) {
+
     if (window.innerWidth < 667) {
       this.size = 'sm';
     } else if (window.innerWidth < 1024) {
@@ -112,15 +115,22 @@ export class InvestmentsComponent implements OnChanges {
     };
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (this.user) {
-      const buyChartData = [];
-      this.user.portfolio.investments.forEach(investment => {
-        if(investment.buyChartDatum) {
-          buyChartData.push(investment.buyChartDatum);
-        }});
-      this.source.load(buyChartData);
-    }
+  ngOnInit() {
+    this.getUser();
+  }
+
+  getUser() {
+    this.userService.getUserUpdated()
+      .subscribe(data => {
+        this.user = data;
+        const chartData = [];
+        this.user.portfolio.investments.forEach(investment => {
+          if (investment.buyChartDatum) {
+            chartData.push(investment.activeInvestmentsChartDatum);
+          }
+        });
+        this.source.load(chartData);
+      });
   }
 
   onUserRowSelect(event): void {

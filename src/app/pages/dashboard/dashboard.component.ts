@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getUser() {
-    this.userService.getUser()
+    this.userService.getUserUpdated()
       .subscribe(data => {
         this.user = data;
       });
