@@ -138,8 +138,7 @@ export class StrategiesComponent implements OnInit {
   }
 
   onDeleteConfirm(event): void {
-    if (window.confirm('Are you sure you want to delete?')
-    ) {
+    if (window.confirm('Are you sure you want to delete?')) {
       event.confirm.resolve();
     }
     else {

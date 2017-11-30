@@ -74,15 +74,15 @@ export class SearchComponent implements OnInit {
           this.stockQuoteModel = data;
           this.investmentOrderModel = {
             brunoOn: true,
-            buyAt: data.last_trade_price * 0.95,
+            buyAt: (data.last_trade_price * 0.95).toFixed(2),
             geoffreyOn: true,
             stopLossPercent: 10,
             dotOn: true,
-            sellAt: data.last_trade_price * 1.15,
+            sellAt: (data.last_trade_price * 1.15).toFixed(2),
             name: data.instrumentBody.name,
             quantity: 3,
             symbol: data.symbol.toUpperCase(),
-            bid: data.last_trade_price,
+            bid: Number(data.last_trade_price).toFixed(2),
           };
         },
         error => console.error(error),
