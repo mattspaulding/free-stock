@@ -10,7 +10,7 @@ import {StockService} from "../../../@core/data/stock.service";
 })
 export class RocketComponent implements OnInit {
 
- // rocketBot: any;
+  createdAt: string;
 
   settings = {
     actions: null,
@@ -25,6 +25,10 @@ export class RocketComponent implements OnInit {
         type: 'string',
       }
     },
+    pager:
+      {
+        perPage: 6
+      }
   };
 
   source: LocalDataSource = new LocalDataSource();
@@ -39,14 +43,7 @@ export class RocketComponent implements OnInit {
   getRocketBot() {
     this.stockService.getRocketBot()
       .subscribe(data => {
-        // debugger;
-        // this.rocketBot = data;
-        // const chartData = [];
-        // // this.user.portfolio.investments.forEach(investment => {
-        // //   if (investment.activeInvestmentsChartDatum) {
-        // //     chartData.push(investment.activeInvestmentsChartDatum);
-        // //   }
-        // // });
+        this.createdAt = data.createdAt;
         this.source.load(data.rockets);
       });
   }
