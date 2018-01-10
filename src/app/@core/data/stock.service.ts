@@ -48,6 +48,17 @@ export class StockService {
       });
   }
 
+  getRocketBot() {
+     return this.http.get(environment.apiBaseUrl +  '/api/stock/rocketbot/')
+      .map((response: Response) => {
+        const obj = response.json().obj;
+        return obj;
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
   createInvestment(investmentOrderModel: any) {
     const body = JSON.stringify(investmentOrderModel);
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});

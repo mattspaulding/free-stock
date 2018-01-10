@@ -8,4 +8,15 @@
       description="Rocket identifies the rocket stocks; The stocks that go to the moooon! She'll even buy them for you before they take off... for a price. Only $7."
     ></ngx-bot-profile>
   </div>
-</div>
+  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+  <nb-card>
+    <nb-card-header>
+      Rocket Stocks
+    </nb-card-header>
+
+    <nb-card-body>
+      <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowSelect($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+  </div></div>
