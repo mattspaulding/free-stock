@@ -49,15 +49,14 @@ export class StockService {
   }
 
   createInvestment(investmentOrderModel: any) {
-    debugger;
     const body = JSON.stringify(investmentOrderModel);
     const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
 
     const anonId = localStorage.getItem('anonId');
     return this.http.post(environment.apiBaseUrl + '/api/stock/investment/?anonId=' + anonId, body, {headers: headers})
-      .map((response: any) => JSON.parse(response._body).obj)
+      .map((response: any) => response.json())
       .catch((error: Response) => {
-         return Observable.throw(error.json());
+        return Observable.throw(error.json());
       });
   }
 

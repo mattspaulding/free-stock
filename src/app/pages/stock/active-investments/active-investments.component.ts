@@ -125,7 +125,7 @@ export class ActiveInvestmentsComponent implements OnInit {
         this.user = data;
         const chartData = [];
         this.user.portfolio.investments.forEach(investment => {
-          if (investment.buyChartDatum) {
+          if (investment.activeInvestmentsChartDatum) {
             chartData.push(investment.activeInvestmentsChartDatum);
           }
         });

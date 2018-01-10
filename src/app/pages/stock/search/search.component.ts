@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -80,7 +81,7 @@ export class SearchComponent implements OnInit {
             dotOn: true,
             sellAt: (data.last_trade_price * 1.15).toFixed(2),
             name: data.instrumentBody.name,
-            quantity: 3,
+            quantity: 1,
             symbol: data.symbol.toUpperCase(),
             bid: Number(data.last_trade_price).toFixed(2),
           };
@@ -89,18 +90,15 @@ export class SearchComponent implements OnInit {
       );
   }
 
-  buyNow() {
-    debugger;
-    const sdfsdf = this.investmentOrderModel;
-  }
-
-  createStrategy() {
-    debugger;
-    this.stockService.createInvestment(this.investmentOrderModel)
+  createInvestment() {
+   this.stockService.createInvestment(this.investmentOrderModel)
       .subscribe(data => {
-          debugger;
+        debugger;
+          this.router.navigate([ data.navigate]);
         },
-        error => console.error(error),
+        error => {
+          alert(error.message)
+        }
       );
   }
 }

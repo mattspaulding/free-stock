@@ -32,22 +32,31 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card *ngIf="stockQuoteModel" size="xxsmall">
-      <div class="icon-container">
-        <div class="icon warning">
-          <img src="../../../../assets/images/rocket-outline.svg">
+    <nb-card *ngIf="stockQuoteModel" size="xsmall">
+      <nb-card-header>
+        Rocket Rating
+      </nb-card-header>
+      <nb-card-body>
+        <div class="icon-container">
+          <div class="icon warning">
+            <img src="../../../../assets/images/rocket-outline.svg">
+          </div>
         </div>
-      </div>
-      <div class="rocket-rating">
-        A+
-      </div>
+        <div class="rocket-rating">
+          A+
+        </div>
+      </nb-card-body>
     </nb-card>
   </div>
   <div class="col-xl-3 col-lg-6">
-    <nb-card *ngIf="stockQuoteModel" size="small">
+    <nb-card *ngIf="stockQuoteModel" size="xsmall">
+      <nb-card-header>
+        {{stockQuoteModel.instrumentBody.simple_name}} ({{stockQuoteModel.symbol}})
+      </nb-card-header>
       <nb-card-body>
-        <h5><b>{{stockQuoteModel.instrumentBody.simple_name}} ({{stockQuoteModel.symbol}})</b></h5> <br><span
-        class="pull-right">${{stockQuoteModel.last_trade_price}}</span>
+       <span class="pull-right stock-quote">
+         {{stockQuoteModel.last_trade_price | currency:'USD':true:'1.2-2'}}
+       </span>
       </nb-card-body>
     </nb-card>
   </div>
@@ -57,12 +66,12 @@
         Stats
       </nb-card-header>
       <nb-card-body>
-        Open: {{stockQuoteModel.instrumentBody.fundamentalsBody.open}} <br>
-        High: {{stockQuoteModel.instrumentBody.fundamentalsBody.high}} <br>
-        Low: {{stockQuoteModel.instrumentBody.fundamentalsBody.low}} <br>
-        Volume: {{stockQuoteModel.instrumentBody.fundamentalsBody.volume}} <br>
-        Avg Vol: {{stockQuoteModel.instrumentBody.fundamentalsBody.average_volume}}<br>
-        Mkt Cap: {{stockQuoteModel.instrumentBody.fundamentalsBody.market_cap}}<br>
+        Open: {{stockQuoteModel.instrumentBody.fundamentalsBody.open | number:'1.2-2'}} <br>
+        High: {{stockQuoteModel.instrumentBody.fundamentalsBody.high | number:'1.2-2'}} <br>
+        Low: {{stockQuoteModel.instrumentBody.fundamentalsBody.low | number:'1.2-2'}} <br>
+        Volume: {{stockQuoteModel.instrumentBody.fundamentalsBody.volume | number:'1.0-0'}} <br>
+        Avg Vol: {{stockQuoteModel.instrumentBody.fundamentalsBody.average_volume | number:'1.0-0'}}<br>
+        Mkt Cap: {{stockQuoteModel.instrumentBody.fundamentalsBody.market_cap | number:'1.0-0'}}<br>
       </nb-card-body>
     </nb-card>
   </div>
@@ -89,9 +98,10 @@
                        [(ngModel)]="investmentOrderModel.bid">
               </div>
             </div>
-            </div>
+          </div>
           <div class="col-md-6 col-lg-3" style="height: 216px;">
-            <nb-card (click)="investmentOrderModel.brunoOn = !investmentOrderModel.brunoOn" [ngClass]="{'off': !investmentOrderModel.brunoOn}" class="bot-card">
+            <nb-card (click)="investmentOrderModel.brunoOn = !investmentOrderModel.brunoOn"
+                     [ngClass]="{'off': !investmentOrderModel.brunoOn}" class="bot-card">
               <div class="icon-container">
                 <div class="icon primary">
                   <img src="../../../../assets/images/bruno-outline.svg">
@@ -112,7 +122,8 @@
             </div>
           </div>
           <div class="col-md-6 col-lg-3" style="height: 216px;">
-            <nb-card (click)="investmentOrderModel.geoffreyOn = !investmentOrderModel.geoffreyOn" [ngClass]="{'off': !investmentOrderModel.geoffreyOn}" class="bot-card">
+            <nb-card (click)="investmentOrderModel.geoffreyOn = !investmentOrderModel.geoffreyOn"
+                     [ngClass]="{'off': !investmentOrderModel.geoffreyOn}" class="bot-card">
               <div class="icon-container">
                 <div class="icon info">
                   <img src="../../../../assets/images/geoffrey-outline.svg">
@@ -127,13 +138,15 @@
             <div class="form-group" *ngIf="investmentOrderModel.geoffreyOn">
               <label for="stopLossPercent" class="col-sm-12 form-control-label">Stop Loss % (below high)</label>
               <div class="col-sm-12">
-                <input type="text" class="form-control" id="stopLossPercent" name="stopLossPercent" placeholder="Stop Loss Below High"
+                <input type="text" class="form-control" id="stopLossPercent" name="stopLossPercent"
+                       placeholder="Stop Loss Below High"
                        [(ngModel)]="investmentOrderModel.stopLossPercent">
               </div>
             </div>
           </div>
           <div class="col-md-6 col-lg-3" style="height: 216px;">
-            <nb-card (click)="investmentOrderModel.dotOn = !investmentOrderModel.dotOn" [ngClass]="{'off': !investmentOrderModel.dotOn}" class="bot-card">
+            <nb-card (click)="investmentOrderModel.dotOn = !investmentOrderModel.dotOn"
+                     [ngClass]="{'off': !investmentOrderModel.dotOn}" class="bot-card">
               <div class="icon-container">
                 <div class="icon success">
                   <img src="../../../../assets/images/dot-outline.svg">
@@ -153,11 +166,15 @@
               </div>
             </div>
           </div>
-         </div>
+        </div>
       </nb-card-body>
       <nb-card-footer>
-        <button class="btn btn-secondary pull-right" (click)="buyNow()" *ngIf="!investmentOrderModel.brunoOn">Place Limit Order</button>
-        <button class="btn btn-primary pull-right" (click)="createStrategy()" *ngIf="investmentOrderModel.brunoOn">Create Strategy</button>
+        <button class="btn btn-secondary pull-right" (click)="createInvestment()" *ngIf="!investmentOrderModel.brunoOn">Place
+          Limit Order
+        </button>
+        <button class="btn btn-primary pull-right" (click)="createInvestment()" *ngIf="investmentOrderModel.brunoOn">
+          Create Strategy
+        </button>
       </nb-card-footer>
     </nb-card>
   </div>
