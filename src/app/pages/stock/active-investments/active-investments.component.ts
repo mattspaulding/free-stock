@@ -40,6 +40,10 @@ export class ActiveInvestmentsComponent implements OnInit {
         title: 'Price',
         type: 'string',
       },
+      stopLoss: {
+        title: 'Stop Loss',
+        type: 'string',
+      },
       bots: {
         title: 'Bots',
         type: 'html',
