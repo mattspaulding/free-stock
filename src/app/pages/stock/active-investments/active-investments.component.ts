@@ -127,14 +127,16 @@ export class ActiveInvestmentsComponent implements OnInit {
     this.userService.getUserUpdated()
       .subscribe(data => {
         this.user = data;
-        const chartData = [];
-        this.user.portfolio.investments.forEach(investment => {
-          if (investment.activeInvestmentsChartDatum) {
-            chartData.push(investment.activeInvestmentsChartDatum);
-          }
-        });
+          const chartData = [];
+        if(this.user) {
+          this.user.portfolio.investments.forEach(investment => {
+            if (investment.activeInvestmentsChartDatum) {
+              chartData.push(investment.activeInvestmentsChartDatum);
+            }
+          });
+        }
         this.source.load(chartData);
-      });
+       });
   }
 
   onUserRowSelect(event): void {

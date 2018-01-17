@@ -124,11 +124,13 @@ export class StrategiesComponent implements OnInit {
       .subscribe(data => {
         this.user = data;
         const chartData = [];
+        if (this.user) {
         this.user.portfolio.investments.forEach(investment => {
           if (investment.strategy) {
             chartData.push(investment.strategiesChartDatum);
           }
         });
+      }
         this.source.load(chartData);
       });
   }
