@@ -4,6 +4,7 @@ import {StockComponent} from './stock.component';
 import {SearchComponent} from './search/search.component';
 import {ActiveInvestmentsComponent} from "./active-investments/active-investments.component";
 import {StrategiesComponent} from "./strategies/strategies.component";
+import {CompletedInvestmentsComponent} from "./completed-investments/completed-investments.component";
 
 
 
@@ -19,13 +20,17 @@ const routes: Routes = [{
       path: 'search/:symbol',
       component: SearchComponent,
     },
+     {
+      path: 'strategies',
+      component: StrategiesComponent,
+    },
     {
       path: 'active-investments',
       component: ActiveInvestmentsComponent,
     },
     {
-      path: 'strategies',
-      component: StrategiesComponent,
+      path: 'completed-investments',
+      component: CompletedInvestmentsComponent,
     },
   ],
 }];

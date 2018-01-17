@@ -48,12 +48,16 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/stock/search',
       },
       {
+        title: 'Strategies',
+        link: '/stock/strategies',
+      },
+      {
         title: 'Active Investments',
         link: '/stock/active-investments',
       },
       {
-        title: 'Strategies',
-        link: '/stock/strategies',
+        title: 'Completed Investments',
+        link: '/stock/completed-investments',
       },
     ],
   },
