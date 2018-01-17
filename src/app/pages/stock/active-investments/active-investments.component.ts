@@ -24,16 +24,12 @@ export class ActiveInvestmentsComponent implements OnInit {
         title: '% Change',
         type: 'string',
       },
+      bought: {
+        title: 'Bought',
+        type: 'string',
+      },
       amountChange: {
         title: '$ Change',
-        type: 'string',
-      },
-      quantity: {
-        title: 'Quantity',
-        type: 'string',
-      },
-      totalAmountChange: {
-        title: 'Tot $Chng',
         type: 'string',
       },
       price: {
@@ -44,7 +40,15 @@ export class ActiveInvestmentsComponent implements OnInit {
         title: 'Stop Loss',
         type: 'string',
       },
-      bots: {
+      quantity: {
+        title: 'Quantity',
+        type: 'string',
+      },
+      totalAmountChange: {
+        title: 'Tot $Chng',
+        type: 'string',
+      },
+        bots: {
         title: 'Bots',
         type: 'html',
       },
