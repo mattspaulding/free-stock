@@ -24,6 +24,11 @@ export class RocketComponent implements OnInit {
         title: 'Rocket Fuel',
         type: 'string',
       }
+      ,
+      createdAtPretty: {
+        title: 'Date',
+        type: 'string',
+      }
     },
     pager:
       {
@@ -43,8 +48,11 @@ export class RocketComponent implements OnInit {
   getRocketBot() {
     this.stockService.getRocketBot()
       .subscribe(data => {
-        this.createdAt = data.createdAt;
-        this.source.load(data.rockets);
+        let rockets=[];
+        data.forEach(datum=>{
+          rockets.push(datum.rocket);
+        })
+        this.source.load(rockets);
       });
   }
 
