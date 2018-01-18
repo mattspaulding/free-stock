@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalDataSource} from "ng2-smart-table";
 import {StockService} from "../../../@core/data/stock.service";
-import {AnalyticsService} from "../../../@core/utils/analytics.service";
 
 @Component({
   selector: 'ngx-rocket',
@@ -48,11 +47,10 @@ export class RocketComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private analytics: AnalyticsService, private stockService: StockService) {
+  constructor(private stockService: StockService) {
   }
 
   ngOnInit() {
-    this.analytics.trackPageViews();
     this.getRocketBot();
   }
 
