@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {LocalDataSource} from 'ng2-smart-table';
 import {UserService} from "../../../@core/data/users.service";
 
@@ -8,7 +8,7 @@ import {UserService} from "../../../@core/data/users.service";
   styleUrls: ['./active-investments.component.scss'],
 
 })
-export class ActiveInvestmentsComponent implements OnInit {
+export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
 
   user: any;
 
@@ -123,8 +123,19 @@ export class ActiveInvestmentsComponent implements OnInit {
     };
   }
 
+  public timer:any;
   ngOnInit() {
     this.getUser();
+
+    this.timer =  setInterval(() => {
+      console.log('refreshing');
+      this.getUser();
+    }, 60000);
+  }
+
+  ngOnDestroy() {
+    console.log('stop refreshing');
+    clearInterval(this.timer);
   }
 
   getUser() {
