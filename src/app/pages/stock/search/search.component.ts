@@ -11,6 +11,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/merge';
 import {StockService} from '../../../@core/data/stock.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AnalyticsService} from "../../../@core/utils/analytics.service";
 
 @Component({
   selector: 'search',
@@ -26,7 +27,7 @@ export class SearchComponent implements OnInit {
   searchFailed = false;
   hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
 
-  constructor(private stockService: StockService, private router: Router, private route: ActivatedRoute) {
+  constructor(private analytics: AnalyticsService,private stockService: StockService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       console.log(params['symbol']);
       if (params['symbol']) {
@@ -69,6 +70,7 @@ export class SearchComponent implements OnInit {
 
 
   getQuote(symbol: string) {
+    this.analytics.trackEvent("search: "+symbol);
     this.stockService.getQuotes(symbol)
       .subscribe(data => {
           this.model = null;
