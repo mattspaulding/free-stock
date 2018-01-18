@@ -60,6 +60,7 @@ export class RocketComponent implements OnInit {
         let rockets=[];
         data.forEach(datum=>{
           datum.rocket.createdAtPretty= new Date(datum.rocket.createdAt).toString().replace(' GMT-0500','');
+          if(datum.rocket.updatedAt)
           datum.rocket.updatedAtPretty= new Date(datum.rocket.updatedAt).toString().replace(' GMT-0500','');
           rockets.push(datum.rocket);
         })
