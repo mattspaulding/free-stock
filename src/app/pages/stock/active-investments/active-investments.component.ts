@@ -48,10 +48,10 @@ export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
         title: 'Tot $Chng',
         type: 'string',
       },
-        bots: {
-        title: 'Bots',
-        type: 'html',
-      },
+      //   bots: {
+      //   title: 'Bots',
+      //   type: 'html',
+      // },
     },
   };
 
@@ -71,10 +71,10 @@ export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
         title: '$ Change',
         type: 'string',
       },
-      bots: {
-        title: 'Bots',
-        type: 'html',
-      },
+      // bots: {
+      //   title: 'Bots',
+      //   type: 'html',
+      // },
     },
   };
 

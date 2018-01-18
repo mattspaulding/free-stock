@@ -26,7 +26,16 @@ export class RocketComponent implements OnInit {
       }
       ,
       createdAtPretty: {
-        title: 'Date',
+        title: 'Added',
+        type: 'string',
+      },
+      updatedRocketFuel: {
+        title: 'Fuel Update',
+        type: 'string',
+      }
+      ,
+      updatedAtPretty: {
+        title: 'Updated',
         type: 'string',
       }
     },
@@ -51,6 +60,7 @@ export class RocketComponent implements OnInit {
         let rockets=[];
         data.forEach(datum=>{
           datum.rocket.createdAtPretty= new Date(datum.rocket.createdAt).toString().replace(' GMT-0500','');
+          datum.rocket.updatedAtPretty= new Date(datum.rocket.updatedAt).toString().replace(' GMT-0500','');
           rockets.push(datum.rocket);
         })
         this.source.load(rockets);
