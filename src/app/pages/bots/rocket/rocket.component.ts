@@ -50,7 +50,7 @@ export class RocketComponent implements OnInit {
       .subscribe(data => {
         let rockets=[];
         data.forEach(datum=>{
-          datum.rocket.createdAtPretty= datum.rocket.createdAtPretty.replace(" GMT-0500 (EST)","");
+          datum.rocket.createdAtPretty= new Date(datum.rocket.createdAt).toString().replace(' GMT-0500','');
           rockets.push(datum.rocket);
         })
         this.source.load(rockets);
