@@ -31,7 +31,7 @@ export class UserService {
     });
   }
 
-  goToLogin(){
+  goToLogin() {
     this.router.navigate(["auth/login"]);
 
   }
@@ -142,6 +142,7 @@ export class UserService {
         .catch((error: Response) => {
           // this.errorService.handleError(error.json());
           //localStorage.removeItem('accessToken');
+          debugger;
           return Observable.throw(error.json());
         });
     } else {

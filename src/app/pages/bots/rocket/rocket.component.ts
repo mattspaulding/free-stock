@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LocalDataSource} from "ng2-smart-table";
-import {StockService} from "../../../@core/data/stock.service";
+import {StockService} from '../../../@core/data/stock.service';
+import {UserService} from '../../../@core/data/users.service';
 
 @Component({
   selector: 'ngx-rocket',
@@ -47,29 +48,74 @@ export class RocketComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private stockService: StockService) {
+  user: any;
+
+  constructor(private userService: UserService, private stockService: StockService) {
   }
 
   ngOnInit() {
     this.getRocketBot();
+    this.getUser();
   }
 
   getRocketBot() {
     this.stockService.getRocketBot()
       .subscribe(data => {
-        let rockets=[];
-        data.forEach(datum=>{
-          datum.rocket.createdAtPretty= new Date(datum.rocket.createdAt).toString().replace(' GMT-0500','');
-          if(datum.rocket.updatedAt)
-          datum.rocket.updatedAtPretty= new Date(datum.rocket.updatedAt).toString().replace(' GMT-0500','');
+        let rockets = [];
+        data.forEach(datum => {
+          datum.rocket.createdAtPretty = new Date(datum.rocket.createdAt).toString().replace(' GMT-0500', '');
+          if (datum.rocket.updatedAt) {
+            datum.rocket.updatedAtPretty = new Date(datum.rocket.updatedAt).toString().replace(' GMT-0500', '');
+          }
           rockets.push(datum.rocket);
         })
         this.source.load(rockets);
       });
   }
 
-  onUserRowSelect(event): void {
-    debugger;
+  getUser() {
+    this.userService.getUser()
+      .subscribe(data => {
+        this.user = data;
+      });
   }
+
+  toggleEmailNotify(isNotify: boolean) {
+    if (this.user) {
+      this.stockService.setRocketBotEmailNotify(isNotify)
+        .subscribe();
+    } else {
+      this.userService.login();
+    }
+  }
+
+  isEmailNotify() {
+    if (this.user && this.user.isRocketBotEmailNotify) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  toggleSmsNotify(isNotify: boolean) {
+    if (this.user) {
+      this.stockService.setRocketBotSmsNotify(isNotify)
+        .subscribe();
+    } else {
+      this.userService.login();
+    }
+  }
+
+  isSmsNotify() {
+    if (this.user && this.user.isRocketBotSmsNotify) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // onUserRowSelect(event): void {
+  //   debugger;
+  // }
 
 }

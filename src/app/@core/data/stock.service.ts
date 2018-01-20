@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import { environment } from 'environments/environment';
+import {environment} from 'environments/environment';
 
 const counter = 0;
 
@@ -38,7 +38,7 @@ export class StockService {
   }
 
   getQuotes(symbols: String) {
-    return this.http.get(environment.apiBaseUrl +  '/api/stock/quote/' + symbols)
+    return this.http.get(environment.apiBaseUrl + '/api/stock/quote/' + symbols)
       .map((response: Response) => {
         const obj = response.json().obj;
         return obj;
@@ -49,7 +49,7 @@ export class StockService {
   }
 
   getRocketBot() {
-     return this.http.get(environment.apiBaseUrl +  '/api/stock/rocketbot/')
+    return this.http.get(environment.apiBaseUrl + '/api/stock/rocketbot/')
       .map((response: Response) => {
         const obj = response.json().obj;
         return obj;
@@ -59,9 +59,42 @@ export class StockService {
       });
   }
 
+  setRocketBotEmailNotify(isNotify) {
+    if (localStorage.accessToken) {
+
+      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotemailnotify/?isNotify=' + isNotify, {headers: headers})
+        .map((response: any) => response.json())
+        .catch((error: Response) => {
+          return Observable.throw(error.json());
+        });
+    } else {
+      return Observable.of(null);
+    }
+  }
+
+  setRocketBotSmsNotify(isNotify) {
+    if (localStorage.accessToken) {
+
+      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotsmsnotify/?isNotify=' + isNotify, {headers: headers})
+        .map((response: any) => response.json())
+        .catch((error: Response) => {
+          return Observable.throw(error.json());
+        });
+    } else {
+      return Observable.of(null);
+    }
+  }
+
   createInvestment(investmentOrderModel: any) {
     const body = JSON.stringify(investmentOrderModel);
-    const headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'Authorization: Bearer ' + localStorage.accessToken
+    });
 
     const anonId = localStorage.getItem('anonId');
     return this.http.post(environment.apiBaseUrl + '/api/stock/investment/?anonId=' + anonId, body, {headers: headers})
@@ -70,7 +103,6 @@ export class StockService {
         return Observable.throw(error.json());
       });
   }
-
 
 
 }
