@@ -146,8 +146,8 @@ export class RocketComponent implements OnInit {
       );
   }
 
-  // onUserRowSelect(event): void {
-  //   debugger;
-  // }
+  onUserRowSelect(event): void {
+    //debugger;
+  }
 
 }
