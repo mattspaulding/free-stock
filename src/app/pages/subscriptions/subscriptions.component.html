@@ -1,0 +1,188 @@
+<nb-card>
+  <nb-card-header>
+    Subscriptions
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Bruno Bot <img src="../../../../assets/images/bruno-outline.svg"/>
+          </nb-card-header>
+          <nb-card-body>
+            Buys stocks when they go on sale.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">Coming soon</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Geoffrey Bot <img src="../../../../assets/images/geoffrey-outline.svg"/>
+          </nb-card-header>
+          <nb-card-body>
+            Prevents investments from losing.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">Coming soon</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Dot Bot <img src="../../../../assets/images/dot-outline.svg"/>
+          </nb-card-header>
+          <nb-card-body>
+            Sells stocks at their peak.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">Coming soon</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Rocket Bot <img *ngIf="!isRocketBot" src="../../../../assets/images/rocket-outline.svg"/><img
+            *ngIf="isRocketBot" src="../../../../assets/images/rocket-flat.svg"/>
+          </nb-card-header>
+          <nb-card-body>
+            Get stock picks.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">FREE</span>
+            <span *ngIf="isRocketBot" class="text-success"><i class="nb-checkmark"></i> Subscribed</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Robinhood Connect
+          </nb-card-header>
+          <nb-card-body>
+            Connect to your Robinhood account.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">Coming soon</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Rocket Email
+          </nb-card-header>
+          <nb-card-body>
+            Get stock picks... in your inbox.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">FREE</span>
+            <span *ngIf="isRocketEmail" class="text-success"><i class="nb-checkmark"></i> Subscribed</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Rocket SMS
+          </nb-card-header>
+          <nb-card-body>
+            Get stock picks... texted to your phone.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">$3/mo</span>
+            <span *ngIf="rocketSmsSubscription&&!rocketSmsSubscription.discount" class="text-success"><i
+              class="nb-checkmark"></i> Subscribed</span>
+            <span *ngIf="rocketSmsSubscription&&rocketSmsSubscription.discount" class="text-success">{{rocketSmsSubscription.discount.coupon.percent_off}}% off for {{rocketSmsSubscription.discount.coupon.duration_in_months}} months</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Rocket Stocks
+          </nb-card-header>
+          <nb-card-body>
+            The original Rocket Bot algorithm
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">FREE</span>
+            <span *ngIf="isRocketBot" class="text-success"><i class="nb-checkmark"></i> Subscribed</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Rocket Stocks Premarket
+          </nb-card-header>
+          <nb-card-body>
+            The Rocket Stock algorithm from 09:00 to 09:30
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">Coming Soon</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Bargain Bin
+          </nb-card-header>
+          <nb-card-body>
+            The Rocket Bot algorithm for sale stocks.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">Coming Soon</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<div class="row" *ngIf="user">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Payment
+      </nb-card-header>
+      <nb-card-body *ngIf="user">
+        <div *ngIf="!user.stripeCustomer.sources.data[0]">
+          <span class="card-info">No payment info</span>
+          <button class="btn btn-primary pull-right" (click)="openCheckout()">Set up</button>
+        </div>
+        <div *ngIf="user.stripeCustomer.sources.data[0]">
+          <span class="card-info">{{user.stripeCustomer.sources.data[0].brand}} - {{user.stripeCustomer.sources.data[0].last4}}</span>
+          <button class="btn btn-info pull-right" (click)="openCheckout()">Change</button>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <div *ngIf="!user.stripeCustomer.sources.data[0]" class="alert alert-warning" role="alert">
+          <strong>Warning!</strong> Subscriptions will stop after trial if payment info is not entered.
+        </div>
+        <div *ngIf="user.stripeCustomer.sources.data[0]" class="alert alert-success" role="alert">
+          <strong>All set!</strong> Subscriptions will be charged to this card.
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  <div class="col-xxl-3 col-xxl-4 col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Coupon
+      </nb-card-header>
+      <nb-card-body *ngIf="user">
+        <div class="input-group">
+          <input type="text" placeholder="Coupon code" class="form-control" [(ngModel)]="couponCode"/>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button class="btn btn-secondary pull-right" (click)="addCoupon()">Apply</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>

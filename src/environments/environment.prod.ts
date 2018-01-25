@@ -7,4 +7,5 @@ export const environment = {
   production: true,
   apiBaseUrl: 'https://sherwood-investments.herokuapp.com',
   fbAppId: '252450371930672',
+  stripeCheckoutKey: 'pk_live_KawaJIZ1SbFdCcfKm8YHxVgY',
 };

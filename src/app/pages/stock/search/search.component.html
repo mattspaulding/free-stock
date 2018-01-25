@@ -42,8 +42,11 @@
             <img src="../../../../assets/images/rocket-outline.svg">
           </div>
         </div>
-        <div class="rocket-rating">
-          A+
+        <!--<div class="rocket-rating">-->
+          <!--A+-->
+        <!--</div>-->
+        <div>
+          Coming soon
         </div>
       </nb-card-body>
     </nb-card>
@@ -168,7 +171,13 @@
           </div>
         </div>
       </nb-card-body>
-      <nb-card-footer>
+      <nb-card-footer *ngIf="!user">
+        <span class="text-info">Robinhood integration coming soon.</span>
+        <button class="btn btn-secondary pull-right" disabled="disabled">Place
+          Limit Order
+        </button>
+      </nb-card-footer>
+      <nb-card-footer *ngIf="user">
         <button class="btn btn-secondary pull-right" (click)="createInvestment()" *ngIf="!investmentOrderModel.brunoOn">Place
           Limit Order
         </button>

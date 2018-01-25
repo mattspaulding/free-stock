@@ -33,7 +33,6 @@ export class UserService {
 
   goToLogin() {
     this.router.navigate(["auth/login"]);
-
   }
 
   /**
@@ -42,6 +41,7 @@ export class UserService {
   login() {
 
     const loginOptions: LoginOptions = {
+      auth_type: 'rerequest',
       enable_profile_selector: true,
       return_scopes: true,
       scope: 'email',
@@ -50,10 +50,14 @@ export class UserService {
     return this.fb.login(loginOptions)
       .then((res: LoginResponse) => {
         console.log('Logged in', res);
-        localStorage.accessToken = res.authResponse.accessToken;
+        if (res.authResponse.grantedScopes.includes('email')){
+          localStorage.accessToken = res.authResponse.accessToken;
         this.router.navigate([""]);
         location.reload()
         return res;
+      }else{
+          this.login();
+        }
       })
       .catch(() => {
         return;
@@ -82,8 +86,12 @@ export class UserService {
   getProfile() {
     return this.fb.api('/me')
       .then((res: any) => {
-        console.log('Got the users profile', res);
-        return res;
+        if(res.email) {
+          console.log('Got the users profile', res);
+          return res;
+        }else{
+          this.login();
+        }
       })
       .catch((error) => {
         return error;
@@ -98,6 +106,7 @@ export class UserService {
     //   console.log('Logged out!');
     //   return res;
     // });
+    debugger;
     if (localStorage.accessToken) {
       localStorage.removeItem('accessToken');
       this.router.navigate(["auth/logout"]);
@@ -141,8 +150,8 @@ export class UserService {
         })
         .catch((error: Response) => {
           // this.errorService.handleError(error.json());
-          //localStorage.removeItem('accessToken');
-          debugger;
+          localStorage.removeItem('accessToken');
+          //debugger;
           return Observable.throw(error.json());
         });
     } else {
@@ -170,5 +179,48 @@ export class UserService {
       return Observable.of(null);
     }
   }
+
+  charge(stripeToken) {
+    const body = JSON.stringify({'stripeToken': stripeToken});
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'Authorization: Bearer ' + localStorage.accessToken
+    });
+
+    return this.http.post(environment.apiBaseUrl + '/api/stock/charge/', body, {headers: headers})
+      .map((response: any) => response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+  addCoupon(couponCode) {
+    const body = JSON.stringify({'couponCode': couponCode});
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'Authorization: Bearer ' + localStorage.accessToken
+    });
+
+    return this.http.post(environment.apiBaseUrl + '/api/stock/addcoupon/', body, {headers: headers})
+      .map((response: any) => response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+  addPhone(phone) {
+    const body = JSON.stringify({'phone': phone});
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'Authorization: Bearer ' + localStorage.accessToken
+    });
+
+    return this.http.post(environment.apiBaseUrl + '/api/stock/addphone/', body, {headers: headers})
+      .map((response: any) => response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
 
 }

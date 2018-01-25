@@ -42,13 +42,14 @@ export class RocketComponent implements OnInit {
     },
     pager:
       {
-        perPage: 6
+        perPage: 20
       }
   };
 
   source: LocalDataSource = new LocalDataSource();
 
   user: any;
+  newPhone:string;
 
   constructor(private userService: UserService, private stockService: StockService) {
   }
@@ -112,6 +113,37 @@ export class RocketComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  isSmsSubscribed() {
+    if (this.user && this.user.stripeCustomer.subscriptions.data.some(sub => {
+        return sub.plan.id === 'rocket-sms';
+      })) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  addPhone() {
+    this.userService.addPhone(this.newPhone)
+      .subscribe(data => {
+          this.user=data.obj;
+        },
+        error => {
+          alert("There was a problem with the coupon.")
+        }
+      );
+  }
+  deletePhone() {
+    this.userService.addPhone(null)
+      .subscribe(data => {
+          this.user=data.obj;
+        },
+        error => {
+          alert("There was a problem with the coupon.")
+        }
+      );
   }
 
   // onUserRowSelect(event): void {

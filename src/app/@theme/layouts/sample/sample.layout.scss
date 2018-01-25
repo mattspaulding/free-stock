@@ -8,7 +8,7 @@
   }
 
   nb-sidebar.settings-sidebar {
-    $sidebar-width: 7.5rem;
+    $sidebar-width: 17.5rem;
 
     transition: width 0.3s ease;
     width: $sidebar-width;
@@ -107,7 +107,7 @@
     }
   }
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(lg) {
 
     nb-sidebar.menu-sidebar {
 

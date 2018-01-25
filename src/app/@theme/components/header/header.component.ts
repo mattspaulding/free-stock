@@ -19,13 +19,16 @@ export class HeaderComponent implements OnInit {
   profilePicture: string;
   username: string;
 
-  userMenu = [{title: 'Profile',icon: 'nb-bar-chart'}, {title: 'Log out',icon: 'nb-bar-chart',link:'/auth/logout'}];
+  userMenu = [
+    {title: 'Subscriptions', icon: 'nb-coffee-maker', link: '/subscriptions'},
+    {title: 'Log out', icon: 'nb-close', link: '/auth/logout'}
+  ];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private userService: UserService,
               private analyticsService: AnalyticsService,
-              private router:Router) {
+              private router: Router) {
   }
 
   ngOnInit() {

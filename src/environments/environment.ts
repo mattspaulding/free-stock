@@ -12,4 +12,5 @@ export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:3000',
   fbAppId: '1123046611129559',
+  stripeCheckoutKey: 'pk_test_L4pXI2gK0isUjUtzp1Q3liXX',
 };
