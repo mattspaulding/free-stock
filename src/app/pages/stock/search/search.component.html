@@ -171,13 +171,14 @@
           </div>
         </div>
       </nb-card-body>
-      <nb-card-footer *ngIf="!user">
+      <nb-card-footer *ngIf="!user || (user && !user.isRobinhood)">
         <span class="text-info">Robinhood integration coming soon.</span>
-        <button class="btn btn-secondary pull-right" disabled="disabled">Place
-          Limit Order
+        <button class="btn btn-secondary pull-right" disabled="disabled">
+          Setup Robinhood
         </button>
       </nb-card-footer>
-      <nb-card-footer *ngIf="user">
+      <nb-card-footer *ngIf="user && user.isRobinhood">
+        <span class="text-info">Robinhood integration coming soon.</span>
         <button class="btn btn-secondary pull-right" (click)="createInvestment()" *ngIf="!investmentOrderModel.brunoOn">Place
           Limit Order
         </button>

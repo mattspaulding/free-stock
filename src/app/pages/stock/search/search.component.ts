@@ -12,6 +12,7 @@ import 'rxjs/add/operator/merge';
 import {StockService} from '../../../@core/data/stock.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AnalyticsService} from "../../../@core/utils/analytics.service";
+import {UserService} from "../../../@core/data/users.service";
 
 @Component({
   selector: 'search',
@@ -26,8 +27,9 @@ export class SearchComponent implements OnInit {
   searching = false;
   searchFailed = false;
   hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
+  user:any;
 
-  constructor(private analytics: AnalyticsService,private stockService: StockService, private router: Router, private route: ActivatedRoute) {
+  constructor(private analytics: AnalyticsService,private userService:UserService,private stockService: StockService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       console.log(params['symbol']);
       if (params['symbol']) {
@@ -46,7 +48,11 @@ export class SearchComponent implements OnInit {
     //     debugger;
     //     let selectedId = params.get('symbol');
     //    // return this.service.getHeroes();
-    //   });
+    //   });debugger;
+    this.userService.getUser()
+      .subscribe(data => {
+        this.user = data;
+      });
   }
 
   search = (text$: Observable<string>) =>
@@ -95,7 +101,6 @@ export class SearchComponent implements OnInit {
   createInvestment() {
    this.stockService.createInvestment(this.investmentOrderModel)
       .subscribe(data => {
-        debugger;
           this.router.navigate([ data.navigate]);
         },
         error => {
