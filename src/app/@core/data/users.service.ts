@@ -151,7 +151,9 @@ export class UserService {
         .catch((error: Response) => {
           // this.errorService.handleError(error.json());
           localStorage.removeItem('accessToken');
-          //debugger;
+
+            alert(error.json().title)
+
           return Observable.throw(error.json());
         });
     } else {
