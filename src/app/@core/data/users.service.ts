@@ -60,7 +60,7 @@ export class UserService {
         }
       })
       .catch((err) => {
-        alert('problem logging in:'+err)
+        //alert('problem logging in:'+err)
         return;
       });
 

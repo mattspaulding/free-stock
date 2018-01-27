@@ -7,31 +7,27 @@ import {isLoop} from "tslint";
   styleUrls: ['./login.component.scss'],
   templateUrl: './login.component.html',
 })
-export class LoginComponent implements OnInit{
-isLoggedIn:string;
-  constructor(private userService:UserService){
-this.isLoggedIn="dunno"
+export class LoginComponent implements OnInit {
+  loginMessage: string;
+
+  constructor(private userService: UserService) {
+    this.loginMessage = "Loading."
   }
-  ngOnInit(){
+
+  ngOnInit() {
     this.userService.login()
       .then((res: any) => {
         console.log('Logged in', res);
         debugger;
-        this.isLoggedIn="logged in";
-        // if (res.authResponse.grantedScopes.includes('email')) {
-        //   localStorage.accessToken = res.authResponse.accessToken;
-        //   this.router.navigate([""]);
-        //   location.reload()
-        //   return res;
-        // } else {
-        //   this.login();
-        // }
+
+        if (!res) {
+          this.loginMessage = "There was a problem logging in. Try using a different browser. Especially if you are in an app, like the Reddit app."
+        } else {
+          this.loginMessage = "Login successful.";
+        }
       })
       .catch((err) => {
-        debugger;
-        this.isLoggedIn="problem with login"
-        alert('problem logging in:'+err)
-        // return false;
+        
       });
 
   }
