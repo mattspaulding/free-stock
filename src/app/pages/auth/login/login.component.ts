@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
           this.router.navigate([""]);
           setTimeout(() => {
             location.reload()
-          }, 3000)
-        }, 3000)
+          }, 500)
+        }, 2000)
       })
       .catch((err) => {
         this.loginMessage = "There was an error.";
