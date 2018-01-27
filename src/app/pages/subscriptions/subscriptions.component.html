@@ -158,7 +158,7 @@
         <div *ngIf="user.stripeCustomer.sources.data[0]" class="input-group">
           <label class="form-control">{{user.stripeCustomer.sources.data[0].brand}} -
             {{user.stripeCustomer.sources.data[0].last4}}</label>
-          <button class="btn btn-info pull-right" (click)="openCheckout()">Change</button>
+          <button class="btn btn-secondary pull-right" (click)="openCheckout()">Change</button>
         </div>
       </nb-card-body>
       <nb-card-footer>

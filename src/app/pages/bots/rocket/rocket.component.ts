@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {LocalDataSource} from "ng2-smart-table";
 import {StockService} from '../../../@core/data/stock.service';
 import {UserService} from '../../../@core/data/users.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ngx-rocket',
@@ -51,7 +52,7 @@ export class RocketComponent implements OnInit {
   user: any;
   newPhone:string;
 
-  constructor(private userService: UserService, private stockService: StockService) {
+  constructor(private userService: UserService, private stockService: StockService, private router: Router) {
   }
 
   ngOnInit() {
@@ -144,6 +145,10 @@ export class RocketComponent implements OnInit {
 
         }
       );
+  }
+
+  changeEmail(){
+    this.router.navigate(["subscriptions"]);
   }
 
 

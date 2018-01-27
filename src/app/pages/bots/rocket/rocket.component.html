@@ -22,7 +22,8 @@
         </div>
       </nb-card-header>
       <nb-card-body>
-        Email me when a rocket is spotted.
+        <div *ngIf="!user">Email me when a rocket is spotted.</div>
+        <div *ngIf="user">{{user.email}} <span (click)="changeEmail()" class="pull-right text-info">change</span></div>
       </nb-card-body>
       <nb-card-footer>
         <span class="pull-right">FREE</span>
@@ -43,14 +44,12 @@
         </div>
       </nb-card-header>
       <nb-card-body>
-        Text me when a rocket is spotted.
-        <span *ngIf="!isSmsSubscribed()">
-        <br><br>*Turning on this switch starts your free one month trial.
-          </span>
-        <br>
-        <hr>
+        <div *ngIf="!user">
+          Text me when a rocket is spotted.
+          <br>
+          <hr>
+        </div>
         <div *ngIf="user && user.phone">{{user.phone}}
-
           <button class="btn btn-danger pull-right" (click)="deletePhone()">Delete</button>
         </div>
         <div class="form-group" *ngIf="user &&!user.phone">
@@ -58,6 +57,9 @@
           <small class="form-text">(format: xxxxxxxxxx) no dashes
           </small>
           <button class="btn btn-secondary pull-right" (click)="addPhone()">Apply</button>
+          <span *ngIf="!isSmsSubscribed()">
+        <br><br><br><br>*Turning on this switch starts your free one month trial.
+          </span>
         </div>
       </nb-card-body>
       <nb-card-footer>
