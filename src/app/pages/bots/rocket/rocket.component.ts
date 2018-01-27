@@ -153,13 +153,6 @@ export class RocketComponent implements OnInit {
     this.userService.addEmailToRocketList(this.newEmail)
       .subscribe(data => {
           this.newEmail = "";
-          const toast: Toast = {
-            type: "success",
-            title: "Email added",
-            body: "See you on the moon",
-            showCloseButton: true,
-          };
-          this.toasterService.popAsync(toast);
         },
         error => {
 
