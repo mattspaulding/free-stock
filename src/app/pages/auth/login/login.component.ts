@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
         }
       })
       .catch((err) => {
-        
+        this.loginMessage = "There was an error.";
+
       });
 
   }
