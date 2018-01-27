@@ -68,23 +68,49 @@
     </nb-card>
     <nb-card>
       <nb-card-header>
-        Rocket Stocks Premarket
-        <!--<div class="switch-container pull-right">-->
-        <!--<label class="theme-switch">-->
-        <!--<span class="off">OFF</span>-->
-        <!--<div class="switch">-->
-        <!--<input type="checkbox" [checked]="isSmsNotify()" (change)="toggleSmsNotify(sms.checked)" #sms>-->
-        <!--<span class="slider"></span>-->
-        <!--</div>-->
-        <!--<span class="on">ON</span>-->
-        <!--</label>-->
-        <!--</div>-->
+        Rocket Premarket
+        <div class="switch-container pull-right">
+          <label class="theme-switch">
+            <span class="off text-hint">OFF</span>
+            <div class="switch">
+              <input disabled="disabled" type="checkbox" [checked]="isSmsNotify()" (change)="toggleSmsNotify(sms.checked)" #sms>
+              <span class="slider"></span>
+            </div>
+            <span class="on text-hint">ON</span>
+          </label>
+        </div>
       </nb-card-header>
       <nb-card-body>
         Show me the Rocket Stock picks in premarket.
       </nb-card-body>
       <nb-card-footer>
         <span class="pull-right">Coming soon</span>
+      </nb-card-footer>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>
+        Rocket List
+      </nb-card-header>
+      <nb-card-body>
+        <div *ngIf="!user">
+          <i class="nb-lightbulb"></i> You should <span (click)="goToLogin()" class="text-primary">login</span> to get a better experience.
+          <br>
+          <hr>
+        </div>
+        <div *ngIf="user">
+          <i class="nb-lightbulb"></i> You might want to <span (click)="changeEmail()" class="text-primary">change your email</span> instead.
+          <br>
+          <hr>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Email" class="form-control" [(ngModel)]="newEmail"/>
+          <small class="form-text">Add an email to the Rocket Bot email list
+          </small>
+          <button class="btn btn-secondary pull-right" (click)="addEmailToRocketList()">Add</button>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <span class="pull-right">FREE</span>
       </nb-card-footer>
     </nb-card>
   </div>

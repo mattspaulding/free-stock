@@ -50,7 +50,8 @@ export class RocketComponent implements OnInit {
   source: LocalDataSource = new LocalDataSource();
 
   user: any;
-  newPhone:string;
+  newPhone: string;
+  newEmail: string;
 
   constructor(private userService: UserService, private stockService: StockService, private router: Router) {
   }
@@ -129,17 +130,18 @@ export class RocketComponent implements OnInit {
   addPhone() {
     this.userService.addPhone(this.newPhone)
       .subscribe(data => {
-          this.user=data.obj;
+          this.user = data.obj;
         },
         error => {
 
         }
       );
   }
+
   deletePhone() {
     this.userService.addPhone(null)
       .subscribe(data => {
-          this.user=data.obj;
+          this.user = data.obj;
         },
         error => {
 
@@ -147,8 +149,32 @@ export class RocketComponent implements OnInit {
       );
   }
 
-  changeEmail(){
+  addEmailToRocketList() {
+    this.userService.addEmailToRocketList(this.newEmail)
+      .subscribe(data => {
+          this.newEmail = "";
+          const toast: Toast = {
+            type: "success",
+            title: "Email added",
+            body: "See you on the moon",
+            showCloseButton: true,
+          };
+          this.toasterService.popAsync(toast);
+        },
+        error => {
+
+        }
+      );
+  }
+
+
+  changeEmail() {
     this.router.navigate(["subscriptions"]);
+  }
+
+
+  goToLogin() {
+    this.userService.goToLogin();
   }
 
 
