@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    alert('in loginpage')
     this.userService.login()
       .then((res: any) => {
         console.log('Logged in', res);
