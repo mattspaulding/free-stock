@@ -86,7 +86,7 @@ export class RocketComponent implements OnInit {
       this.stockService.setRocketBotEmailNotify(isNotify)
         .subscribe();
     } else {
-      this.userService.login();
+      this.userService.goToLogin();
     }
   }
 
@@ -103,7 +103,7 @@ export class RocketComponent implements OnInit {
       this.stockService.setRocketBotSmsNotify(isNotify)
         .subscribe();
     } else {
-      this.userService.login();
+      this.userService.goToLogin();
     }
   }
 
