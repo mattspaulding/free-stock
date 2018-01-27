@@ -27,7 +27,9 @@ export class LoginComponent implements OnInit {
         }
         setTimeout(() => {
           this.router.navigate([""]);
-          location.reload()
+          setTimeout(() => {
+            location.reload()
+          }, 3000)
         }, 3000)
       })
       .catch((err) => {
