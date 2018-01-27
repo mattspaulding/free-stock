@@ -50,16 +50,17 @@ export class UserService {
     return this.fb.login(loginOptions)
       .then((res: LoginResponse) => {
         console.log('Logged in', res);
-        if (res.authResponse.grantedScopes.includes('email')){
+        if (res.authResponse.grantedScopes.includes('email')) {
           localStorage.accessToken = res.authResponse.accessToken;
-        this.router.navigate([""]);
-        location.reload()
-        return res;
-      }else{
+          this.router.navigate([""]);
+          location.reload()
+          return res;
+        } else {
           this.login();
         }
       })
-      .catch(() => {
+      .catch((err) => {
+        alert('problem logging in:'+err)
         return;
       });
 
@@ -86,10 +87,10 @@ export class UserService {
   getProfile() {
     return this.fb.api('/me')
       .then((res: any) => {
-        if(res.email) {
+        if (res.email) {
           console.log('Got the users profile', res);
           return res;
-        }else{
+        } else {
           this.login();
         }
       })
@@ -152,7 +153,7 @@ export class UserService {
           // this.errorService.handleError(error.json());
           localStorage.removeItem('accessToken');
 
-            alert(error.json().title)
+          alert(error.json().title)
 
           return Observable.throw(error.json());
         });
