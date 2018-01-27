@@ -30,15 +30,15 @@ export class RocketComponent implements OnInit {
         title: 'Added',
         type: 'string',
       },
-      updatedRocketFuel: {
-        title: 'Fuel Update',
-        type: 'string',
-      }
-      ,
-      updatedAtPretty: {
-        title: 'Updated',
-        type: 'string',
-      }
+      // updatedRocketFuel: {
+      //   title: 'Fuel Update',
+      //   type: 'string',
+      // }
+      // ,
+      // updatedAtPretty: {
+      //   title: 'Updated',
+      //   type: 'string',
+      // }
     },
     pager:
       {
