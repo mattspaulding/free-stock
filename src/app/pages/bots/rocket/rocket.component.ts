@@ -131,7 +131,7 @@ export class RocketComponent implements OnInit {
           this.user=data.obj;
         },
         error => {
-          alert("There was a problem with the coupon.")
+
         }
       );
   }
@@ -141,10 +141,11 @@ export class RocketComponent implements OnInit {
           this.user=data.obj;
         },
         error => {
-          alert("There was a problem with the coupon.")
+
         }
       );
   }
+
 
   onUserRowSelect(event): void {
     //debugger;

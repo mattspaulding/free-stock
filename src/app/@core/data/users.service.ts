@@ -224,5 +224,19 @@ export class UserService {
       });
   }
 
+  changeEmail(email) {
+    const body = JSON.stringify({'email': email});
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'Authorization: Bearer ' + localStorage.accessToken
+    });
+
+    return this.http.post(environment.apiBaseUrl + '/api/stock/changeemail/', body, {headers: headers})
+      .map((response: any) => response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
 
 }

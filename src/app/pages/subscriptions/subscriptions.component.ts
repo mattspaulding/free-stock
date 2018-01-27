@@ -10,6 +10,8 @@ import {environment} from "../../../environments/environment.prod";
 export class SubscriptionsComponent implements OnInit {
   user: any;
   couponCode: string;
+  email: string;
+  isEditEmail: boolean;
 
   isRocketBot: Boolean;
   isRocketEmail: Boolean;
@@ -25,8 +27,8 @@ export class SubscriptionsComponent implements OnInit {
   getUser() {
     this.userService.getUser()
       .subscribe(data => {
-         this.user = data;
-        if(this.user) {
+        this.user = data;
+        if (this.user) {
           this.isRocketBot = this.user.stripeCustomer.subscriptions.data.some(subscription => {
             return subscription.plan.id === 'rocket-bot';
           })
@@ -34,8 +36,9 @@ export class SubscriptionsComponent implements OnInit {
             return subscription.plan.id === 'rocket-email';
           })
           this.rocketSmsSubscription = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
-             return subscription.plan.id === 'rocket-sms';
+            return subscription.plan.id === 'rocket-sms';
           })[0]
+          this.email = this.user.email;
         }
       });
   }
@@ -74,6 +77,26 @@ export class SubscriptionsComponent implements OnInit {
           alert("There was a problem with the coupon.")
         }
       );
+  }
+
+  toggleEditEmail() {
+    if (this.isEditEmail) {
+      this.isEditEmail = false;
+    } else {
+      this.isEditEmail = true;
+    }
+  }
+
+  changeEmail() {
+    this.userService.changeEmail(this.email)
+      .subscribe(data => {
+          this.user = data.obj;
+        },
+        error => {
+
+        }
+      );
+    this.isEditEmail = false;
   }
 
 }
