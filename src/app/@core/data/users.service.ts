@@ -24,7 +24,6 @@ export class UserService {
 
   constructor(private http: Http, private fb: FacebookService, private router: Router) {
     console.log('Initializing Facebook');
-    alert("init")
 
     fb.init({
       appId: environment.fbAppId,
@@ -33,7 +32,6 @@ export class UserService {
   }
 
   goToLogin() {
-    alert("navigate")
     this.router.navigate(["auth/login"]);
   }
 
@@ -41,9 +39,7 @@ export class UserService {
    * Login with additional permissions/options
    */
   login() {
-    alert('in login')
-
-    const loginOptions: LoginOptions = {
+     const loginOptions: LoginOptions = {
       auth_type: 'rerequest',
       enable_profile_selector: true,
       return_scopes: true,
@@ -52,19 +48,17 @@ export class UserService {
 
     return this.fb.login(loginOptions)
       .then((res: LoginResponse) => {
-        alert('fb suc')
         console.log('Logged in', res);
         if (res.authResponse.grantedScopes.includes('email')) {
           localStorage.accessToken = res.authResponse.accessToken;
-          this.router.navigate([""]);
-          location.reload()
+          // this.router.navigate([""]);
+          // location.reload()
           return res;
         } else {
           this.login();
         }
       })
       .catch((err) => {
-        alert('fb err')
         //alert('problem logging in:'+err)
         return;
       });

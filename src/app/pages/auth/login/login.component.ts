@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../../@core/data/users.service";
 import {isLoop} from "tslint";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'ngx-login',
@@ -10,12 +11,11 @@ import {isLoop} from "tslint";
 export class LoginComponent implements OnInit {
   loginMessage: string;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.loginMessage = "This site must be used with a browser, not inside of another app. (Like the Reddit App)"
   }
 
   ngOnInit() {
-    alert('in loginpage')
     this.userService.login()
       .then((res: any) => {
         console.log('Logged in', res);
@@ -23,7 +23,12 @@ export class LoginComponent implements OnInit {
           this.loginMessage = "You must login with Facebook to access all of the features of FreeStock."
         } else {
           this.loginMessage = "Login successful.";
+
         }
+        setTimeout(() => {
+          this.router.navigate([""]);
+          location.reload()
+        }, 3000)
       })
       .catch((err) => {
         this.loginMessage = "There was an error.";
