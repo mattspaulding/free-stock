@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   loginMessage: string;
 
   constructor(private userService: UserService) {
-    this.loginMessage = "Loading."
+    this.loginMessage = "This site must be used with a browser, not inside of another app. (Like the Reddit App)"
   }
 
   ngOnInit() {
@@ -19,18 +19,14 @@ export class LoginComponent implements OnInit {
     this.userService.login()
       .then((res: any) => {
         console.log('Logged in', res);
-        debugger;
-
         if (!res) {
-          this.loginMessage = "There was a problem logging in. Try using a different browser. Especially if you are in an app, like the Reddit app."
+          this.loginMessage = "You must login with Facebook to access all of the features of FreeStock."
         } else {
           this.loginMessage = "Login successful.";
         }
       })
       .catch((err) => {
         this.loginMessage = "There was an error.";
-
       });
-
   }
 }
