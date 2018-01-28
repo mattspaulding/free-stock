@@ -23,7 +23,7 @@
       </nb-card-header>
       <nb-card-body>
         <div *ngIf="!user">Email me when a rocket is spotted.</div>
-        <div *ngIf="user">{{user.email}} <span (click)="changeEmail()" class="pull-right text-info">change</span></div>
+        <div *ngIf="user&&user.email">{{user.email}} <span (click)="changeEmail()" class="pull-right text-info">change</span></div>
       </nb-card-body>
       <nb-card-footer>
         <span class="pull-right">FREE</span>
@@ -32,7 +32,7 @@
     <nb-card>
       <nb-card-header>
         Rocket SMS
-        <div class="switch-container pull-right">
+        <div class="switch-container pull-right" *ngIf="!user||(user&&user.phone)">
           <label class="theme-switch">
             <span class="off">OFF</span>
             <div class="switch">
@@ -47,7 +47,6 @@
         <div *ngIf="!user">
           Text me when a rocket is spotted.
           <br>
-          <hr>
         </div>
         <div *ngIf="user && user.phone">{{user.phone}}
           <button class="btn btn-danger pull-right" (click)="deletePhone()">Delete</button>
@@ -57,28 +56,28 @@
           <small class="form-text">(format: xxxxxxxxxx) no dashes
           </small>
           <button class="btn btn-secondary pull-right" (click)="addPhone()">Apply</button>
-          <span *ngIf="!isSmsSubscribed()">
-        <br><br><br><br>*Turning on this switch starts your free one month trial.
-          </span>
         </div>
       </nb-card-body>
       <nb-card-footer>
         <span class="pull-right">$3/mo</span>
+        <span *ngIf="!isSmsSubscribed()">
+        <br><br>*Turning on this switch starts your free one month trial.
+          </span>
       </nb-card-footer>
     </nb-card>
     <nb-card>
       <nb-card-header>
         Rocket Premarket
-        <div class="switch-container pull-right">
-          <label class="theme-switch">
-            <span class="off text-hint">OFF</span>
-            <div class="switch">
-              <input disabled="disabled" type="checkbox" [checked]="isSmsNotify()" (change)="toggleSmsNotify(sms.checked)" #sms>
-              <span class="slider"></span>
-            </div>
-            <span class="on text-hint">ON</span>
-          </label>
-        </div>
+        <!--<div class="switch-container pull-right">-->
+          <!--<label class="theme-switch">-->
+            <!--<span class="off text-hint">OFF</span>-->
+            <!--<div class="switch">-->
+              <!--<input disabled="disabled" type="checkbox" [checked]="isSmsNotify()" (change)="toggleSmsNotify(sms.checked)" #sms>-->
+              <!--<span class="slider"></span>-->
+            <!--</div>-->
+            <!--<span class="on text-hint">ON</span>-->
+          <!--</label>-->
+        <!--</div>-->
       </nb-card-header>
       <nb-card-body>
         Show me the Rocket Stock picks in premarket.

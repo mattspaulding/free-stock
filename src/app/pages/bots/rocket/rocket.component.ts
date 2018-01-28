@@ -25,10 +25,9 @@ export class RocketComponent implements OnInit {
       rocketFuel: {
         title: 'Rocket Fuel',
         type: 'string',
-      }
-      ,
+      },
       createdAtPretty: {
-        title: 'Added',
+        title: 'Spotted',
         type: 'string',
       },
       // updatedRocketFuel: {
