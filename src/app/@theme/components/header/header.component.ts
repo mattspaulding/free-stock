@@ -32,11 +32,11 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (localStorage.accessToken) {
-      this.getUser();
-    } else {
+    // if (localStorage.accessToken) {
+    //   this.getUser();
+    // } else {
       this.getLoginStatus();
-    }
+   // }
   }
 
   // tryLogin(): void {
