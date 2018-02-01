@@ -3,6 +3,7 @@ import {LocalDataSource} from "ng2-smart-table";
 import {StockService} from '../../../@core/data/stock.service';
 import {UserService} from '../../../@core/data/users.service';
 import {Router} from "@angular/router";
+import isExtensible = Reflect.isExtensible;
 
 @Component({
   selector: 'ngx-rocket',
@@ -48,6 +49,57 @@ export class RocketComponent implements OnInit {
 
   source: LocalDataSource = new LocalDataSource();
 
+
+  rocketAlgorithmSettings = {
+    actions: null,
+    hideSubHeader: true,
+    columns: {
+      symbol: {
+        title: 'Symbol',
+        type: 'string',
+      },
+      rating: {
+        title: 'Rocket Fuel',
+        type: 'string',
+      },
+      createdAtPretty: {
+        title: 'Spotted',
+        type: 'string',
+      },
+    },
+    pager:
+      {
+        perPage: 20
+      }
+  };
+
+  rocketAlgorithmSource: LocalDataSource = new LocalDataSource();
+
+  bargainAlgorithmSettings = {
+    actions: null,
+    hideSubHeader: true,
+    columns: {
+      symbol: {
+        title: 'Symbol',
+        type: 'string',
+      },
+      rating: {
+        title: 'Rocket Fuel',
+        type: 'string',
+      },
+      createdAtPretty: {
+        title: 'Spotted',
+        type: 'string',
+      },
+    },
+    pager:
+      {
+        perPage: 20
+      }
+  };
+
+  bargainAlgorithmSource: LocalDataSource = new LocalDataSource();
+
   user: any;
   newPhone: string;
   newEmail: string;
@@ -75,10 +127,44 @@ export class RocketComponent implements OnInit {
       });
   }
 
+  getRocketAlgorithm() {
+    let id = null;
+    if (this.user) {
+       id = this.user.fbId;
+    }
+    this.stockService.getRocketAlgorithm(id)
+      .subscribe(data => {
+        let stocks = [];
+        data.forEach(datum => {
+          datum.stock.createdAtPretty = new Date(datum.stock.createdAt).toString().replace(' GMT-0500', '');
+          stocks.push(datum.stock);
+        })
+        this.rocketAlgorithmSource.load(stocks);
+      });
+  }
+
+  getBargainAlgorithm() {
+    let id = null;
+    if (this.user) {
+       id = this.user.fbId;
+    }
+    this.stockService.getBargainAlgorithm(id)
+      .subscribe(data => {
+        let stocks = [];
+        data.forEach(datum => {
+          datum.stock.createdAtPretty = new Date(datum.stock.createdAt).toString().replace(' GMT-0500', '');
+          stocks.push(datum.stock);
+        })
+        this.bargainAlgorithmSource.load(stocks);
+      });
+  }
+
   getUser() {
     this.userService.getUser()
       .subscribe(data => {
         this.user = data;
+        this.getRocketAlgorithm();
+        this.getBargainAlgorithm();
       });
   }
 
@@ -110,6 +196,29 @@ export class RocketComponent implements OnInit {
 
   isSmsNotify() {
     if (this.user && this.user.isRocketBotSmsNotify) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  toggleExtended(isExtended: boolean) {
+    if (this.user) {
+      this.stockService.setRocketBotExtendedHours(isExtended)
+        .subscribe(data => {
+             this.user = data.obj;
+          },
+          error => {
+            this.router.navigate(["subscriptions"]);
+          }
+        );
+    } else {
+      this.userService.goToLogin();
+    }
+  }
+
+  isExtendedHours() {
+    if (this.user && this.user.isRocketBotExtendedHours) {
       return true;
     } else {
       return false;

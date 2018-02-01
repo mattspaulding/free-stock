@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {UserService} from "../../@core/data/users.service";
-import {environment} from "../../../environments/environment.prod";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'ngx-subscriptions',
@@ -16,6 +16,7 @@ export class SubscriptionsComponent implements OnInit {
   isRocketBot: Boolean;
   isRocketEmail: Boolean;
   rocketSmsSubscription: any;
+  isRocketBotExtendedHours: any;
 
   constructor(private userService: UserService, private ref: ChangeDetectorRef) {
   }
@@ -38,6 +39,9 @@ export class SubscriptionsComponent implements OnInit {
           this.rocketSmsSubscription = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
             return subscription.plan.id === 'rocket-sms';
           })[0]
+          this.isRocketBotExtendedHours = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
+            return subscription.plan.id === 'rocket-extended';
+          })[0]
           this.email = this.user.email;
         }
       });
@@ -47,7 +51,7 @@ export class SubscriptionsComponent implements OnInit {
   openCheckout() {
     var userService = this.userService;
     var ref = this.ref;
-    var handler = (<any>window).StripeCheckout.configure({
+     var handler = (<any>window).StripeCheckout.configure({
       key: environment.stripeCheckoutKey,
       locale: 'auto',
       token: function (token: any) {

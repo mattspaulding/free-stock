@@ -59,6 +59,28 @@ export class StockService {
       });
   }
 
+  getRocketAlgorithm(id) {
+    return this.http.get(environment.apiBaseUrl + '/api/stock/rocketalgorithm/' + id)
+      .map((response: Response) => {
+        const obj = response.json().obj;
+        return obj;
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+  getBargainAlgorithm(id) {
+    return this.http.get(environment.apiBaseUrl + '/api/stock/bargainalgorithm/' + id)
+      .map((response: Response) => {
+        const obj = response.json().obj;
+        return obj;
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
   setRocketBotEmailNotify(isNotify) {
     if (localStorage.accessToken) {
 
@@ -80,6 +102,21 @@ export class StockService {
       const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
 
       return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotsmsnotify/?isNotify=' + isNotify, {headers: headers})
+        .map((response: any) => response.json())
+        .catch((error: Response) => {
+          return Observable.throw(error.json());
+        });
+    } else {
+      return Observable.of(null);
+    }
+  }
+
+  setRocketBotExtendedHours(isExtended) {
+    if (localStorage.accessToken) {
+
+      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotextendedhours/?isExtended=' + isExtended, {headers: headers})
         .map((response: any) => response.json())
         .catch((error: Response) => {
           return Observable.throw(error.json());

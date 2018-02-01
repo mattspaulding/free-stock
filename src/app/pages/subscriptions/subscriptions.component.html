@@ -1,3 +1,63 @@
+<div class="row" *ngIf="user">
+  <div class="col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Payment
+      </nb-card-header>
+      <nb-card-body *ngIf="user">
+        <div *ngIf="!user.stripeCustomer.sources.data[0]" class="input-group">
+          <label class="form-control">No payment info</label>
+          <button class="btn btn-primary pull-right" (click)="openCheckout()">Set up</button>
+        </div>
+        <div *ngIf="user.stripeCustomer.sources.data[0]" class="input-group">
+          <label class="form-control">{{user.stripeCustomer.sources.data[0].brand}} -
+            {{user.stripeCustomer.sources.data[0].last4}}</label>
+          <button class="btn btn-secondary pull-right" (click)="openCheckout()">Change</button>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <div *ngIf="!user.stripeCustomer.sources.data[0]" class="alert alert-warning" role="alert">
+          <strong>Warning!</strong> Subscriptions will stop after trial if payment info is not entered.
+        </div>
+        <div *ngIf="user.stripeCustomer.sources.data[0]" class="alert alert-success" role="alert">
+          <strong>All set!</strong> Subscriptions will be charged to this card.
+        </div>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  <div class="col-xxl-3 col-xxl-4 col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Coupon
+      </nb-card-header>
+      <nb-card-body *ngIf="user">
+        <div class="input-group">
+          <input type="text" placeholder="Coupon code" class="form-control" [(ngModel)]="couponCode"/>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button class="btn btn-secondary pull-right" (click)="addCoupon()">Apply</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  <div class="col-xxl-3 col-xxl-4 col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Email
+      </nb-card-header>
+      <nb-card-body *ngIf="user">
+        <div class="input-group">
+          <label class="form-control" *ngIf="!isEditEmail">{{email}}</label>
+          <input type="text" placeholder="Email" class="form-control" *ngIf="isEditEmail" [(ngModel)]="email"/>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button class="btn btn-secondary pull-right" *ngIf="!isEditEmail" (click)="toggleEditEmail()">Change</button>
+        <button class="btn btn-info pull-right" *ngIf="isEditEmail" (click)="changeEmail()">Apply</button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+</div>
 <nb-card>
   <nb-card-header>
     Subscriptions
@@ -104,27 +164,14 @@
       <div class="col-xxxl-3 col-xxl-4 col-md-6">
         <nb-card class="card-in-card">
           <nb-card-header>
-            Rocket Stocks
+            Rocket Bot Extended
           </nb-card-header>
           <nb-card-body>
-            The original Rocket Bot algorithm
+            Get stock picks... in extended hours
           </nb-card-body>
           <nb-card-footer>
-            <span class="pull-right">FREE</span>
-            <span *ngIf="isRocketBot" class="text-success"><i class="nb-checkmark"></i> Subscribed</span>
-          </nb-card-footer>
-        </nb-card>
-      </div>
-      <div class="col-xxxl-3 col-xxl-4 col-md-6">
-        <nb-card class="card-in-card">
-          <nb-card-header>
-            Rocket Stocks Premarket
-          </nb-card-header>
-          <nb-card-body>
-            The Rocket Stock algorithm from 09:00 to 09:30
-          </nb-card-body>
-          <nb-card-footer>
-            <span class="pull-right">Coming Soon</span>
+            <span class="pull-right">$1/mo</span>
+            <span *ngIf="isRocketBotExtendedHours" class="text-success"><i class="nb-checkmark"></i> Subscribed</span>
           </nb-card-footer>
         </nb-card>
       </div>
@@ -144,63 +191,4 @@
     </div>
   </nb-card-body>
 </nb-card>
-<div class="row" *ngIf="user">
-  <div class="col-md-6">
-    <nb-card>
-      <nb-card-header>
-        Payment
-      </nb-card-header>
-      <nb-card-body *ngIf="user">
-        <div *ngIf="!user.stripeCustomer.sources.data[0]" class="input-group">
-          <label class="form-control">No payment info</label>
-          <button class="btn btn-primary pull-right" (click)="openCheckout()">Set up</button>
-        </div>
-        <div *ngIf="user.stripeCustomer.sources.data[0]" class="input-group">
-          <label class="form-control">{{user.stripeCustomer.sources.data[0].brand}} -
-            {{user.stripeCustomer.sources.data[0].last4}}</label>
-          <button class="btn btn-secondary pull-right" (click)="openCheckout()">Change</button>
-        </div>
-      </nb-card-body>
-      <nb-card-footer>
-        <div *ngIf="!user.stripeCustomer.sources.data[0]" class="alert alert-warning" role="alert">
-          <strong>Warning!</strong> Subscriptions will stop after trial if payment info is not entered.
-        </div>
-        <div *ngIf="user.stripeCustomer.sources.data[0]" class="alert alert-success" role="alert">
-          <strong>All set!</strong> Subscriptions will be charged to this card.
-        </div>
-      </nb-card-footer>
-    </nb-card>
-  </div>
-  <div class="col-xxl-3 col-xxl-4 col-md-6">
-    <nb-card>
-      <nb-card-header>
-        Coupon
-      </nb-card-header>
-      <nb-card-body *ngIf="user">
-        <div class="input-group">
-          <input type="text" placeholder="Coupon code" class="form-control" [(ngModel)]="couponCode"/>
-        </div>
-      </nb-card-body>
-      <nb-card-footer>
-        <button class="btn btn-secondary pull-right" (click)="addCoupon()">Apply</button>
-      </nb-card-footer>
-    </nb-card>
-  </div>
-  <div class="col-xxl-3 col-xxl-4 col-md-6">
-    <nb-card>
-      <nb-card-header>
-        Email
-      </nb-card-header>
-      <nb-card-body *ngIf="user">
-        <div class="input-group">
-          <label class="form-control" *ngIf="!isEditEmail">{{email}}</label>
-          <input type="text" placeholder="Email" class="form-control" *ngIf="isEditEmail" [(ngModel)]="email"/>
-        </div>
-      </nb-card-body>
-      <nb-card-footer>
-        <button class="btn btn-secondary pull-right" *ngIf="!isEditEmail" (click)="toggleEditEmail()">Change</button>
-        <button class="btn btn-info pull-right" *ngIf="isEditEmail" (click)="changeEmail()">Apply</button>
-      </nb-card-footer>
-    </nb-card>
-  </div>
-</div>
+
