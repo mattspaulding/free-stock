@@ -62,6 +62,10 @@ export class RocketComponent implements OnInit {
         title: 'Rocket Fuel',
         type: 'string',
       },
+      percentChangePretty: {
+        title: '% Chg',
+        type: 'string',
+      },
       createdAtPretty: {
         title: 'Spotted',
         type: 'string',
@@ -83,8 +87,8 @@ export class RocketComponent implements OnInit {
         title: 'Symbol',
         type: 'string',
       },
-      rating: {
-        title: 'Rocket Fuel',
+      percentChangePretty: {
+        title: '% Chg',
         type: 'string',
       },
       createdAtPretty: {
