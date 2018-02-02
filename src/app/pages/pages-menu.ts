@@ -47,18 +47,18 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Search',
         link: '/stock/search',
       },
-      {
-        title: 'Strategies',
-        link: '/stock/strategies',
-      },
-      {
-        title: 'Active Investments',
-        link: '/stock/active-investments',
-      },
-      {
-        title: 'Completed Investments',
-        link: '/stock/completed-investments',
-      },
+      // {
+      //   title: 'Strategies',
+      //   link: '/stock/strategies',
+      // },
+      // {
+      //   title: 'Active Investments',
+      //   link: '/stock/active-investments',
+      // },
+      // {
+      //   title: 'Completed Investments',
+      //   link: '/stock/completed-investments',
+      // },
     ],
   },
   // {

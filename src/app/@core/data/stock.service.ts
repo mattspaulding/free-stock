@@ -133,8 +133,8 @@ export class StockService {
       'Authorization': 'Authorization: Bearer ' + localStorage.accessToken
     });
 
-    const anonId = localStorage.getItem('anonId');
-    return this.http.post(environment.apiBaseUrl + '/api/stock/investment/?anonId=' + anonId, body, {headers: headers})
+    //const anonId = localStorage.getItem('anonId');
+    return this.http.post(environment.apiBaseUrl + '/api/stock/investment/', body, {headers: headers})
       .map((response: any) => response.json())
       .catch((error: Response) => {
         return Observable.throw(error.json());
