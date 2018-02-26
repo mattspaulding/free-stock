@@ -3,7 +3,7 @@ import {LocalDataSource} from "ng2-smart-table";
 import {StockService} from '../../../@core/data/stock.service';
 import {UserService} from '../../../@core/data/users.service';
 import {Router} from "@angular/router";
-import isExtensible = Reflect.isExtensible;
+import {ToasterService, ToasterConfig, Toast, BodyOutputType} from 'angular2-toaster';
 
 @Component({
   selector: 'ngx-rocket',
@@ -107,8 +107,10 @@ export class RocketComponent implements OnInit {
   user: any;
   newPhone: string;
   newEmail: string;
+  config: ToasterConfig;
 
-  constructor(private userService: UserService, private stockService: StockService, private router: Router) {
+
+  constructor(private userService: UserService, private stockService: StockService, private router: Router, private toasterService: ToasterService) {
   }
 
   ngOnInit() {
@@ -134,7 +136,7 @@ export class RocketComponent implements OnInit {
   getRocketAlgorithm() {
     let id = null;
     if (this.user) {
-       id = this.user.fbId;
+      id = this.user.fbId;
     }
     this.stockService.getRocketAlgorithm(id)
       .subscribe(data => {
@@ -150,7 +152,7 @@ export class RocketComponent implements OnInit {
   getBargainAlgorithm() {
     let id = null;
     if (this.user) {
-       id = this.user.fbId;
+      id = this.user.fbId;
     }
     this.stockService.getBargainAlgorithm(id)
       .subscribe(data => {
@@ -210,7 +212,7 @@ export class RocketComponent implements OnInit {
     if (this.user) {
       this.stockService.setRocketBotExtendedHours(isExtended)
         .subscribe(data => {
-             this.user = data.obj;
+            this.user = data.obj;
           },
           error => {
             this.router.navigate(["subscriptions"]);
@@ -265,6 +267,7 @@ export class RocketComponent implements OnInit {
     this.userService.addEmailToRocketList(this.newEmail)
       .subscribe(data => {
           this.newEmail = "";
+          this.toasterService.popAsync({type: 'success', title: data.message});
         },
         error => {
 

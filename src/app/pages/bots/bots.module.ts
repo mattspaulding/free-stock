@@ -11,7 +11,8 @@ import {GeoffreyComponent} from './geoffrey/geoffrey.component';
 import {DotComponent} from './dot/dot.component';
 import {StopLossComponent} from './geoffrey/stop-loss/stop-loss.component';
 import {StopLossDraggerComponent} from './geoffrey/stop-loss/stop-loss-dragger/stop-loss-dragger.component';
-import {Ng2SmartTableModule} from "ng2-smart-table";
+import {Ng2SmartTableModule} from 'ng2-smart-table';
+import {ToasterModule} from 'angular2-toaster';
 
 const components = [
   BotsComponent,
@@ -30,6 +31,7 @@ const components = [
     ThemeModule,
     BotsRoutingModule,
     Ng2SmartTableModule,
+    ToasterModule,
   ],
   declarations: [
     ...components,
