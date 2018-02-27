@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {UserService} from "../../@core/data/users.service";
-import {environment} from "../../../environments/environment";
+import {UserService} from '../../@core/data/users.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'ngx-subscriptions',
@@ -86,7 +86,7 @@ export class SubscriptionsComponent implements OnInit {
           location.reload();
         },
         error => {
-          alert("There was a problem with the coupon.")
+          alert('There was a problem with the coupon.')
         }
       );
   }
