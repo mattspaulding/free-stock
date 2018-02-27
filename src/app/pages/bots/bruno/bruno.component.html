@@ -2,13 +2,113 @@
   <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
     <ngx-bot-profile
       title="Bruno"
-      subtitle="Strategy"
+      subtitle="Bargain"
       type="primary"
       pictureUrl="../../../../assets/images/bruno-flat.svg"
-      description="Bruno helps you get stocks when they go on sale. Tell Bruno which stocks to watch and when the price is right he will snatch them up"
+      description="Finds the discount stocks"
     ></ngx-bot-profile>
+    <nb-card>
+      <nb-card-header>
+        Bruno Email
+        <div class="switch-container pull-right">
+          <label class="theme-switch">
+            <span class="off">OFF</span>
+            <div class="switch">
+              <input type="checkbox" [checked]="isEmailNotify()" (change)="toggleEmailNotify(email.checked)" #email>
+              <span class="slider"></span>
+            </div>
+            <span class="on">ON</span>
+          </label>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div *ngIf="!user">Email me when a bargain is spotted.</div>
+        <div *ngIf="user&&user.email">{{user.email}} <span (click)="changeEmail()"
+                                                           class="pull-right text-info">change</span></div>
+      </nb-card-body>
+      <nb-card-footer>
+        <span class="pull-right">FREE</span>
+      </nb-card-footer>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>
+        Bruno SMS
+        <div class="switch-container pull-right" *ngIf="!user||(user&&user.phone)">
+          <label class="theme-switch">
+            <span class="off">OFF</span>
+            <div class="switch">
+              <input type="checkbox" [checked]="isSmsNotify()" (change)="toggleSmsNotify(sms.checked)" #sms>
+              <span class="slider"></span>
+            </div>
+            <span class="on">ON</span>
+          </label>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div *ngIf="!user">
+          Text me when a bargain is spotted.
+          <br>
+        </div>
+        <div *ngIf="user && user.phone">{{user.phone}}
+          <button class="btn btn-danger pull-right" (click)="deletePhone()">Delete</button>
+        </div>
+        <div class="form-group" *ngIf="user &&!user.phone">
+          <input type="tel" placeholder="Phone number" class="form-control" [(ngModel)]="newPhone"/>
+          <small class="form-text">(format: xxxxxxxxxx) no dashes
+          </small>
+          <button class="btn btn-secondary pull-right" (click)="addPhone()">Apply</button>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <span class="pull-right">$3/mo</span>
+        <span *ngIf="!isSmsSubscribed()">
+        <br><br>*Turning on this switch starts your free one month trial.
+          </span>
+      </nb-card-footer>
+    </nb-card>
+    <nb-card>
+      <nb-card-header>
+        <toaster-container [toasterconfig]="config"></toaster-container>
+        Bruno List
+      </nb-card-header>
+      <nb-card-body>
+        <div *ngIf="!user">
+          <i class="nb-lightbulb"></i> You should <span (click)="goToLogin()" class="text-primary">login</span> to get a
+          better experience.
+          <br>
+          <hr>
+        </div>
+        <div *ngIf="user">
+          <i class="nb-lightbulb"></i> You might want to <span (click)="changeEmail()" class="text-primary">change your email</span>
+          instead.
+          <br>
+          <hr>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Email" class="form-control" [(ngModel)]="newEmail"/>
+          <small class="form-text">Add an email to the Bruno Bot email list
+          </small>
+          <button class="btn btn-secondary pull-right" (click)="addEmailToList()">Add</button>
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <span class="pull-right">FREE</span>
+      </nb-card-footer>
+    </nb-card>
   </div>
-  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-    Coming soon
+  <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Bargain Bin
+      </nb-card-header>
+      <nb-card-body>
+        <sub>Good stocks having a bad day.</sub>
+        <br>
+        <br>
+        <ng2-smart-table [settings]="bargainAlgorithmSettings" [source]="bargainAlgorithmSource"
+                         (userRowSelect)="onUserRowSelect($event)">
+        </ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
   </div>
 </div>

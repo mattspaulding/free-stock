@@ -15,7 +15,9 @@ export class SubscriptionsComponent implements OnInit {
 
   isRocketBot: Boolean;
   isRocketEmail: Boolean;
+  isBrunoEmail: Boolean;
   rocketSmsSubscription: any;
+  brunoSmsSubscription: any;
   isRocketBotExtendedHours: any;
 
   constructor(private userService: UserService, private ref: ChangeDetectorRef) {
@@ -36,8 +38,14 @@ export class SubscriptionsComponent implements OnInit {
           this.isRocketEmail = this.user.stripeCustomer.subscriptions.data.some(subscription => {
             return subscription.plan.id === 'rocket-email';
           })
+          this.isBrunoEmail = this.user.stripeCustomer.subscriptions.data.some(subscription => {
+            return subscription.plan.id === 'bruno-email';
+          })
           this.rocketSmsSubscription = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
             return subscription.plan.id === 'rocket-sms';
+          })[0]
+          this.brunoSmsSubscription = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
+            return subscription.plan.id === 'bruno-sms';
           })[0]
           this.isRocketBotExtendedHours = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
             return subscription.plan.id === 'rocket-extended';

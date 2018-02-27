@@ -178,16 +178,34 @@
       <div class="col-xxxl-3 col-xxl-4 col-md-6">
         <nb-card class="card-in-card">
           <nb-card-header>
-            Bargain Bin
+            Bruno Email
           </nb-card-header>
           <nb-card-body>
-            The Rocket Bot algorithm for sale stocks.
+            Get stock picks... in your inbox.
           </nb-card-body>
           <nb-card-footer>
-            <span class="pull-right">Coming Soon</span>
+            <span class="pull-right">FREE</span>
+            <span *ngIf="isBrunoEmail" class="text-success"><i class="nb-checkmark"></i> Subscribed</span>
           </nb-card-footer>
         </nb-card>
       </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Bruno SMS
+          </nb-card-header>
+          <nb-card-body>
+            Get stock picks... texted to your phone.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">$3/mo</span>
+            <span *ngIf="brunoSmsSubscription&&!brunoSmsSubscription.discount" class="text-success"><i
+              class="nb-checkmark"></i> Subscribed</span>
+            <span *ngIf="brunoSmsSubscription&&brunoSmsSubscription.discount" class="text-success">{{brunoSmsSubscription.discount.coupon.percent_off}}% off for {{brunoSmsSubscription.discount.coupon.duration_in_months}} months</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+
     </div>
   </nb-card-body>
 </nb-card>

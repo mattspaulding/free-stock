@@ -1,11 +1,21 @@
 <div class="row">
   <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
     <ngx-bot-profile
+      title="Rocket"
+      subtitle="Growth"
+      type="warning"
+      pictureUrl="../../../../assets/images/rocket-flat.svg"
+      description="Identifies the rocket stocks."
+      [routerLink]="['../rocket']"
+    ></ngx-bot-profile>
+  </div>
+  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+    <ngx-bot-profile
       title="Bruno"
-      subtitle="Strategy"
+      subtitle="Bargain"
       type="primary"
       pictureUrl="../../../../assets/images/bruno-flat.svg"
-      description="Buys stocks when they go on sale."
+      description="Finds the bargain stocks."
       [routerLink]="['../bruno']"
     ></ngx-bot-profile>
   </div>
@@ -20,23 +30,13 @@
     ></ngx-bot-profile>
   </div>
   <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-  <ngx-bot-profile
-    title="Dot"
-    subtitle="Profit"
-    type="success"
-    pictureUrl="../../../../assets/images/dot-flat.svg"
-    description="Sells stocks at their peak."
-    [routerLink]="['../dot']"
-  ></ngx-bot-profile>
-</div>
-  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
     <ngx-bot-profile
-      title="Rocket"
-      subtitle="Growth"
-      type="warning"
-      pictureUrl="../../../../assets/images/rocket-flat.svg"
-      description="Identifies the rocket stocks."
-      [routerLink]="['../rocket']"
+      title="Dot"
+      subtitle="Profit"
+      type="success"
+      pictureUrl="../../../../assets/images/dot-flat.svg"
+      description="Sells stocks at their peak."
+      [routerLink]="['../dot']"
     ></ngx-bot-profile>
   </div>
 </div>

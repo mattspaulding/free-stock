@@ -48,17 +48,6 @@ export class StockService {
       });
   }
 
-  getRocketBot() {
-    return this.http.get(environment.apiBaseUrl + '/api/stock/rocketbot/')
-      .map((response: Response) => {
-        const obj = response.json().obj;
-        return obj;
-      })
-      .catch((error: Response) => {
-        return Observable.throw(error.json());
-      });
-  }
-
   getRocketAlgorithm(id) {
     return this.http.get(environment.apiBaseUrl + '/api/stock/rocketalgorithm/' + id)
       .map((response: Response) => {
@@ -96,12 +85,42 @@ export class StockService {
     }
   }
 
+  setBrunoBotEmailNotify(isNotify) {
+    if (localStorage.accessToken) {
+
+      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setbrunobotemailnotify/?isNotify=' + isNotify, {headers: headers})
+        .map((response: any) => response.json())
+        .catch((error: Response) => {
+          return Observable.throw(error.json());
+        });
+    } else {
+      return Observable.of(null);
+    }
+  }
+
   setRocketBotSmsNotify(isNotify) {
     if (localStorage.accessToken) {
 
       const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
 
       return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotsmsnotify/?isNotify=' + isNotify, {headers: headers})
+        .map((response: any) => response.json())
+        .catch((error: Response) => {
+          return Observable.throw(error.json());
+        });
+    } else {
+      return Observable.of(null);
+    }
+  }
+
+  setBrunoBotSmsNotify(isNotify) {
+    if (localStorage.accessToken) {
+
+      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setbrunobotsmsnotify/?isNotify=' + isNotify, {headers: headers})
         .map((response: any) => response.json())
         .catch((error: Response) => {
           return Observable.throw(error.json());

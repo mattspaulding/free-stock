@@ -15,40 +15,6 @@ export class RocketComponent implements OnInit {
 
   createdAt: string;
 
-  settings = {
-    actions: null,
-    hideSubHeader: true,
-    columns: {
-      symbol: {
-        title: 'Symbol',
-        type: 'string',
-      },
-      rocketFuel: {
-        title: 'Rocket Fuel',
-        type: 'string',
-      },
-      createdAtPretty: {
-        title: 'Spotted',
-        type: 'string',
-      },
-      // updatedRocketFuel: {
-      //   title: 'Fuel Update',
-      //   type: 'string',
-      // }
-      // ,
-      // updatedAtPretty: {
-      //   title: 'Updated',
-      //   type: 'string',
-      // }
-    },
-    pager:
-      {
-        perPage: 20
-      }
-  };
-
-  source: LocalDataSource = new LocalDataSource();
-
 
   rocketAlgorithmSettings = {
     actions: null,
@@ -79,31 +45,6 @@ export class RocketComponent implements OnInit {
 
   rocketAlgorithmSource: LocalDataSource = new LocalDataSource();
 
-  bargainAlgorithmSettings = {
-    actions: null,
-    hideSubHeader: true,
-    columns: {
-      symbol: {
-        title: 'Symbol',
-        type: 'string',
-      },
-      percentChangePretty: {
-        title: '% Chg',
-        type: 'string',
-      },
-      createdAtPretty: {
-        title: 'Spotted',
-        type: 'string',
-      },
-    },
-    pager:
-      {
-        perPage: 20
-      }
-  };
-
-  bargainAlgorithmSource: LocalDataSource = new LocalDataSource();
-
   user: any;
   newPhone: string;
   newEmail: string;
@@ -114,23 +55,7 @@ export class RocketComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getRocketBot();
     this.getUser();
-  }
-
-  getRocketBot() {
-    this.stockService.getRocketBot()
-      .subscribe(data => {
-        let rockets = [];
-        data.forEach(datum => {
-          datum.rocket.createdAtPretty = new Date(datum.rocket.createdAt).toString().replace(' GMT-0500', '');
-          if (datum.rocket.updatedAt) {
-            datum.rocket.updatedAtPretty = new Date(datum.rocket.updatedAt).toString().replace(' GMT-0500', '');
-          }
-          rockets.push(datum.rocket);
-        })
-        this.source.load(rockets);
-      });
   }
 
   getRocketAlgorithm() {
@@ -149,28 +74,11 @@ export class RocketComponent implements OnInit {
       });
   }
 
-  getBargainAlgorithm() {
-    let id = null;
-    if (this.user) {
-      id = this.user.fbId;
-    }
-    this.stockService.getBargainAlgorithm(id)
-      .subscribe(data => {
-        let stocks = [];
-        data.forEach(datum => {
-          datum.stock.createdAtPretty = new Date(datum.stock.createdAt).toString().replace(' GMT-0500', '');
-          stocks.push(datum.stock);
-        })
-        this.bargainAlgorithmSource.load(stocks);
-      });
-  }
-
   getUser() {
     this.userService.getUser()
       .subscribe(data => {
         this.user = data;
         this.getRocketAlgorithm();
-        this.getBargainAlgorithm();
       });
   }
 
@@ -263,7 +171,7 @@ export class RocketComponent implements OnInit {
       );
   }
 
-  addEmailToRocketList() {
+  addEmailToList() {
     this.userService.addEmailToRocketList(this.newEmail)
       .subscribe(data => {
           this.newEmail = "";

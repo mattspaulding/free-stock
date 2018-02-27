@@ -5,7 +5,7 @@
       subtitle="Growth"
       type="warning"
       pictureUrl="../../../../assets/images/rocket-flat.svg"
-      description="Rocket identifies the rocket stocks; The stocks that go to the moooon!"
+      description="The stocks that go to the moooon!"
     ></ngx-bot-profile>
     <nb-card>
       <nb-card-header>
@@ -110,7 +110,7 @@
           <input type="email" placeholder="Email" class="form-control" [(ngModel)]="newEmail"/>
           <small class="form-text">Add an email to the Rocket Bot email list
           </small>
-          <button class="btn btn-secondary pull-right" (click)="addEmailToRocketList()">Add</button>
+          <button class="btn btn-secondary pull-right" (click)="addEmailToList()">Add</button>
         </div>
       </nb-card-body>
       <nb-card-footer>
@@ -119,18 +119,9 @@
     </nb-card>
   </div>
   <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
-    <!--<nb-card>-->
-    <!--<nb-card-header>-->
-    <!--Rocket Stocks-->
-    <!--</nb-card-header>-->
-    <!--<nb-card-body>-->
-    <!--<ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onUserRowSelect($event)">-->
-    <!--</ng2-smart-table>-->
-    <!--</nb-card-body>-->
-    <!--</nb-card>-->
     <nb-card>
       <nb-card-header>
-        Rocket Stocks Algorithm
+        Rocket Stocks
       </nb-card-header>
       <nb-card-body>
         <sub>These uptrending stocks are showing strange fluctuations in volume. The technicals are good. Buckle up;
@@ -142,31 +133,5 @@
         </ng2-smart-table>
       </nb-card-body>
     </nb-card>
-    <nb-card>
-      <nb-card-header>
-        Bargain Bin Algorithm
-      </nb-card-header>
-      <nb-card-body>
-        <sub>Good stocks having a bad day.</sub>
-        <br>
-        <br>
-        <ng2-smart-table [settings]="bargainAlgorithmSettings" [source]="bargainAlgorithmSource"
-                         (userRowSelect)="onUserRowSelect($event)">
-        </ng2-smart-table>
-      </nb-card-body>
-    </nb-card>
-    <!--<nb-card>-->
-    <!--<nb-card-header>-->
-    <!--Clearance Bin-->
-    <!--</nb-card-header>-->
-    <!--<nb-card-body>-->
-    <!--Stocks that are on sale.<br><br>-->
-    <!--So you like to "buy the dip"? This is the place for you! Offering statistical analysis on stock low points based-->
-    <!--on historical trends.-->
-    <!--</nb-card-body>-->
-    <!--<nb-card-footer>-->
-    <!--<span class="pull-right">Coming Soon</span>-->
-    <!--</nb-card-footer>-->
-    <!--</nb-card>-->
   </div>
 </div>
