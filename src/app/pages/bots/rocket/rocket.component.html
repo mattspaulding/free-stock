@@ -66,28 +66,28 @@
           </span>
       </nb-card-footer>
     </nb-card>
-    <nb-card>
-      <nb-card-header>
-        Rocket Extended
-        <div class="switch-container pull-right">
-          <label class="theme-switch">
-            <span class="off text-hint">OFF</span>
-            <div class="switch">
-              <input type="checkbox" [checked]="isExtendedHours()" (change)="toggleExtended(extended.checked)"
-                     #extended>
-              <span class="slider"></span>
-            </div>
-            <span class="on text-hint">ON</span>
-          </label>
-        </div>
-      </nb-card-header>
-      <nb-card-body>
-        Show me the Rocket Bot picks in extended hours from 9:00AM to 6:00PM. Normal hours are 9:30AM to 4:00PM
-      </nb-card-body>
-      <nb-card-footer>
-        <span class="pull-right">$1/mo</span>
-      </nb-card-footer>
-    </nb-card>
+    <!--<nb-card>-->
+      <!--<nb-card-header>-->
+        <!--Rocket Extended-->
+        <!--<div class="switch-container pull-right">-->
+          <!--<label class="theme-switch">-->
+            <!--<span class="off text-hint">OFF</span>-->
+            <!--<div class="switch">-->
+              <!--<input type="checkbox" [checked]="isExtendedHours()" (change)="toggleExtended(extended.checked)"-->
+                     <!--#extended>-->
+              <!--<span class="slider"></span>-->
+            <!--</div>-->
+            <!--<span class="on text-hint">ON</span>-->
+          <!--</label>-->
+        <!--</div>-->
+      <!--</nb-card-header>-->
+      <!--<nb-card-body>-->
+        <!--Show me the Rocket Bot picks in extended hours from 9:00AM to 6:00PM. Normal hours are 9:30AM to 4:00PM-->
+      <!--</nb-card-body>-->
+      <!--<nb-card-footer>-->
+        <!--<span class="pull-right">$1/mo</span>-->
+      <!--</nb-card-footer>-->
+    <!--</nb-card>-->
     <nb-card>
       <nb-card-header>
         <toaster-container [toasterconfig]="config"></toaster-container>
