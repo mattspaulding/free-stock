@@ -56,15 +56,25 @@ export class RocketComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
+    //this.getRocketAlgorithmData();
   }
 
   getRocketAlgorithm() {
-    let id = null;
-    if (this.user) {
-      id = this.user.fbId;
-    }
-    this.stockService.getRocketAlgorithm(id)
+     this.stockService.getRocketAlgorithm()
       .subscribe(data => {
+        let stocks = [];
+        data.forEach(datum => {
+          datum.stock.createdAtPretty = new Date(datum.stock.createdAt).toString().replace(' GMT-0500', '');
+          stocks.push(datum.stock);
+        })
+        this.rocketAlgorithmSource.load(stocks);
+      });
+  }
+
+  getRocketAlgorithmData() {
+     this.stockService.getRocketAlgorithmData()
+      .subscribe(data => {
+        debugger;
         let stocks = [];
         data.forEach(datum => {
           datum.stock.createdAtPretty = new Date(datum.stock.createdAt).toString().replace(' GMT-0500', '');

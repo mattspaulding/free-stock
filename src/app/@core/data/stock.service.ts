@@ -48,8 +48,19 @@ export class StockService {
       });
   }
 
-  getRocketAlgorithm(id) {
-    return this.http.get(environment.apiBaseUrl + '/api/stock/rocketalgorithm/' + id)
+  getRocketAlgorithm() {
+    return this.http.get(environment.apiBaseUrl + '/api/stock/rocketalgorithm')
+      .map((response: Response) => {
+        const obj = response.json().obj;
+        return obj;
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+  getRocketAlgorithmData() {
+    return this.http.get(environment.apiBaseUrl + '/api/stock/rocketalgorithmdata')
       .map((response: Response) => {
         const obj = response.json().obj;
         return obj;

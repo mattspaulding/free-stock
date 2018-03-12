@@ -141,7 +141,7 @@ export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
   getUser() {
     this.userService.getUserUpdated()
       .subscribe(data => {
-        this.user = data;
+         this.user = data;
           const chartData = [];
         if(this.user) {
           this.user.portfolio.investments.forEach(investment => {

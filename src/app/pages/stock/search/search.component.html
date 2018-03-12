@@ -32,7 +32,7 @@
       </nb-card-body>
     </nb-card>
 
-    <nb-card *ngIf="stockQuoteModel" size="xsmall">
+    <!-- <nb-card *ngIf="stockQuoteModel" size="xsmall">
       <nb-card-header>
         Rocket Rating
       </nb-card-header>
@@ -42,14 +42,12 @@
             <img src="../../../../assets/images/rocket-outline.svg">
           </div>
         </div>
-        <!--<div class="rocket-rating">-->
-          <!--A+-->
-        <!--</div>-->
+    
         <div>
           Coming soon
         </div>
       </nb-card-body>
-    </nb-card>
+    </nb-card> -->
   </div>
   <div class="col-xl-3 col-lg-6">
     <nb-card *ngIf="stockQuoteModel" size="xsmall">
@@ -102,7 +100,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3" style="height: 216px;">
+          <!-- <div class="col-md-6 col-lg-3" style="height: 216px;">
             <nb-card (click)="investmentOrderModel.brunoOn = !investmentOrderModel.brunoOn"
                      [ngClass]="{'off': !investmentOrderModel.brunoOn}" class="bot-card">
               <div class="icon-container">
@@ -123,7 +121,7 @@
                        [(ngModel)]="investmentOrderModel.buyAt">
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="col-md-6 col-lg-3" style="height: 216px;">
             <nb-card (click)="investmentOrderModel.geoffreyOn = !investmentOrderModel.geoffreyOn"
                      [ngClass]="{'off': !investmentOrderModel.geoffreyOn}" class="bot-card">
@@ -147,7 +145,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3" style="height: 216px;">
+          <!-- <div class="col-md-6 col-lg-3" style="height: 216px;">
             <nb-card (click)="investmentOrderModel.dotOn = !investmentOrderModel.dotOn"
                      [ngClass]="{'off': !investmentOrderModel.dotOn}" class="bot-card">
               <div class="icon-container">
@@ -168,7 +166,7 @@
                        [(ngModel)]="investmentOrderModel.sellAt">
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </nb-card-body>
       <nb-card-footer *ngIf="!user || (user && !user.isRobinhood)">
