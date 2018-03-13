@@ -1,5 +1,20 @@
 <div class="row">
-  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+  <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
+    <nb-card>
+      <nb-card-header>
+        Bargain Bin
+      </nb-card-header>
+      <nb-card-body>
+        <sub>Good stocks having a bad day.</sub>
+        <br>
+        <br>
+        <ng2-smart-table [settings]="bargainAlgorithmSettings" [source]="bargainAlgorithmSource"
+                         (userRowSelect)="onUserRowSelect($event)">
+        </ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+  </div>
+ <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
     <ngx-bot-profile
       title="Bruno"
       subtitle="Bargain"
@@ -96,19 +111,4 @@
       </nb-card-footer>
     </nb-card>
   </div>
-  <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
-    <nb-card>
-      <nb-card-header>
-        Bargain Bin
-      </nb-card-header>
-      <nb-card-body>
-        <sub>Good stocks having a bad day.</sub>
-        <br>
-        <br>
-        <ng2-smart-table [settings]="bargainAlgorithmSettings" [source]="bargainAlgorithmSource"
-                         (userRowSelect)="onUserRowSelect($event)">
-        </ng2-smart-table>
-      </nb-card-body>
-    </nb-card>
-  </div>
-</div>
+ </div>

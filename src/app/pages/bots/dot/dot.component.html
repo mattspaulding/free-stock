@@ -1,18 +1,29 @@
 <div class="row">
-    <canvas id="myChart"></canvas>
-  </div>
-  <div class="row">
-    <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
-      Coming soon
-    </div>
-  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-  <ngx-bot-profile
-    title="Dot"
-    subtitle="Profit"
-    type="success"
-    pictureUrl="../../../../assets/images/dot-flat.svg"
-    description="Sells stocks at their peak. Coming soon."
-  ></ngx-bot-profile>
+  <canvas id="myChart"></canvas>
 </div>
- </div>
-
+<div class="row">
+  <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
+    <h2>Try these demos</h2>
+    <button class="btn btn-primary" (click)="changeRoute('MU')">MU</button>
+    <button class="btn btn-warning" (click)="changeRoute('NFLX')">NFLX</button>
+    <button class="btn btn-success" (click)="changeRoute('BTC-USD')">BTC-USD</button>
+    <button class="btn btn-info" (click)="changeRoute('ETH-USD')">ETH-USD</button>
+    <button class="btn btn-danger" (click)="changeRoute('RAD')">RAD</button>
+    <hr>
+    <div>
+      Stock: {{symbol}}
+    </div>
+    <div>
+        Description: {{description}}
+      </div>
+      <div>
+          Std % chg: {{standardPercentChange}}
+        </div>
+        <div>
+            Algo % chg: {{algoPercentChange}}
+          </div>
+          </div>
+  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+    <ngx-bot-profile title="Dot" subtitle="Profit" type="success" pictureUrl="../../../../assets/images/dot-flat.svg" description="Sells stocks at their peak. Coming soon."></ngx-bot-profile>
+  </div>
+</div>

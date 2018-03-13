@@ -81,6 +81,17 @@ export class StockService {
       });
   }
 
+  getDotBot(symbol) {
+    return this.http.get(environment.apiBaseUrl + '/api/stock/dotbot/'+symbol)
+      .map((response: Response) => {
+        const obj = response.json().obj;
+        return obj;
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
   setRocketBotEmailNotify(isNotify) {
     if (localStorage.accessToken) {
 

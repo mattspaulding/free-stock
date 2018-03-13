@@ -30,6 +30,10 @@ const routes: Routes = [{
       component: DotComponent,
     },
     {
+      path: 'dot/:symbol',
+      component: DotComponent,
+    },
+    {
       path: 'rocket',
       component: RocketComponent,
     },
