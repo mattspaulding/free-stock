@@ -104,7 +104,7 @@ export class SearchComponent implements OnInit {
           this.router.navigate([ data.navigate]);
         },
         error => {
-          alert(error.message)
+          alert(error.title)
         }
       );
   }

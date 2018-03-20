@@ -158,7 +158,7 @@ export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
   onUserRowSelect(event): void {
     this.stockService.cancelInvestment(event.data.id)
       .subscribe(data => {
-        this.getUser();
+         this.getUser();
       })
   }
 
