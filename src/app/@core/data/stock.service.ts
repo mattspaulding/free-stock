@@ -1,8 +1,8 @@
-import {Injectable} from '@angular/core';
-import {Http, Response, Headers} from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
-import {environment} from 'environments/environment';
+import { environment } from 'environments/environment';
 
 const counter = 0;
 
@@ -82,7 +82,7 @@ export class StockService {
   }
 
   getDotBot(symbol) {
-    return this.http.get(environment.apiBaseUrl + '/api/stock/dotbot/'+symbol)
+    return this.http.get(environment.apiBaseUrl + '/api/stock/dotbot/' + symbol)
       .map((response: Response) => {
         const obj = response.json().obj;
         return obj;
@@ -95,9 +95,9 @@ export class StockService {
   setRocketBotEmailNotify(isNotify) {
     if (localStorage.accessToken) {
 
-      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+      const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
 
-      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotemailnotify/?isNotify=' + isNotify, {headers: headers})
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotemailnotify/?isNotify=' + isNotify, { headers: headers })
         .map((response: any) => response.json())
         .catch((error: Response) => {
           return Observable.throw(error.json());
@@ -110,9 +110,9 @@ export class StockService {
   setBrunoBotEmailNotify(isNotify) {
     if (localStorage.accessToken) {
 
-      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+      const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
 
-      return this.http.get(environment.apiBaseUrl + '/api/stock/setbrunobotemailnotify/?isNotify=' + isNotify, {headers: headers})
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setbrunobotemailnotify/?isNotify=' + isNotify, { headers: headers })
         .map((response: any) => response.json())
         .catch((error: Response) => {
           return Observable.throw(error.json());
@@ -125,9 +125,9 @@ export class StockService {
   setRocketBotSmsNotify(isNotify) {
     if (localStorage.accessToken) {
 
-      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+      const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
 
-      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotsmsnotify/?isNotify=' + isNotify, {headers: headers})
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotsmsnotify/?isNotify=' + isNotify, { headers: headers })
         .map((response: any) => response.json())
         .catch((error: Response) => {
           return Observable.throw(error.json());
@@ -140,9 +140,9 @@ export class StockService {
   setBrunoBotSmsNotify(isNotify) {
     if (localStorage.accessToken) {
 
-      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+      const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
 
-      return this.http.get(environment.apiBaseUrl + '/api/stock/setbrunobotsmsnotify/?isNotify=' + isNotify, {headers: headers})
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setbrunobotsmsnotify/?isNotify=' + isNotify, { headers: headers })
         .map((response: any) => response.json())
         .catch((error: Response) => {
           return Observable.throw(error.json());
@@ -155,9 +155,9 @@ export class StockService {
   setRocketBotExtendedHours(isExtended) {
     if (localStorage.accessToken) {
 
-      const headers = new Headers({'Authorization': 'Authorization: Bearer ' + localStorage.accessToken});
+      const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
 
-      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotextendedhours/?isExtended=' + isExtended, {headers: headers})
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotextendedhours/?isExtended=' + isExtended, { headers: headers })
         .map((response: any) => response.json())
         .catch((error: Response) => {
           return Observable.throw(error.json());
@@ -174,8 +174,20 @@ export class StockService {
       'Authorization': 'Authorization: Bearer ' + localStorage.accessToken
     });
 
-    //const anonId = localStorage.getItem('anonId');
-    return this.http.post(environment.apiBaseUrl + '/api/stock/investment/', body, {headers: headers})
+    return this.http.post(environment.apiBaseUrl + '/api/stock/investment/', body, { headers: headers })
+      .map((response: any) => response.json())
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+  cancelInvestment(orderId: string) {
+    const body = {};
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'Authorization: Bearer ' + localStorage.accessToken
+    });
+    return this.http.post(environment.apiBaseUrl + '/api/stock/investmentcancel/' + orderId, body, { headers: headers })
       .map((response: any) => response.json())
       .catch((error: Response) => {
         return Observable.throw(error.json());

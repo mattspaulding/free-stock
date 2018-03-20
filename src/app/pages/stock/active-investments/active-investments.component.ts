@@ -1,12 +1,13 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import {LocalDataSource} from 'ng2-smart-table';
-import {UserService} from "../../../@core/data/users.service";
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { LocalDataSource } from 'ng2-smart-table';
+import { UserService } from "../../../@core/data/users.service";
+import { StockService } from '../../../@core/data/stock.service';
 
 @Component({
   selector: 'ngx-active-investments',
   templateUrl: './active-investments.component.html',
   styleUrls: ['./active-investments.component.scss'],
-
+  providers: [StockService]
 })
 export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
 
@@ -102,7 +103,7 @@ export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
 
   source: LocalDataSource = new LocalDataSource();
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private stockService: StockService) {
 
     if (window.innerWidth < 667) {
       this.size = 'sm';
@@ -123,11 +124,11 @@ export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
     };
   }
 
-  public timer:any;
+  public timer: any;
   ngOnInit() {
     this.getUser();
 
-    this.timer =  setInterval(() => {
+    this.timer = setInterval(() => {
       console.log('refreshing');
       this.getUser();
     }, 60000);
@@ -141,9 +142,9 @@ export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
   getUser() {
     this.userService.getUserUpdated()
       .subscribe(data => {
-         this.user = data;
-          const chartData = [];
-        if(this.user) {
+        this.user = data;
+        const chartData = [];
+        if (this.user) {
           this.user.portfolio.investments.forEach(investment => {
             if (investment.activeInvestmentsChartDatum) {
               chartData.push(investment.activeInvestmentsChartDatum);
@@ -151,11 +152,14 @@ export class ActiveInvestmentsComponent implements OnInit, OnDestroy {
           });
         }
         this.source.load(chartData);
-       });
+      });
   }
 
   onUserRowSelect(event): void {
-    debugger;
+    this.stockService.cancelInvestment(event.data.id)
+      .subscribe(data => {
+        this.getUser();
+      })
   }
 
   onDeleteConfirm(event): void {
