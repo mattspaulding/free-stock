@@ -61,7 +61,7 @@ export class PutComponent implements OnInit {
       .subscribe(data => {
         let stocks = [];
         data.forEach(datum => {
-          datum.stock.createdAtPretty = moment(datum.stock.createdAt).tz('America/New_York').format('ddd YYYY-MM-DDTHH:mm:ss');
+          datum.stock.createdAtPretty = moment(datum.stock.createdAt).tz('America/New_York').format('ddd YYYY-MM-DD HH:mm:ss');
           stocks.push(datum.stock);
         })
         this.putAlgorithmSource.load(stocks);
