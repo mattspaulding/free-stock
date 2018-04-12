@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {LocalDataSource} from "ng2-smart-table";
-import {StockService} from '../../../@core/data/stock.service';
-import {UserService} from '../../../@core/data/users.service';
-import {Router} from "@angular/router";
-import {ToasterService, ToasterConfig, Toast, BodyOutputType} from 'angular2-toaster';
+import { Component, OnInit } from '@angular/core';
+import { LocalDataSource } from "ng2-smart-table";
+import { StockService } from '../../../@core/data/stock.service';
+import { UserService } from '../../../@core/data/users.service';
+import { Router } from "@angular/router";
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import * as moment from 'moment-timezone';
 
 @Component({
@@ -25,7 +25,7 @@ export class PutComponent implements OnInit {
         title: 'Symbol',
         type: 'string',
       },
-       percentChangePretty: {
+      percentChangePretty: {
         title: '% Chg',
         type: 'string',
       },
@@ -57,11 +57,11 @@ export class PutComponent implements OnInit {
   }
 
   getPutAlgorithm() {
-     this.stockService.getPutAlgorithm()
+    this.stockService.getPutAlgorithm()
       .subscribe(data => {
         let stocks = [];
         data.forEach(datum => {
-          datum.stock.createdAtPretty =moment(datum.stock.createdAt).tz('America/New_York').format('ddd HH:mm:ss');
+          datum.stock.createdAtPretty = moment(datum.stock.createdAt).tz('America/New_York').format('ddd YYYY-MM-DDTHH:mm:ss');
           stocks.push(datum.stock);
         })
         this.putAlgorithmSource.load(stocks);
@@ -69,7 +69,7 @@ export class PutComponent implements OnInit {
   }
 
   getPutAlgorithmData() {
-     this.stockService.getPutAlgorithmData()
+    this.stockService.getPutAlgorithmData()
       .subscribe(data => {
         debugger;
         let stocks = [];
@@ -148,8 +148,8 @@ export class PutComponent implements OnInit {
 
   isSmsSubscribed() {
     if (this.user && this.user.stripeCustomer.subscriptions.data.some(sub => {
-        return sub.plan.id === 'put-sms';
-      })) {
+      return sub.plan.id === 'put-sms';
+    })) {
       return true;
     } else {
       return false;
@@ -159,8 +159,8 @@ export class PutComponent implements OnInit {
   addPhone() {
     this.userService.addPhone(this.newPhone)
       .subscribe(data => {
-          this.user = data.obj;
-        },
+        this.user = data.obj;
+      },
         error => {
 
         }
@@ -170,8 +170,8 @@ export class PutComponent implements OnInit {
   deletePhone() {
     this.userService.addPhone(null)
       .subscribe(data => {
-          this.user = data.obj;
-        },
+        this.user = data.obj;
+      },
         error => {
 
         }

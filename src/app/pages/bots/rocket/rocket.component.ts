@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {LocalDataSource} from "ng2-smart-table";
-import {StockService} from '../../../@core/data/stock.service';
-import {UserService} from '../../../@core/data/users.service';
-import {Router} from "@angular/router";
-import {ToasterService, ToasterConfig, Toast, BodyOutputType} from 'angular2-toaster';
+import { Component, OnInit } from '@angular/core';
+import { LocalDataSource } from "ng2-smart-table";
+import { StockService } from '../../../@core/data/stock.service';
+import { UserService } from '../../../@core/data/users.service';
+import { Router } from "@angular/router";
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import * as moment from 'moment-timezone';
 
 @Component({
@@ -61,11 +61,11 @@ export class RocketComponent implements OnInit {
   }
 
   getRocketAlgorithm() {
-     this.stockService.getRocketAlgorithm()
+    this.stockService.getRocketAlgorithm()
       .subscribe(data => {
         let stocks = [];
         data.forEach(datum => {
-          datum.stock.createdAtPretty = moment(datum.stock.createdAt).tz('America/New_York').format('ddd HH:mm:ss');
+          datum.stock.createdAtPretty = moment(datum.stock.createdAt).tz('America/New_York').format('ddd YYYY-MM-DDTHH:mm:ss');
           stocks.push(datum.stock);
         })
         this.rocketAlgorithmSource.load(stocks);
@@ -73,7 +73,7 @@ export class RocketComponent implements OnInit {
   }
 
   getRocketAlgorithmData() {
-     this.stockService.getRocketAlgorithmData()
+    this.stockService.getRocketAlgorithmData()
       .subscribe(data => {
         debugger;
         let stocks = [];
@@ -152,8 +152,8 @@ export class RocketComponent implements OnInit {
 
   isSmsSubscribed() {
     if (this.user && this.user.stripeCustomer.subscriptions.data.some(sub => {
-        return sub.plan.id === 'rocket-sms';
-      })) {
+      return sub.plan.id === 'rocket-sms';
+    })) {
       return true;
     } else {
       return false;
@@ -163,8 +163,8 @@ export class RocketComponent implements OnInit {
   addPhone() {
     this.userService.addPhone(this.newPhone)
       .subscribe(data => {
-          this.user = data.obj;
-        },
+        this.user = data.obj;
+      },
         error => {
 
         }
@@ -174,8 +174,8 @@ export class RocketComponent implements OnInit {
   deletePhone() {
     this.userService.addPhone(null)
       .subscribe(data => {
-          this.user = data.obj;
-        },
+        this.user = data.obj;
+      },
         error => {
 
         }
@@ -185,9 +185,9 @@ export class RocketComponent implements OnInit {
   addEmailToList() {
     this.userService.addEmailToRocketList(this.newEmail)
       .subscribe(data => {
-          this.newEmail = "";
-          this.toasterService.popAsync({type: 'success', title: data.message});
-        },
+        this.newEmail = "";
+        this.toasterService.popAsync({ type: 'success', title: data.message });
+      },
         error => {
 
         }

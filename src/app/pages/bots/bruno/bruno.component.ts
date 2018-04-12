@@ -63,7 +63,7 @@ export class BrunoComponent implements OnInit {
       .subscribe(data => {
         let stocks = [];
         data.forEach(datum => {
-          datum.stock.createdAtPretty = moment(datum.stock.createdAt).tz('America/New_York').format('ddd HH:mm:ss');
+          datum.stock.createdAtPretty = moment(datum.stock.createdAt).tz('America/New_York').format('ddd YYYY-MM-DDTHH:mm:ss');
           stocks.push(datum.stock);
         })
         this.bargainAlgorithmSource.load(stocks);
