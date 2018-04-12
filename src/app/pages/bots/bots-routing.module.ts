@@ -4,6 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {BotsComponent} from './bots.component';
 import {BrunoComponent} from './bruno/bruno.component';
 import {RocketComponent} from './rocket/rocket.component';
+import {PutComponent} from './put/put.component';
 import {OverviewComponent} from './overview/overview.component';
 import {DotComponent} from './dot/dot.component';
 import {GeoffreyComponent} from './geoffrey/geoffrey.component';
@@ -36,6 +37,10 @@ const routes: Routes = [{
     {
       path: 'rocket',
       component: RocketComponent,
+    },
+    {
+      path: 'put',
+      component: PutComponent,
     },
   ],
 }];

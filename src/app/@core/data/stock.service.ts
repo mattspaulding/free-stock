@@ -70,6 +70,28 @@ export class StockService {
       });
   }
 
+  getPutAlgorithm() {
+    return this.http.get(environment.apiBaseUrl + '/api/stock/putalgorithm')
+      .map((response: Response) => {
+        const obj = response.json().obj;
+        return obj;
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
+  getPutAlgorithmData() {
+    return this.http.get(environment.apiBaseUrl + '/api/stock/putalgorithmdata')
+      .map((response: Response) => {
+        const obj = response.json().obj;
+        return obj;
+      })
+      .catch((error: Response) => {
+        return Observable.throw(error.json());
+      });
+  }
+
   getBargainAlgorithm(id) {
     return this.http.get(environment.apiBaseUrl + '/api/stock/bargainalgorithm/' + id)
       .map((response: Response) => {
@@ -98,6 +120,21 @@ export class StockService {
       const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
 
       return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotemailnotify/?isNotify=' + isNotify, { headers: headers })
+        .map((response: any) => response.json())
+        .catch((error: Response) => {
+          return Observable.throw(error.json());
+        });
+    } else {
+      return Observable.of(null);
+    }
+  }
+
+  setPutBotEmailNotify(isNotify) {
+    if (localStorage.accessToken) {
+
+      const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
+
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setputbotemailnotify/?isNotify=' + isNotify, { headers: headers })
         .map((response: any) => response.json())
         .catch((error: Response) => {
           return Observable.throw(error.json());
@@ -137,6 +174,21 @@ export class StockService {
     }
   }
 
+  setPutBotSmsNotify(isNotify) {
+    if (localStorage.accessToken) {
+
+      const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
+
+      return this.http.get(environment.apiBaseUrl + '/api/stock/setputbotsmsnotify/?isNotify=' + isNotify, { headers: headers })
+        .map((response: any) => response.json())
+        .catch((error: Response) => {
+          return Observable.throw(error.json());
+        });
+    } else {
+      return Observable.of(null);
+    }
+  }
+
   setBrunoBotSmsNotify(isNotify) {
     if (localStorage.accessToken) {
 
@@ -152,20 +204,20 @@ export class StockService {
     }
   }
 
-  setRocketBotExtendedHours(isExtended) {
-    if (localStorage.accessToken) {
+  // setRocketBotExtendedHours(isExtended) {
+  //   if (localStorage.accessToken) {
 
-      const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
+  //     const headers = new Headers({ 'Authorization': 'Authorization: Bearer ' + localStorage.accessToken });
 
-      return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotextendedhours/?isExtended=' + isExtended, { headers: headers })
-        .map((response: any) => response.json())
-        .catch((error: Response) => {
-          return Observable.throw(error.json());
-        });
-    } else {
-      return Observable.of(null);
-    }
-  }
+  //     return this.http.get(environment.apiBaseUrl + '/api/stock/setrocketbotextendedhours/?isExtended=' + isExtended, { headers: headers })
+  //       .map((response: any) => response.json())
+  //       .catch((error: Response) => {
+  //         return Observable.throw(error.json());
+  //       });
+  //   } else {
+  //     return Observable.of(null);
+  //   }
+  // }
 
   createInvestment(investmentOrderModel: any) {
     const body = JSON.stringify(investmentOrderModel);

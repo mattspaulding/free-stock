@@ -6,17 +6,17 @@ import {Router} from "@angular/router";
 import {ToasterService, ToasterConfig, Toast, BodyOutputType} from 'angular2-toaster';
 
 @Component({
-  selector: 'ngx-rocket',
-  styleUrls: ['./rocket.component.scss'],
-  templateUrl: './rocket.component.html',
+  selector: 'ngx-put',
+  styleUrls: ['./put.component.scss'],
+  templateUrl: './put.component.html',
   providers: [StockService],
 })
-export class RocketComponent implements OnInit {
+export class PutComponent implements OnInit {
 
   createdAt: string;
 
 
-  rocketAlgorithmSettings = {
+  putAlgorithmSettings = {
     actions: null,
     hideSubHeader: true,
     columns: {
@@ -25,7 +25,7 @@ export class RocketComponent implements OnInit {
         type: 'string',
       },
       rating: {
-        title: 'Rocket Fuel',
+        title: 'Put Fuel',
         type: 'string',
       },
       percentChangePretty: {
@@ -43,7 +43,7 @@ export class RocketComponent implements OnInit {
       }
   };
 
-  rocketAlgorithmSource: LocalDataSource = new LocalDataSource();
+  putAlgorithmSource: LocalDataSource = new LocalDataSource();
 
   user: any;
   newPhone: string;
@@ -56,23 +56,23 @@ export class RocketComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
-    //this.getRocketAlgorithmData();
+    //this.getPutAlgorithmData();
   }
 
-  getRocketAlgorithm() {
-     this.stockService.getRocketAlgorithm()
+  getPutAlgorithm() {
+     this.stockService.getPutAlgorithm()
       .subscribe(data => {
         let stocks = [];
         data.forEach(datum => {
           datum.stock.createdAtPretty = new Date(datum.stock.createdAt).toString().replace(' GMT-0500', '');
           stocks.push(datum.stock);
         })
-        this.rocketAlgorithmSource.load(stocks);
+        this.putAlgorithmSource.load(stocks);
       });
   }
 
-  getRocketAlgorithmData() {
-     this.stockService.getRocketAlgorithmData()
+  getPutAlgorithmData() {
+     this.stockService.getPutAlgorithmData()
       .subscribe(data => {
         debugger;
         let stocks = [];
@@ -80,7 +80,7 @@ export class RocketComponent implements OnInit {
           datum.stock.createdAtPretty = new Date(datum.stock.createdAt).toString().replace(' GMT-0500', '');
           stocks.push(datum.stock);
         })
-        this.rocketAlgorithmSource.load(stocks);
+        this.putAlgorithmSource.load(stocks);
       });
   }
 
@@ -88,13 +88,13 @@ export class RocketComponent implements OnInit {
     this.userService.getUser()
       .subscribe(data => {
         this.user = data;
-        this.getRocketAlgorithm();
+        this.getPutAlgorithm();
       });
   }
 
   toggleEmailNotify(isNotify: boolean) {
     if (this.user) {
-      this.stockService.setRocketBotEmailNotify(isNotify)
+      this.stockService.setPutBotEmailNotify(isNotify)
         .subscribe();
     } else {
       this.userService.goToLogin();
@@ -102,7 +102,7 @@ export class RocketComponent implements OnInit {
   }
 
   isEmailNotify() {
-    if (this.user && this.user.isRocketBotEmailNotify) {
+    if (this.user && this.user.isPutBotEmailNotify) {
       return true;
     } else {
       return false;
@@ -111,7 +111,7 @@ export class RocketComponent implements OnInit {
 
   toggleSmsNotify(isNotify: boolean) {
     if (this.user) {
-      this.stockService.setRocketBotSmsNotify(isNotify)
+      this.stockService.setPutBotSmsNotify(isNotify)
         .subscribe();
     } else {
       this.userService.goToLogin();
@@ -119,7 +119,7 @@ export class RocketComponent implements OnInit {
   }
 
   isSmsNotify() {
-    if (this.user && this.user.isRocketBotSmsNotify) {
+    if (this.user && this.user.isPutBotSmsNotify) {
       return true;
     } else {
       return false;
@@ -128,7 +128,7 @@ export class RocketComponent implements OnInit {
 
   // toggleExtended(isExtended: boolean) {
   //   if (this.user) {
-  //     this.stockService.setRocketBotExtendedHours(isExtended)
+  //     this.stockService.setPutBotExtendedHours(isExtended)
   //       .subscribe(data => {
   //           this.user = data.obj;
   //         },
@@ -142,7 +142,7 @@ export class RocketComponent implements OnInit {
   // }
 
   // isExtendedHours() {
-  //   if (this.user && this.user.isRocketBotExtendedHours) {
+  //   if (this.user && this.user.isPutBotExtendedHours) {
   //     return true;
   //   } else {
   //     return false;
@@ -151,7 +151,7 @@ export class RocketComponent implements OnInit {
 
   isSmsSubscribed() {
     if (this.user && this.user.stripeCustomer.subscriptions.data.some(sub => {
-        return sub.plan.id === 'rocket-sms';
+        return sub.plan.id === 'put-sms';
       })) {
       return true;
     } else {
@@ -181,17 +181,17 @@ export class RocketComponent implements OnInit {
       );
   }
 
-  addEmailToList() {
-    this.userService.addEmailToRocketList(this.newEmail)
-      .subscribe(data => {
-          this.newEmail = "";
-          this.toasterService.popAsync({type: 'success', title: data.message});
-        },
-        error => {
+  // addEmailToList() {
+  //   this.userService.addEmailToPutList(this.newEmail)
+  //     .subscribe(data => {
+  //         this.newEmail = "";
+  //         this.toasterService.popAsync({type: 'success', title: data.message});
+  //       },
+  //       error => {
 
-        }
-      );
-  }
+  //       }
+  //     );
+  // }
 
 
   changeEmail() {

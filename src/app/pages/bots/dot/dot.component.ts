@@ -74,8 +74,16 @@ export class DotComponent {
               fill: false,
               pointRadius: 0,
               borderWidth: 2
-            }]
-            this.chart.update();
+          }, {
+            label: "Target",
+            borderColor: 'orange',
+            data: data.data.targets,
+            tension: 0,
+            fill: false,
+            pointRadius: 0,
+            borderWidth: 2
+          }]
+          this.chart.update();
         } else {
           this.chart = new Chart(ctx, {
             // The type of chart we want to create

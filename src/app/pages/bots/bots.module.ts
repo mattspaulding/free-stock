@@ -6,6 +6,7 @@ import {BrunoComponent} from './bruno/bruno.component';
 import {BotsComponent} from './bots.component';
 import {BotProfileComponent} from './bot-profile/bot-profile.component';
 import {RocketComponent} from './rocket/rocket.component';
+import {PutComponent} from './put/put.component';
 import {OverviewComponent} from './overview/overview.component';
 import {GeoffreyComponent} from './geoffrey/geoffrey.component';
 import {DotComponent} from './dot/dot.component';
@@ -21,6 +22,7 @@ const components = [
   GeoffreyComponent,
   DotComponent,
   RocketComponent,
+  PutComponent,
   BotProfileComponent,
   StopLossComponent,
   StopLossDraggerComponent,

@@ -25,6 +25,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         link: '/bots/rocket',
       },
       {
+        title: 'Put',
+        link: '/bots/put',
+      },
+      {
         title: 'Bruno',
         link: '/bots/bruno',
       },
