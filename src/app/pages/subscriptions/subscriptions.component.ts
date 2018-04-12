@@ -13,13 +13,13 @@ export class SubscriptionsComponent implements OnInit {
   email: string;
   isEditEmail: boolean;
 
-  isRocketBot: Boolean;
   isRocketEmail: Boolean;
   isBrunoEmail: Boolean;
+  isPutEmail: Boolean;
   rocketSmsSubscription: any;
   brunoSmsSubscription: any;
-  isRocketBotExtendedHours: any;
-
+  putSmsSubscription: any;
+  
   constructor(private userService: UserService, private ref: ChangeDetectorRef) {
   }
 
@@ -32,14 +32,17 @@ export class SubscriptionsComponent implements OnInit {
       .subscribe(data => {
         this.user = data;
         if (this.user) {
-          this.isRocketBot = this.user.stripeCustomer.subscriptions.data.some(subscription => {
-            return subscription.plan.id === 'rocket-bot';
-          })
+          // this.isRocketBot = this.user.stripeCustomer.subscriptions.data.some(subscription => {
+          //   return subscription.plan.id === 'rocket-bot';
+          // })
           this.isRocketEmail = this.user.stripeCustomer.subscriptions.data.some(subscription => {
             return subscription.plan.id === 'rocket-email';
           })
           this.isBrunoEmail = this.user.stripeCustomer.subscriptions.data.some(subscription => {
             return subscription.plan.id === 'bruno-email';
+          })
+          this.isPutEmail = this.user.stripeCustomer.subscriptions.data.some(subscription => {
+            return subscription.plan.id === 'put-email';
           })
           this.rocketSmsSubscription = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
             return subscription.plan.id === 'rocket-sms';
@@ -47,9 +50,12 @@ export class SubscriptionsComponent implements OnInit {
           this.brunoSmsSubscription = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
             return subscription.plan.id === 'bruno-sms';
           })[0]
-          this.isRocketBotExtendedHours = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
-            return subscription.plan.id === 'rocket-extended';
+          this.putSmsSubscription = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
+            return subscription.plan.id === 'put-sms';
           })[0]
+          // this.isRocketBotExtendedHours = this.user.stripeCustomer.subscriptions.data.filter(subscription => {
+          //   return subscription.plan.id === 'rocket-extended';
+          // })[0]
           this.email = this.user.email;
         }
       });

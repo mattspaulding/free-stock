@@ -64,7 +64,7 @@
   </nb-card-header>
   <nb-card-body>
     <div class="row">
-      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+      <!-- <div class="col-xxxl-3 col-xxl-4 col-md-6">
         <nb-card class="card-in-card">
           <nb-card-header>
             Bruno Bot <img src="../../../../assets/images/bruno-outline.svg"/>
@@ -117,7 +117,7 @@
             <span *ngIf="isRocketBot" class="text-success"><i class="nb-checkmark"></i> Subscribed</span>
           </nb-card-footer>
         </nb-card>
-      </div>
+      </div> -->
       <div class="col-xxxl-3 col-xxl-4 col-md-6">
         <nb-card class="card-in-card">
           <nb-card-header>
@@ -134,7 +134,7 @@
       <div class="col-xxxl-3 col-xxl-4 col-md-6">
         <nb-card class="card-in-card">
           <nb-card-header>
-            Rocket Email
+            Rocket Email <img src="../../../../assets/images/rocket-outline.svg"/>
           </nb-card-header>
           <nb-card-body>
             Get stock picks... in your inbox.
@@ -148,7 +148,7 @@
       <div class="col-xxxl-3 col-xxl-4 col-md-6">
         <nb-card class="card-in-card">
           <nb-card-header>
-            Rocket SMS
+            Rocket SMS <img src="../../../../assets/images/rocket-outline.svg"/>
           </nb-card-header>
           <nb-card-body>
             Get stock picks... texted to your phone.
@@ -178,7 +178,7 @@
       <div class="col-xxxl-3 col-xxl-4 col-md-6">
         <nb-card class="card-in-card">
           <nb-card-header>
-            Bruno Email
+            Bruno Email <img src="../../../../assets/images/bruno-outline.svg"/>
           </nb-card-header>
           <nb-card-body>
             Get stock picks... in your inbox.
@@ -192,7 +192,7 @@
       <div class="col-xxxl-3 col-xxl-4 col-md-6">
         <nb-card class="card-in-card">
           <nb-card-header>
-            Bruno SMS
+            Bruno SMS <img src="../../../../assets/images/bruno-outline.svg"/>
           </nb-card-header>
           <nb-card-body>
             Get stock picks... texted to your phone.
@@ -202,6 +202,36 @@
             <span *ngIf="brunoSmsSubscription&&!brunoSmsSubscription.discount" class="text-success"><i
               class="nb-checkmark"></i> Subscribed</span>
             <span *ngIf="brunoSmsSubscription&&brunoSmsSubscription.discount" class="text-success">{{brunoSmsSubscription.discount.coupon.percent_off}}% off for {{brunoSmsSubscription.discount.coupon.duration_in_months}} months</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Put Email <img src="../../../../assets/images/geoffrey-outline.svg"/>
+          </nb-card-header>
+          <nb-card-body>
+            Get stock picks... in your inbox.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">$2/mo</span>
+            <span *ngIf="isPutEmail" class="text-success"><i class="nb-checkmark"></i> Subscribed</span>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+      <div class="col-xxxl-3 col-xxl-4 col-md-6">
+        <nb-card class="card-in-card">
+          <nb-card-header>
+            Put SMS <img src="../../../../assets/images/geoffrey-outline.svg"/>
+          </nb-card-header>
+          <nb-card-body>
+            Get stock picks... texted to your phone.
+          </nb-card-body>
+          <nb-card-footer>
+            <span class="pull-right">$5/mo</span>
+            <span *ngIf="putSmsSubscription&&!putSmsSubscription.discount" class="text-success"><i
+              class="nb-checkmark"></i> Subscribed</span>
+            <span *ngIf="putSmsSubscription&&putSmsSubscription.discount" class="text-success">{{putSmsSubscription.discount.coupon.percent_off}}% off for {{putSmsSubscription.discount.coupon.duration_in_months}} months</span>
           </nb-card-footer>
         </nb-card>
       </div>
