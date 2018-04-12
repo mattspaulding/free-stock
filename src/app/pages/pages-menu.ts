@@ -32,10 +32,10 @@ export const MENU_ITEMS: NbMenuItem[] = [
         title: 'Bruno',
         link: '/bots/bruno',
       },
-      {
-        title: 'Geoffrey',
-        link: '/bots/geoffrey',
-      },
+      // {
+      //   title: 'Geoffrey',
+      //   link: '/bots/geoffrey',
+      // },
       {
         title: 'Dot',
         link: '/bots/dot',

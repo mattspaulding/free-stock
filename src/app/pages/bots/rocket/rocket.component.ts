@@ -4,6 +4,7 @@ import {StockService} from '../../../@core/data/stock.service';
 import {UserService} from '../../../@core/data/users.service';
 import {Router} from "@angular/router";
 import {ToasterService, ToasterConfig, Toast, BodyOutputType} from 'angular2-toaster';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'ngx-rocket',
@@ -64,7 +65,7 @@ export class RocketComponent implements OnInit {
       .subscribe(data => {
         let stocks = [];
         data.forEach(datum => {
-          datum.stock.createdAtPretty = new Date(datum.stock.createdAt).toString().replace(' GMT-0500', '');
+          datum.stock.createdAtPretty = moment(datum.stock.createdAt).tz('America/New_York').format('ddd HH:mm:ss');
           stocks.push(datum.stock);
         })
         this.rocketAlgorithmSource.load(stocks);
