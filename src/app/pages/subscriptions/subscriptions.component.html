@@ -214,7 +214,7 @@
             Get stock picks... in your inbox.
           </nb-card-body>
           <nb-card-footer>
-            <span class="pull-right">$2/mo</span>
+            <span class="pull-right">FREE</span>
             <span *ngIf="isPutEmail" class="text-success"><i class="nb-checkmark"></i> Subscribed</span>
           </nb-card-footer>
         </nb-card>
@@ -228,7 +228,7 @@
             Get stock picks... texted to your phone.
           </nb-card-body>
           <nb-card-footer>
-            <span class="pull-right">$5/mo</span>
+            <span class="pull-right">$3/mo</span>
             <span *ngIf="putSmsSubscription&&!putSmsSubscription.discount" class="text-success"><i
               class="nb-checkmark"></i> Subscribed</span>
             <span *ngIf="putSmsSubscription&&putSmsSubscription.discount" class="text-success">{{putSmsSubscription.discount.coupon.percent_off}}% off for {{putSmsSubscription.discount.coupon.duration_in_months}} months</span>
