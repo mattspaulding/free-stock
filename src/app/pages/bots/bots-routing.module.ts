@@ -6,7 +6,7 @@ import {BrunoComponent} from './bruno/bruno.component';
 import {RocketComponent} from './rocket/rocket.component';
 import {PutComponent} from './put/put.component';
 import {OverviewComponent} from './overview/overview.component';
-import {DotComponent} from './dot/dot.component';
+import {SwingComponent} from './swing/swing.component';
 import {GeoffreyComponent} from './geoffrey/geoffrey.component';
 
 
@@ -27,12 +27,12 @@ const routes: Routes = [{
       component: GeoffreyComponent,
     },
     {
-      path: 'dot',
-      component: DotComponent,
+      path: 'swing',
+      component: SwingComponent,
     },
     {
-      path: 'dot/:symbol',
-      component: DotComponent,
+      path: 'swing/:symbol',
+      component: SwingComponent,
     },
     {
       path: 'rocket',

@@ -145,28 +145,7 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col-md-6 col-lg-3" style="height: 216px;">
-            <nb-card (click)="investmentOrderModel.dotOn = !investmentOrderModel.dotOn"
-                     [ngClass]="{'off': !investmentOrderModel.dotOn}" class="bot-card">
-              <div class="icon-container">
-                <div class="icon success">
-                  <img src="../../../../assets/images/dot-outline.svg">
-                </div>
-              </div>
-
-              <div class="details">
-                <div class="title">Dot</div>
-                <div class="status">{{ investmentOrderModel.dotOn ? 'ON' : 'OFF' }}</div>
-              </div>
-            </nb-card>
-            <div class="form-group" *ngIf="investmentOrderModel.dotOn">
-              <label for="sellAt" class="col-sm-12 form-control-label">Sell At (or higher)</label>
-              <div class="col-sm-12">
-                <input type="text" class="form-control" id="sellAt" name="sellAt" placeholder="Sell At Price"
-                       [(ngModel)]="investmentOrderModel.sellAt">
-              </div>
-            </div>
-          </div> -->
+        
         </div>
       </nb-card-body>
       <nb-card-footer *ngIf="!user || (user && !user.isRobinhood)">

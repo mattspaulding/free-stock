@@ -37,8 +37,8 @@ export const MENU_ITEMS: NbMenuItem[] = [
       //   link: '/bots/geoffrey',
       // },
       {
-        title: 'Dot',
-        link: '/bots/dot',
+        title: 'Swing',
+        link: '/bots/swing',
       },
       ],
   },
