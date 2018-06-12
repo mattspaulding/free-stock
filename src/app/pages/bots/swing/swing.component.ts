@@ -45,8 +45,17 @@ export class SwingComponent {
     if (symbol === "FB") {
       this.description = "Social media"
     }
+    if (symbol === "TSLA") {
+      this.description = "Smart cars"
+    }
     if (symbol === "RAD") {
       this.description = "A failing drug store"
+    }
+    if (symbol === "FSLR") {
+      this.description = "A solar company"
+    }
+    if (symbol === "HMNY") {
+      this.description = "The worst meme stock"
     }
     if (symbol === "BTC-USD") {
       this.description = "The cryptocurrency"
@@ -70,31 +79,24 @@ export class SwingComponent {
         let closes = [];
         let ema12 = [];
         let ema26 = [];
+        let smacd = [];
+        let signal = [];
+        let algoAmountChange = [];
+        let algoAmountDiff = [];
         for (let i = 1; i < chartData.length; i++) {
           dates[i] = chartData[i].date;
           closes[i] = chartData[i].close;
-          targets[i] = chartData[i - 1].target;
+          targets[i] = chartData[i].target;
           bulls[i] = chartData[i].bull;
           bears[i] = chartData[i].bear;
           buys[i] = chartData[i].buy;
           sells[i] = chartData[i].sell;
-          //  ema12[i]=chartData[i].ema[12];
-          //  ema26[i]=chartData[i].ema[26];
-          // if (chartData[i].side === 'bull') {
-          //   bulls.push(chartData[i].close)
-          //   if (chartData[i - 1].side === 'bear') {
-          //     bears.push(chartData[i].close)
-          //   } else {
-          //     bears.push(null)
-          //   }
-          // } else {
-          //   bears.push(chartData[i].close)
-          //   if (chartData[i - 1].side === 'bull') {
-          //     bulls.push(chartData[i].close)
-          //   } else {
-          //     bulls.push(null)
-          //   }
-          // }
+          ema12[i] = chartData[i].ema[12];
+          ema26[i] = chartData[i].ema[26];
+          smacd[i] = chartData[i].smacd;
+          signal[i] = chartData[i].signal;
+          algoAmountChange[i] = chartData[i].algoAmountChange;
+          algoAmountDiff[i] = chartData[i].algoAmountDiff;
         }
 
         let datasets = [{
@@ -147,6 +149,22 @@ export class SwingComponent {
           //   pointRadius: 0,
           //   borderWidth: 1
         }, {
+          label: "SMACD",
+          borderColor: 'red',
+          data: smacd,
+          tension: 0,
+          fill: false,
+          pointRadius: 0,
+          borderWidth: 1
+        }, {
+          label: "Signal",
+          borderColor: 'yellow',
+          data: signal,
+          tension: 0,
+          fill: false,
+          pointRadius: 0,
+          borderWidth: 1
+        }, {
           label: "Target",
           borderColor: 'black',
           data: targets,
@@ -162,6 +180,22 @@ export class SwingComponent {
           fill: false,
           pointRadius: 0,
           borderWidth: 1
+        }, {
+          label: "Change",
+          borderColor: 'yellow',
+          data: algoAmountChange,
+          tension: 0,
+          fill: false,
+          pointRadius: 5,
+          borderWidth: 4
+        }, {
+          label: "Diff",
+          borderColor: 'green',
+          data: algoAmountDiff,
+          tension: 0,
+          fill: false,
+          pointRadius: 5,
+          borderWidth: 3
         }]
 
         const el = <HTMLCanvasElement>document.getElementById('myChart');
@@ -181,7 +215,25 @@ export class SwingComponent {
             },
 
             // Configuration options go here
-            options: {}
+            options: {
+              responsive: true,
+              title: {
+                display: true,
+                text: 'Swing Bot'
+              },
+              tooltips: {
+                position: 'nearest',
+                mode: 'index',
+                intersect: false,
+                yPadding: 10,
+                xPadding: 10,
+                caretSize: 8,
+                backgroundColor: 'rgba(72, 241, 12, 1)',
+                borderColor: 'rgba(0,0,0,1)',
+                borderWidth: 4
+              },
+            },
+            
           });
         }
 
