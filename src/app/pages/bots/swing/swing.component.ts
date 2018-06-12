@@ -33,39 +33,6 @@ export class SwingComponent {
 
   getChart(symbol) {
 
-    if (symbol === "MU") {
-      this.description = "A booming tech stock"
-    }
-    if (symbol === "NFLX") {
-      this.description = "A media power house"
-    }
-    if (symbol === "NVDA") {
-      this.description = "A graphics card"
-    }
-    if (symbol === "FB") {
-      this.description = "Social media"
-    }
-    if (symbol === "TSLA") {
-      this.description = "Smart cars"
-    }
-    if (symbol === "RAD") {
-      this.description = "A failing drug store"
-    }
-    if (symbol === "FSLR") {
-      this.description = "A solar company"
-    }
-    if (symbol === "HMNY") {
-      this.description = "The worst meme stock"
-    }
-    if (symbol === "AXON") {
-      this.description = "Biopharm"
-    }
-    if (symbol === "BTC-USD") {
-      this.description = "The cryptocurrency"
-    }
-    if (symbol === "ETH-USD") {
-      this.description = "A popular cryptocurrency"
-    }
 
     this.stockService.getSwingBot(symbol)
       .subscribe(data => {
