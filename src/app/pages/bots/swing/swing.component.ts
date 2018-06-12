@@ -57,6 +57,9 @@ export class SwingComponent {
     if (symbol === "HMNY") {
       this.description = "The worst meme stock"
     }
+    if (symbol === "AXON") {
+      this.description = "Biopharm"
+    }
     if (symbol === "BTC-USD") {
       this.description = "The cryptocurrency"
     }
@@ -180,6 +183,14 @@ export class SwingComponent {
           fill: false,
           pointRadius: 0,
           borderWidth: 1
+         }, {
+          label: "Diff",
+          borderColor: 'green',
+          data: algoAmountDiff,
+          tension: 0,
+          fill: false,
+          pointRadius: 5,
+          borderWidth: 3
         }, {
           label: "Change",
           borderColor: 'yellow',
@@ -188,15 +199,7 @@ export class SwingComponent {
           fill: false,
           pointRadius: 5,
           borderWidth: 4
-        }, {
-          label: "Diff",
-          borderColor: 'green',
-          data: algoAmountDiff,
-          tension: 0,
-          fill: false,
-          pointRadius: 5,
-          borderWidth: 3
-        }]
+       }]
 
         const el = <HTMLCanvasElement>document.getElementById('myChart');
         const ctx = el.getContext('2d');
@@ -215,24 +218,7 @@ export class SwingComponent {
             },
 
             // Configuration options go here
-            options: {
-              responsive: true,
-              title: {
-                display: true,
-                text: 'Swing Bot'
-              },
-              // tooltips: {
-              //   position: 'nearest',
-              //   mode: 'index',
-              //   intersect: false,
-              //   yPadding: 10,
-              //   xPadding: 10,
-              //   caretSize: 8,
-              //   backgroundColor: 'rgba(72, 241, 12, 1)',
-              //   borderColor: 'rgba(0,0,0,1)',
-              //   borderWidth: 4
-              // },
-            },
+            options: {},
             
           });
         }
