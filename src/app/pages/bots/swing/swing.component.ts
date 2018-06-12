@@ -221,17 +221,17 @@ export class SwingComponent {
                 display: true,
                 text: 'Swing Bot'
               },
-              tooltips: {
-                position: 'nearest',
-                mode: 'index',
-                intersect: false,
-                yPadding: 10,
-                xPadding: 10,
-                caretSize: 8,
-                backgroundColor: 'rgba(72, 241, 12, 1)',
-                borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 4
-              },
+              // tooltips: {
+              //   position: 'nearest',
+              //   mode: 'index',
+              //   intersect: false,
+              //   yPadding: 10,
+              //   xPadding: 10,
+              //   caretSize: 8,
+              //   backgroundColor: 'rgba(72, 241, 12, 1)',
+              //   borderColor: 'rgba(0,0,0,1)',
+              //   borderWidth: 4
+              // },
             },
             
           });
