@@ -156,6 +156,7 @@ export class SwingComponent {
           data: algoAmountDiff,
           tension: 0,
           fill: false,
+          showLine: false,
           pointRadius: 5,
           borderWidth: 3
         }, {
@@ -164,6 +165,7 @@ export class SwingComponent {
           data: algoAmountChange,
           tension: 0,
           fill: false,
+          showLine: false,
           pointRadius: 5,
           borderWidth: 4
        }]
