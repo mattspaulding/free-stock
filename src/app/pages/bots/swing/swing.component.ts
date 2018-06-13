@@ -151,7 +151,7 @@ export class SwingComponent {
           pointRadius: 0,
           borderWidth: 1
          }, {
-          label: "Diff",
+          label: "Position PnL",
           borderColor: 'green',
           data: algoAmountDiff,
           tension: 0,
@@ -160,7 +160,7 @@ export class SwingComponent {
           pointRadius: 5,
           borderWidth: 3
         }, {
-          label: "Change",
+          label: "Total PnL",
           borderColor: 'yellow',
           data: algoAmountChange,
           tension: 0,
