@@ -37,9 +37,9 @@ export class SwingComponent {
     this.stockService.getSwingBot(symbol)
       .subscribe(data => {
 
-        this.standardPercentChange = data.data.standardPercentChange.toFixed(2);
-        this.algoPercentChange = data.data.algoPercentChange.toFixed(2);
-        let chartData = data.data.chartData;
+        this.standardPercentChange = data.data[0].standardPercentChange.toFixed(2);
+        this.algoPercentChange = data.data[0].algoPercentChange.toFixed(2);
+        let chartData = data.data[0].chartData;
         let bulls = [];
         let bears = [];
         let buys = [];
@@ -61,8 +61,8 @@ export class SwingComponent {
           bears[i] = chartData[i].bear;
           buys[i] = chartData[i].buy;
           sells[i] = chartData[i].sell;
-          ema12[i] = chartData[i].ema[12];
-          ema26[i] = chartData[i].ema[26];
+          // ema12[i] = chartData[i].ema[12];
+          // ema26[i] = chartData[i].ema[26];
           smacd[i] = chartData[i].smacd;
           signal[i] = chartData[i].signal;
           algoAmountChange[i] = chartData[i].algoAmountChange;
@@ -102,22 +102,22 @@ export class SwingComponent {
           fill: false,
           pointRadius: 4,
           borderWidth: 2
-          // }, {
-          //   label: "EMA12",
-          //   borderColor: 'blue',
-          //   data: ema12,
-          //   tension: 0,
-          //   fill: false,
-          //   pointRadius: 0,
-          //   borderWidth: 1
-          // }, {
-          //   label: "EMA26",
-          //   borderColor: 'green',
-          //   data: ema26,
-          //   tension: 0,
-          //   fill: false,
-          //   pointRadius: 0,
-          //   borderWidth: 1
+        // }, {
+        //   label: "EMA12",
+        //   borderColor: 'blue',
+        //   data: ema12,
+        //   tension: 0,
+        //   fill: false,
+        //   pointRadius: 0,
+        //   borderWidth: 1
+        // }, {
+        //   label: "EMA26",
+        //   borderColor: 'green',
+        //   data: ema26,
+        //   tension: 0,
+        //   fill: false,
+        //   pointRadius: 0,
+        //   borderWidth: 1
         }, {
           label: "SMACD",
           borderColor: 'red',
@@ -150,7 +150,7 @@ export class SwingComponent {
           fill: false,
           pointRadius: 0,
           borderWidth: 1
-         }, {
+        }, {
           label: "Position PnL",
           borderColor: 'green',
           data: algoAmountDiff,
@@ -168,7 +168,7 @@ export class SwingComponent {
           showLine: false,
           pointRadius: 5,
           borderWidth: 4
-       }]
+        }]
 
         const el = <HTMLCanvasElement>document.getElementById('myChart');
         const ctx = el.getContext('2d');
@@ -188,7 +188,7 @@ export class SwingComponent {
 
             // Configuration options go here
             options: {},
-            
+
           });
         }
 
