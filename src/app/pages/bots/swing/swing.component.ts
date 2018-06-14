@@ -118,22 +118,22 @@ export class SwingComponent {
         //   fill: false,
         //   pointRadius: 0,
         //   borderWidth: 1
-        }, {
-          label: "SMACD",
-          borderColor: 'red',
-          data: smacd,
-          tension: 0,
-          fill: false,
-          pointRadius: 0,
-          borderWidth: 1
-        }, {
-          label: "Signal",
-          borderColor: 'yellow',
-          data: signal,
-          tension: 0,
-          fill: false,
-          pointRadius: 0,
-          borderWidth: 1
+        // }, {
+        //   label: "SMACD",
+        //   borderColor: 'red',
+        //   data: smacd,
+        //   tension: 0,
+        //   fill: false,
+        //   pointRadius: 0,
+        //   borderWidth: 1
+        // }, {
+        //   label: "Signal",
+        //   borderColor: 'yellow',
+        //   data: signal,
+        //   tension: 0,
+        //   fill: false,
+        //   pointRadius: 0,
+        //   borderWidth: 1
         }, {
           label: "Target",
           borderColor: 'black',
