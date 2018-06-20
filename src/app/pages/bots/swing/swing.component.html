@@ -14,6 +14,8 @@
     <!-- <button class="btn btn-info" (click)="changeRoute('AXON')">AXON</button> -->
     <button class="btn btn-info" (click)="changeRoute('TNDM')">TNDM</button>
     <button class="btn btn-info" (click)="changeRoute('ENPH')">ENPH</button>
+    <button class="btn btn-info" (click)="changeRoute('JD')">JD</button>
+    <button class="btn btn-info" (click)="changeRoute('AMD')">AMD</button>
     <!-- <button class="btn btn-success" (click)="changeRoute('BTC-USD')">BTC-USD</button>
     <button class="btn btn-info" (click)="changeRoute('ETH-USD')">ETH-USD</button> -->
     <button class="btn btn-danger" (click)="changeRoute('RAD')">RAD</button>
@@ -21,11 +23,17 @@
     <div>
       Stock: {{symbol}}
     </div>
-    <div>
+    <!-- <div>
       Std % chg: {{standardPercentChange}}
     </div>
     <div>
       Algo % chg: {{algoPercentChange}}
+    </div>
+    <div>
+      Close: {{close}}
+    </div> -->
+    <div>
+      Analysis: {{analysis}}
     </div>
   </div>
   <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">

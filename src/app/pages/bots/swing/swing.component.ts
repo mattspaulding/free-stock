@@ -3,6 +3,7 @@ import { Chart } from 'chart.js';
 import { Router, ActivatedRoute } from "@angular/router";
 import { StockService } from "../../../@core/data/stock.service";
 import { UserService } from "../../../@core/data/users.service";
+import { ChartjsPieComponent } from '../../charts/chartjs/chartjs-pie.component';
 
 @Component({
   selector: 'ngx-swing',
@@ -17,6 +18,8 @@ export class SwingComponent {
   symbol: string;
   standardPercentChange: string;
   algoPercentChange: string;
+  close:string;
+  analysis: string;
 
   constructor(private stockService: StockService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
@@ -40,6 +43,17 @@ export class SwingComponent {
         this.standardPercentChange = data.data[0].standardPercentChange.toFixed(2);
         this.algoPercentChange = data.data[0].algoPercentChange.toFixed(2);
         let chartData = data.data[0].chartData;
+        this.close = chartData[chartData.length - 1].close.toFixed(2);
+        let isHas = chartData[chartData.length - 1].isHas;
+        let target = chartData[chartData.length - 1].target.toFixed(2);
+
+        this.analysis = ''
+        if (isHas) {
+          this.analysis = 'You should own this stock and have a sell stoploss set at $' + target;
+        } else {
+          this.analysis = 'You should not own this stock and have a buy stoploss set at $' + target;
+        }
+
         let bulls = [];
         let bears = [];
         let buys = [];
@@ -52,11 +66,12 @@ export class SwingComponent {
         let smacd = [];
         let signal = [];
         let algoAmountChange = [];
+        let algoAmountChangeAdjusted = [];
         let algoAmountDiff = [];
         for (let i = 1; i < chartData.length; i++) {
           dates[i] = chartData[i].date;
           closes[i] = chartData[i].close;
-          targets[i] = chartData[i].target;
+          targets[i] = chartData[i-1].target;
           bulls[i] = chartData[i].bull;
           bears[i] = chartData[i].bear;
           buys[i] = chartData[i].buy;
@@ -66,27 +81,28 @@ export class SwingComponent {
           smacd[i] = chartData[i].smacd;
           signal[i] = chartData[i].signal;
           algoAmountChange[i] = chartData[i].algoAmountChange;
+          algoAmountChangeAdjusted[i] = chartData[i].algoAmountChangeAdjusted;
           algoAmountDiff[i] = chartData[i].algoAmountDiff;
         }
 
         let datasets = [{
-          label: "Bull",
-          borderColor: 'lightgreen',
-          data: bulls,
-          tension: 0,
-          fill: false,
-          pointRadius: 0,
-          borderWidth: 2
-        }, {
-          label: "Bear",
-          borderColor: 'darkred',
-          data: bears,
-          tension: 0,
-          fill: false,
-          pointRadius: 0,
-          borderWidth: 2
-        },
-        {
+        //   label: "Bull",
+        //   borderColor: 'lightgreen',
+        //   data: bulls,
+        //   tension: 0,
+        //   fill: false,
+        //   pointRadius: 0,
+        //   borderWidth: 2
+        // }, {
+        //   label: "Bear",
+        //   borderColor: 'darkred',
+        //   data: bears,
+        //   tension: 0,
+        //   fill: false,
+        //   pointRadius: 0,
+        //   borderWidth: 2
+        // },
+        // {
           label: "Buy",
           borderColor: 'lightgreen',
           data: buys,
@@ -102,41 +118,41 @@ export class SwingComponent {
           fill: false,
           pointRadius: 4,
           borderWidth: 2
-        // }, {
-        //   label: "EMA12",
-        //   borderColor: 'blue',
-        //   data: ema12,
-        //   tension: 0,
-        //   fill: false,
-        //   pointRadius: 0,
-        //   borderWidth: 1
-        // }, {
-        //   label: "EMA26",
-        //   borderColor: 'green',
-        //   data: ema26,
-        //   tension: 0,
-        //   fill: false,
-        //   pointRadius: 0,
-        //   borderWidth: 1
-        // }, {
-        //   label: "SMACD",
-        //   borderColor: 'red',
-        //   data: smacd,
-        //   tension: 0,
-        //   fill: false,
-        //   pointRadius: 0,
-        //   borderWidth: 1
-        // }, {
-        //   label: "Signal",
-        //   borderColor: 'yellow',
-        //   data: signal,
-        //   tension: 0,
-        //   fill: false,
-        //   pointRadius: 0,
-        //   borderWidth: 1
+          // }, {
+          //   label: "EMA12",
+          //   borderColor: 'blue',
+          //   data: ema12,
+          //   tension: 0,
+          //   fill: false,
+          //   pointRadius: 0,
+          //   borderWidth: 1
+          // }, {
+          //   label: "EMA26",
+          //   borderColor: 'green',
+          //   data: ema26,
+          //   tension: 0,
+          //   fill: false,
+          //   pointRadius: 0,
+          //   borderWidth: 1
+          // }, {
+          //   label: "SMACD",
+          //   borderColor: 'red',
+          //   data: smacd,
+          //   tension: 0,
+          //   fill: false,
+          //   pointRadius: 0,
+          //   borderWidth: 1
+          // }, {
+          //   label: "Signal",
+          //   borderColor: 'yellow',
+          //   data: signal,
+          //   tension: 0,
+          //   fill: false,
+          //   pointRadius: 0,
+          //   borderWidth: 1
         }, {
           label: "Target",
-          borderColor: 'black',
+          borderColor: 'blue',
           data: targets,
           tension: 0,
           fill: false,
@@ -144,29 +160,28 @@ export class SwingComponent {
           borderWidth: 1
         }, {
           label: "Close",
-          borderColor: 'blue',
+          borderColor: 'black',
           data: closes,
           tension: 0,
           fill: false,
           pointRadius: 0,
-          borderWidth: 1
-        }, {
-          label: "Position PnL",
-          borderColor: 'green',
-          data: algoAmountDiff,
-          tension: 0,
-          fill: false,
-          showLine: false,
-          pointRadius: 5,
-          borderWidth: 3
+          borderWidth: 2
+        // }, {
+        //   label: "Position PnL",
+        //   borderColor: 'green',
+        //   data: algoAmountDiff,
+        //   tension: 0,
+        //   fill: false,
+        //   showLine: false,
+        //   pointRadius: 5,
+        //   borderWidth: 3
         }, {
           label: "Total PnL",
           borderColor: 'yellow',
-          data: algoAmountChange,
+          data: algoAmountChangeAdjusted,
           tension: 0,
           fill: false,
-          showLine: false,
-          pointRadius: 5,
+           pointRadius: 0,
           borderWidth: 4
         }]
 
