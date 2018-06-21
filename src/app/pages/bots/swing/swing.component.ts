@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { StockService } from "../../../@core/data/stock.service";
 import { UserService } from "../../../@core/data/users.service";
 import { ChartjsPieComponent } from '../../charts/chartjs/chartjs-pie.component';
+import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
   selector: 'ngx-swing',
@@ -18,8 +19,33 @@ export class SwingComponent {
   symbol: string;
   standardPercentChange: string;
   algoPercentChange: string;
-  close:string;
+  close: string;
   analysis: string;
+
+  swingBotSettings = {
+    actions: null,
+    hideSubHeader: true,
+    columns: {
+      symbol: {
+        title: 'Symbol',
+        type: 'string',
+      },
+      side: {
+        title: 'Side',
+        type: 'string',
+      },
+      target: {
+        title: 'Target',
+        type: 'string',
+      },
+    },
+    pager:
+    {
+      perPage: 20
+    }
+  };
+  swingBotSource: LocalDataSource = new LocalDataSource();
+
 
   constructor(private stockService: StockService, private router: Router, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
@@ -27,10 +53,25 @@ export class SwingComponent {
       if (params['symbol']) {
         this.symbol = params['symbol']
         this.getChart(params['symbol']);
-      } else {
-        this.symbol = "MU"
-        this.getChart("MU")
       }
+      this.swingBotSource.load([{
+        symbol: "MU",
+        side: "Buy (demo)",
+        target: 65.23
+      }, {
+        symbol: "NFLX",
+        side: "Sell (demo)",
+        target: 76.23
+      }, {
+        symbol: "TSLA",
+        side: "Sell (demo)",
+        target: 23.23
+      }, {
+        symbol: "LRCX",
+        side: "Sell (demo)",
+        target: 23.23
+      }]);
+
     });
   }
 
@@ -71,7 +112,7 @@ export class SwingComponent {
         for (let i = 1; i < chartData.length; i++) {
           dates[i] = chartData[i].date;
           closes[i] = chartData[i].close;
-          targets[i] = chartData[i-1].target;
+          targets[i] = chartData[i - 1].target;
           bulls[i] = chartData[i].bull;
           bears[i] = chartData[i].bear;
           buys[i] = chartData[i].buy;
@@ -86,23 +127,23 @@ export class SwingComponent {
         }
 
         let datasets = [{
-        //   label: "Bull",
-        //   borderColor: 'lightgreen',
-        //   data: bulls,
-        //   tension: 0,
-        //   fill: false,
-        //   pointRadius: 0,
-        //   borderWidth: 2
-        // }, {
-        //   label: "Bear",
-        //   borderColor: 'darkred',
-        //   data: bears,
-        //   tension: 0,
-        //   fill: false,
-        //   pointRadius: 0,
-        //   borderWidth: 2
-        // },
-        // {
+          //   label: "Bull",
+          //   borderColor: 'lightgreen',
+          //   data: bulls,
+          //   tension: 0,
+          //   fill: false,
+          //   pointRadius: 0,
+          //   borderWidth: 2
+          // }, {
+          //   label: "Bear",
+          //   borderColor: 'darkred',
+          //   data: bears,
+          //   tension: 0,
+          //   fill: false,
+          //   pointRadius: 0,
+          //   borderWidth: 2
+          // },
+          // {
           label: "Buy",
           borderColor: 'lightgreen',
           data: buys,
@@ -166,22 +207,22 @@ export class SwingComponent {
           fill: false,
           pointRadius: 0,
           borderWidth: 2
-        // }, {
-        //   label: "Position PnL",
-        //   borderColor: 'green',
-        //   data: algoAmountDiff,
-        //   tension: 0,
-        //   fill: false,
-        //   showLine: false,
-        //   pointRadius: 5,
-        //   borderWidth: 3
+          // }, {
+          //   label: "Position PnL",
+          //   borderColor: 'green',
+          //   data: algoAmountDiff,
+          //   tension: 0,
+          //   fill: false,
+          //   showLine: false,
+          //   pointRadius: 5,
+          //   borderWidth: 3
         }, {
           label: "Total PnL",
           borderColor: 'yellow',
           data: algoAmountChangeAdjusted,
           tension: 0,
           fill: false,
-           pointRadius: 0,
+          pointRadius: 0,
           borderWidth: 4
         }]
 
@@ -211,7 +252,11 @@ export class SwingComponent {
 
   }
 
-  changeRoute(symbol: string) {
+  onUserRowSelect(event): void {
+    this.changeRoute(event.data.symbol);
+  }
+
+  changeRoute(symbol: string): void {
     this.router.navigate(['bots/swing/' + symbol]);
   }
 }
