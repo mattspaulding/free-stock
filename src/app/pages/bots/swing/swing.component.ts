@@ -2,8 +2,6 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Chart } from 'chart.js';
 import { Router, ActivatedRoute } from "@angular/router";
 import { StockService } from "../../../@core/data/stock.service";
-import { UserService } from "../../../@core/data/users.service";
-import { ChartjsPieComponent } from '../../charts/chartjs/chartjs-pie.component';
 import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({

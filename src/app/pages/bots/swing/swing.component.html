@@ -3,10 +3,10 @@
     <nb-card>
       <nb-card-header>
         {{symbol}} - {{analysis}}
-        </nb-card-header>
-        <nb-card-body>
-          <canvas id="myChart"></canvas>
-        </nb-card-body>
+      </nb-card-header>
+      <nb-card-body>
+        <canvas id="myChart"></canvas>
+      </nb-card-body>
     </nb-card>
   </div>
 </div>
@@ -19,7 +19,8 @@
           data-size="large" data-show-faces="true" data-share="false"></div>
       </nb-card-header>
       <nb-card-body>
-        <sub>Buy and sell triggers based on each stock's historical trends. Connect to Robinhood to atuomatically place orders every day. This bot is not ready and should not be used. Click a symbol for details.</sub>
+        <sub>Buy and sell triggers based on each stock's historical trends. Connect to Robinhood to atuomatically place orders
+          every day. This bot is not ready and should not be used. Click a symbol for details.</sub>
         <br>
         <br>
         <ng2-smart-table [settings]="swingBotSettings" [source]="swingBotSource" (userRowSelect)="onUserRowSelect($event)">
@@ -30,87 +31,5 @@
   <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
     <ngx-bot-profile title="Swing Bot" subtitle="Trigger" type="success" pictureUrl="../../../../assets/images/swing-flat.svg"
       description="Buy low. Sell high."></ngx-bot-profile>
-    <!-- <nb-card>
-      <nb-card-header>
-        Swing Email
-        <div class="switch-container pull-right">
-          <label class="theme-switch">
-            <span class="off">OFF</span>
-            <div class="switch">
-              <input type="checkbox" [checked]="isEmailNotify()" (change)="toggleEmailNotify(email.checked)" #email>
-              <span class="slider"></span>
-            </div>
-            <span class="on">ON</span>
-          </label>
-        </div>
-      </nb-card-header>
-      <nb-card-body>
-        <div *ngIf="!user">Email me premarket with triggers.</div>
-        <div *ngIf="user&&user.email">{{user.email}} <span (click)="changeEmail()"
-                                                           class="pull-right text-info">change</span></div>
-      </nb-card-body>
-      <nb-card-footer>
-        <span class="pull-right">FREE</span>
-      </nb-card-footer>
-    </nb-card>
-    <nb-card>
-      <nb-card-header>
-        <toaster-container [toasterconfig]="config"></toaster-container>
-        Swing List
-      </nb-card-header>
-      <nb-card-body>
-        <div *ngIf="!user">
-          <i class="nb-lightbulb"></i> You should <span (click)="goToLogin()" class="text-primary">login</span> to get a
-          better experience.
-          <br>
-          <hr>
-        </div>
-        <div *ngIf="user">
-          <i class="nb-lightbulb"></i> You might want to <span (click)="changeEmail()" class="text-primary">change your email</span>
-          instead.
-          <br>
-          <hr>
-        </div>
-        <div class="form-group">
-          <input type="email" placeholder="Email" class="form-control" [(ngModel)]="newEmail"/>
-          <small class="form-text">Add an email to the Rocket Bot email list
-          </small>
-          <button class="btn btn-secondary pull-right" (click)="addEmailToList()">Add</button>
-        </div>
-      </nb-card-body>
-      <nb-card-footer>
-        <span class="pull-right">FREE</span>
-      </nb-card-footer>
-    </nb-card> -->
   </div>
 </div>
-
-
-
-
-
-<!-- <div class="row">
-  <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
-    <h2>Try these demos</h2>
-    <button class="btn btn-primary" (click)="changeRoute('MU')">MU</button>
-    <button class="btn btn-warning" (click)="changeRoute('NFLX')">NFLX</button>
-    <button class="btn btn-success" (click)="changeRoute('NVDA')">NVDA</button>
-    <button class="btn btn-info" (click)="changeRoute('FB')">FB</button>
-    <button class="btn btn-info" (click)="changeRoute('TSLA')">TSLA</button>
-    <button class="btn btn-info" (click)="changeRoute('FSLR')">FSLR</button>
-    <button class="btn btn-info" (click)="changeRoute('HMNY')">HMNY</button>
-    <!-- <button class="btn btn-info" (click)="changeRoute('AXON')">AXON</button>
-<button class="btn btn-info" (click)="changeRoute('TNDM')">TNDM</button>
-<button class="btn btn-info" (click)="changeRoute('ENPH')">ENPH</button>
-<button class="btn btn-info" (click)="changeRoute('JD')">JD</button>
-<button class="btn btn-info" (click)="changeRoute('AMD')">AMD</button>
-<!-- <button class="btn btn-success" (click)="changeRoute('BTC-USD')">BTC-USD</button>
-    <button class="btn btn-info" (click)="changeRoute('ETH-USD')">ETH-USD</button>
-<button class="btn btn-danger" (click)="changeRoute('RAD')">RAD</button>
-<hr>
-
-</div>
-<!-- <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-    <ngx-bot-profile title="Swing" subtitle="Profit" type="success" pictureUrl="../../../../assets/images/swing-flat.svg" description="Sells stocks at their peak. Coming soon."></ngx-bot-profile>
-  </div> 
-</div> -->
