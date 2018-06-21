@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../@core/data/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ngx-dashboard',
@@ -10,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   user: any;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
 
   }
 
@@ -23,5 +24,9 @@ export class DashboardComponent implements OnInit {
       .subscribe(data => {
         this.user = data;
       });
+  }
+
+  changeRoute(bot: string): void {
+    this.router.navigate(['bots/' + bot]);
   }
 }

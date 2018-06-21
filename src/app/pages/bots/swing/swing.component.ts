@@ -54,20 +54,24 @@ export class SwingComponent {
       }
       this.swingBotSource.load([{
         symbol: "MU",
-        side: "Buy (demo)",
-        target: 65.23
+        side: "coming soon",
+        target: "$XX.XX"
       }, {
         symbol: "NFLX",
-        side: "Sell (demo)",
-        target: 76.23
+        side: "coming soon",
+        target: "$XX.XX"
       }, {
         symbol: "TSLA",
-        side: "Sell (demo)",
-        target: 23.23
+        side: "coming soon",
+        target: "$XX.XX"
       }, {
         symbol: "LRCX",
-        side: "Sell (demo)",
-        target: 23.23
+        side: "coming soon",
+        target: "$XX.XX"
+      }, {
+        symbol: "GE",
+        side: "coming soon",
+        target: "$XX.XX"
       }]);
 
     });

@@ -1,21 +1,18 @@
 <div class="row">
   <div class="col-xxl-3 col-md-6">
-    <ngx-status-card title="Bruno" type="primary" on=on pictureUrl="../../../../assets/images/bruno-outline.svg">
+    <ngx-status-card title="Rocket Bot" type="warning" on=on pictureUrl="../../../../assets/images/rocket-outline.svg" (click)="changeRoute('rocket')">
     </ngx-status-card>
   </div>
-
   <div class="col-xxl-3 col-md-6">
-    <ngx-status-card title="Geoffrey" type="info" on=on pictureUrl="../../../../assets/images/geoffrey-outline.svg">
+    <ngx-status-card title="Put Bot" type="info" on=on pictureUrl="../../../../assets/images/geoffrey-outline.svg" (click)="changeRoute('put')">
     </ngx-status-card>
   </div>
-
   <div class="col-xxl-3 col-md-6">
-    <ngx-status-card title="Swing" type="success" on=on pictureUrl="../../../../assets/images/swing-outline.svg">
+    <ngx-status-card title="Bruno Bot" type="primary" on=on pictureUrl="../../../../assets/images/bruno-outline.svg" (click)="changeRoute('bruno')">
     </ngx-status-card>
   </div>
-
   <div class="col-xxl-3 col-md-6">
-    <ngx-status-card title="Rocket" type="warning" on=on pictureUrl="../../../../assets/images/rocket-outline.svg">
+    <ngx-status-card title="Swing Bot" type="success" pictureUrl="../../../../assets/images/swing-outline.svg" (click)="changeRoute('swing')">
     </ngx-status-card>
   </div>
 </div>
