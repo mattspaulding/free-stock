@@ -207,7 +207,10 @@ export class RocketComponent implements OnInit {
 
 
   onUserRowSelect(event): void {
-    //debugger;
+    this.changeRoute(event.data.symbol);
   }
 
+  changeRoute(symbol: string): void {
+    this.router.navigate(['stock/search/' + symbol]);
+  }
 }

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from '../../@core/data/users.service';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../@core/data/users.service';
 import { Router } from '@angular/router';
 declare var window: any;
 
@@ -18,13 +18,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     window.FB.XFBML.parse();
-     this.getUser();
+    this.getUser();
   }
 
   getUser() {
     this.userService.getUserUpdated()
       .subscribe(data => {
-        debugger
         this.user = data;
       });
   }

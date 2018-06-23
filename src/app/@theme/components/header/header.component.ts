@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   username: string;
 
   userMenu = [
-    {title: 'Subscriptions', icon: 'nb-coffee-maker', link: '/subscriptions'},
+    {title: 'Account', icon: 'nb-coffee-maker', link: '/subscriptions'},
     {title: 'Log out', icon: 'nb-close', link: '/auth/logout'}
   ];
 
