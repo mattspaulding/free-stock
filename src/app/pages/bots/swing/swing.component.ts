@@ -29,7 +29,7 @@ export class SwingComponent {
         type: 'string',
       },
       side: {
-        title: 'Side',
+        title: 'Action',
         type: 'string',
       },
       target: {
@@ -52,29 +52,31 @@ export class SwingComponent {
         this.symbol = params['symbol']
         this.getChart(params['symbol']);
       }
-      this.swingBotSource.load([{
-        symbol: "MU",
-        side: "coming soon",
-        target: "$XX.XX"
-      }, {
-        symbol: "NFLX",
-        side: "coming soon",
-        target: "$XX.XX"
-      }, {
-        symbol: "TSLA",
-        side: "coming soon",
-        target: "$XX.XX"
-      }, {
-        symbol: "LRCX",
-        side: "coming soon",
-        target: "$XX.XX"
-      }, {
-        symbol: "GE",
-        side: "coming soon",
-        target: "$XX.XX"
-      }]);
+
 
     });
+  }
+
+  ngOnInit() {
+    this.getSwingBot();
+  }
+
+  getSwingBot() {
+
+    this.stockService.getSwingBot('')
+      .subscribe(data => {
+
+        let swingBotSourceData = [];
+
+        data.forEach(element => {
+          swingBotSourceData.push({
+             symbol: element.symbol,
+            side: 'Set ' +element.data[0].side+' stoploss at',
+            target: element.data[0].target
+          })
+        });
+        this.swingBotSource.load(swingBotSourceData);
+      });
   }
 
   getChart(symbol) {
