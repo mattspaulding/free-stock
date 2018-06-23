@@ -5,7 +5,7 @@ import { UserService } from '../../../@core/data/users.service';
 import { Router } from "@angular/router";
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import * as moment from 'moment-timezone';
-
+declare var window: any;
 @Component({
   selector: 'ngx-rocket',
   styleUrls: ['./rocket.component.scss'],
@@ -56,6 +56,7 @@ export class RocketComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.FB.XFBML.parse();
     this.getUser();
     //this.getRocketAlgorithmData();
   }

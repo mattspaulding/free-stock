@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../@core/data/users.service';
 import { Router } from '@angular/router';
+declare var window: any;
 
 @Component({
   selector: 'ngx-dashboard',
@@ -16,12 +17,14 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-   // this.getUser();
+    window.FB.XFBML.parse();
+     this.getUser();
   }
 
   getUser() {
     this.userService.getUserUpdated()
       .subscribe(data => {
+        debugger
         this.user = data;
       });
   }

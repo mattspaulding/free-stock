@@ -3,6 +3,7 @@ import { Chart } from 'chart.js';
 import { Router, ActivatedRoute } from "@angular/router";
 import { StockService } from "../../../@core/data/stock.service";
 import { LocalDataSource } from 'ng2-smart-table';
+declare var window: any;
 
 @Component({
   selector: 'ngx-swing',
@@ -58,6 +59,7 @@ export class SwingComponent {
   }
 
   ngOnInit() {
+    window.FB.XFBML.parse();
     this.getSwingBot();
   }
 
