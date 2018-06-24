@@ -30,7 +30,7 @@
     "docs": "compodoc -p src/tsconfig.app.json -d docs",
     "docs:serve": "compodoc -p src/tsconfig.app.json -d docs -s",
     "release:changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
-    "publish": "npm run build:prod && echo 'freestock.market' > dist/CNAME && ngh"
+    "publish": "npm run build:prod:aot && echo 'freestock.market' > dist/CNAME && ngh"
   },
   "dependencies": {
     "@agm/core": "1.0.0-beta.0",
