@@ -60,7 +60,7 @@ export class RocketComponent implements OnInit {
     this.titleService.setTitle('Rocket Bot - FreeStock.market');
     this.meta.addTags([
       { name: 'og:description', content: 'These uptrending stocks are showing strange fluctuations in volume. The technicals are good. Buckle up; we are go for launch.' },
-      { name: 'og:image', content: 'https://FreeStock.market/assets/images/swing.png' },
+      { name: 'og:image', content: 'https://FreeStock.market/assets/images/rocket-1200X630.png' },
     ]);
 
   }
