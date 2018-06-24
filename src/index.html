@@ -9,11 +9,12 @@
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <meta property="og:url"           content="https://FreeStock.market" />
-  <meta property="og:type"          content="website" />
-  <meta property="og:title"         content="Free Stock Market" />
-  <meta property="og:description"   content="Free bots for stock market automation." />
-  <meta property="og:image"         content="https://FreeStock.market/assets/images/rocket-flat.svg" />
+  <meta property="og:url" content="https://FreeStock.market" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Free Stock Market" />
+  <meta property="og:description" content="Free bots for stock market automation." />
+  <meta property="og:image" content="https://FreeStock.market/assets/images/rocket-flat.svg" />
+  <meta property="fb:app_id" content="252450371930672" />
 
   <script>
     (function (i, s, o, g, r, a, m) {
@@ -47,14 +48,19 @@
 
   </script> -->
   <!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+  <div id="fb-root"></div>
+  <script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s);
+      js.id = id;
+      js.src =
+        'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+  </script>
 
 
   <ngx-app>Loading...</ngx-app>
