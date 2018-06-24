@@ -5,6 +5,7 @@ import { UserService } from '../../../@core/data/users.service';
 import { Router } from "@angular/router";
 import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import * as moment from 'moment-timezone';
+import { Meta, Title } from '@angular/platform-browser';
 declare var window: any;
 @Component({
   selector: 'ngx-rocket',
@@ -13,6 +14,7 @@ declare var window: any;
   providers: [StockService],
 })
 export class RocketComponent implements OnInit {
+  pageTitle:string="Rocket Bot"
 
   createdAt: string;
 
@@ -52,11 +54,17 @@ export class RocketComponent implements OnInit {
   config: ToasterConfig;
 
 
-  constructor(private userService: UserService, private stockService: StockService, private router: Router, private toasterService: ToasterService) {
+
+
+  constructor(private titleService: Title, private meta: Meta, private userService: UserService, private stockService: StockService, private router: Router, private toasterService: ToasterService) {
   }
 
   ngOnInit() {
     window.FB.XFBML.parse();
+    this.titleService.setTitle( 'Rocket Bot' );
+    this.meta.addTags([
+      { name: 'description', content: 'These uptrending stocks are showing strange fluctuations in volume. The technicals are good. Buckle up; we are go for launch.' }
+    ]);
     this.getUser();
     //this.getRocketAlgorithmData();
   }

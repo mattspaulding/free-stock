@@ -5,10 +5,6 @@
 
 @include nb-install-component() {
 
-  :host ::ng-deep ._j68{
-    background-color: #fc0;
-  }
-
   .switch-container {
     display: flex;
     flex-direction: column;
