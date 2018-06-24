@@ -59,8 +59,8 @@ export class RocketComponent implements OnInit {
   constructor(private titleService: Title, private meta: Meta, private userService: UserService, private stockService: StockService, private router: Router, private toasterService: ToasterService) {
     this.titleService.setTitle('Rocket Bot - FreeStock.market');
     this.meta.addTags([
-      { name: 'og:description', content: 'These uptrending stocks are showing strange fluctuations in volume. The technicals are good. Buckle up; we are go for launch.' },
-      { name: 'og:image', content: 'https://FreeStock.market/assets/images/rocket-1200X630.png' },
+      { property: 'og:description', content: 'These uptrending stocks are showing strange fluctuations in volume. The technicals are good. Buckle up; we are go for launch.' },
+      { property: 'og:image', content: 'https://FreeStock.market/assets/images/rocket-1200X630.png' },
     ]);
 
   }
