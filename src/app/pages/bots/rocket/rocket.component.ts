@@ -66,19 +66,7 @@ export class RocketComponent implements OnInit {
     this.getUser();
     //this.getRocketAlgorithmData();
 
-    this.config = new ToasterConfig({
-      timeout: 2000,
-      animation: 'flyRight',
-    });
-    const toast: Toast = {
-      type: 'success',
-       title: 'title',
-      body: 'body',
-      timeout: 2000,
-      showCloseButton: true,
-      // bodyOutputType: BodyOutputType.TrustedHtml,
-    };
-    this.toasterService.popAsync(toast);
+    
   }
 
   getRocketAlgorithm() {
@@ -207,9 +195,34 @@ export class RocketComponent implements OnInit {
     this.userService.addEmailToRocketList(this.newEmail)
       .subscribe(data => {
         this.newEmail = "";
+        this.config = new ToasterConfig({
+          timeout: 2000,
+          animation: 'flyRight',
+        });
+        const toast: Toast = {
+          type: 'success',
+          title: 'Added',
+          body: 'Your email has been added to the list.',
+          timeout: 3000,
+          showCloseButton: true,
+          bodyOutputType: BodyOutputType.TrustedHtml,
+        };
+        this.toasterService.popAsync(toast);
       },
         error => {
-
+          this.config = new ToasterConfig({
+            timeout: 2000,
+            animation: 'flyRight',
+          });
+          const toast: Toast = {
+            type: 'error',
+            title: 'Whoops',
+            body: 'Your email was not added to the list.',
+            timeout: 3000,
+            showCloseButton: true,
+            bodyOutputType: BodyOutputType.TrustedHtml,
+          };
+          this.toasterService.popAsync(toast);
         }
       );
   }
