@@ -33,7 +33,7 @@ const components = [
     ThemeModule,
     BotsRoutingModule,
     Ng2SmartTableModule,
-    ToasterModule,
+    ToasterModule.forRoot(),
   ],
   declarations: [
     ...components,

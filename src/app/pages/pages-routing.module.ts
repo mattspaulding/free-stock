@@ -18,6 +18,12 @@ const routes: Routes = [{
   }, {
     path: 'auth',
     loadChildren: './auth/auth.module#AuthModule',
+  }, {
+    path: 'bots',
+    loadChildren: './bots/bots.module#BotsModule',
+  }, {
+    path: 'stock',
+    loadChildren: './stock/stock.module#StockModule',
    }, {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',

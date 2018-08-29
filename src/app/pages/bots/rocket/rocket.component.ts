@@ -3,8 +3,9 @@ import { LocalDataSource } from "ng2-smart-table";
 import { StockService } from '../../../@core/data/stock.service';
 import { UserService } from '../../../@core/data/users.service';
 import { Router } from "@angular/router";
-import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
 import * as moment from 'moment-timezone';
+import { ToasterService, ToasterConfig, Toast, BodyOutputType } from 'angular2-toaster';
+import 'style-loader!angular2-toaster/toaster.css';
 import { Meta, Title } from '@angular/platform-browser';
 declare var window: any;
 @Component({
@@ -51,9 +52,8 @@ export class RocketComponent implements OnInit {
   user: any;
   newPhone: string;
   newEmail: string;
+
   config: ToasterConfig;
-
-
 
 
   constructor(private titleService: Title, private meta: Meta, private userService: UserService, private stockService: StockService, private router: Router, private toasterService: ToasterService) {
@@ -65,6 +65,20 @@ export class RocketComponent implements OnInit {
     window.FB.XFBML.parse();
     this.getUser();
     //this.getRocketAlgorithmData();
+
+    this.config = new ToasterConfig({
+      timeout: 2000,
+      animation: 'flyRight',
+    });
+    const toast: Toast = {
+      type: 'success',
+       title: 'title',
+      body: 'body',
+      timeout: 2000,
+      showCloseButton: true,
+      // bodyOutputType: BodyOutputType.TrustedHtml,
+    };
+    this.toasterService.popAsync(toast);
   }
 
   getRocketAlgorithm() {
@@ -193,7 +207,6 @@ export class RocketComponent implements OnInit {
     this.userService.addEmailToRocketList(this.newEmail)
       .subscribe(data => {
         this.newEmail = "";
-        this.toasterService.popAsync({ type: 'success', title: data.message });
       },
         error => {
 
