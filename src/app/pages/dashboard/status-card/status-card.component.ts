@@ -4,16 +4,16 @@ import { Component, Input } from '@angular/core';
   selector: 'ngx-status-card',
   styleUrls: ['./status-card.component.scss'],
   template: `
-    <nb-card [ngClass]="{'off': !on}">
+    <nb-card (click)="on = !on" [ngClass]="{'off': !on}">
       <div class="icon-container">
         <div class="icon {{ type }}">
-          <img src="{{pictureUrl}}">
+          <ng-content></ng-content>
         </div>
       </div>
 
       <div class="details">
         <div class="title">{{ title }}</div>
-        <div class="status">{{ on ? 'ACTIVE' : 'COMING SOON' }}</div>
+        <div class="status">{{ on ? 'ON' : 'OFF' }}</div>
       </div>
     </nb-card>
   `,
@@ -22,6 +22,5 @@ export class StatusCardComponent {
 
   @Input() title: string;
   @Input() type: string;
-  @Input() on = false;
-  @Input() pictureUrl: string;
+  @Input() on = true;
 }

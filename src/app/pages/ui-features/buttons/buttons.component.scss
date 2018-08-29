@@ -39,6 +39,10 @@
         width: $button-size;
         height: $button-size;
         border-radius: nb-theme(btn-border-radius);
+
+        @include nb-for-theme(corporate) {
+          border-radius: nb-theme(btn-semi-round-border-radius);
+        }
       }
 
       .state-details {
@@ -46,12 +50,14 @@
         flex-direction: column;
         justify-content: center;
         margin-left: 1rem;
+        margin-right: 1rem;
         height: $button-size;
       }
     }
 
     .example-container {
-      padding-right: 0;
+      @include nb-ltr(padding-right, 0);
+      @include nb-rtl(padding-left, 0);
     }
 
     .example-container .container-btn {
@@ -78,7 +84,8 @@
 
     /deep/.icon-buttons .icon-button-examples {
       button {
-        margin-right: 1rem;
+        @include nb-ltr(margin-right, 1rem);
+        @include nb-rtl(margin-left, 1rem);
       }
     }
 

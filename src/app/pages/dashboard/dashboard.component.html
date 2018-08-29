@@ -1,111 +1,43 @@
 <div class="row">
-  <div class="col-xxl-3 col-md-6">
-    <ngx-status-card title="Rocket Bot" type="warning" on=on pictureUrl="../../../../assets/images/rocket-outline.svg" (click)="changeRoute('rocket')">
-    </ngx-status-card>
-  </div>
-  <div class="col-xxl-3 col-md-6">
-    <ngx-status-card title="Put Bot" type="info" on=on pictureUrl="../../../../assets/images/geoffrey-outline.svg" (click)="changeRoute('put')">
-    </ngx-status-card>
-  </div>
-  <div class="col-xxl-3 col-md-6">
-    <ngx-status-card title="Bruno Bot" type="primary" on=on pictureUrl="../../../../assets/images/bruno-outline.svg" (click)="changeRoute('bruno')">
-    </ngx-status-card>
-  </div>
-  <div class="col-xxl-3 col-md-6">
-    <ngx-status-card title="Swing Bot" type="success" pictureUrl="../../../../assets/images/swing-outline.svg" (click)="changeRoute('swing')">
+  <div class="col-xxxl-3 col-md-6" *ngFor="let statusCard of statusCards">
+    <ngx-status-card [title]="statusCard.title"
+                     [type]="statusCard.type">
+      <i [ngClass]="statusCard.iconClass"></i>
     </ngx-status-card>
   </div>
 </div>
+
 <div class="row">
-  <div class="col-xxl-4 col-md-6">
-    <nb-card>
-      <nb-card-header>
-        About
-      </nb-card-header>
-      <nb-card-body>
-        FreeStock is a collection of bots that manage your Robinhood portfolio. The bots are mathematical tools and not financial
-        advisers. Do not consider anything here financial advise.
-      </nb-card-body>
-    </nb-card>
+  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+    <ngx-temperature></ngx-temperature>
   </div>
-   <div class="col-xxl-4 col-md-6">
-    <nb-card *ngIf='!user || (user && !user.isRobinhood)'>
-      <nb-card-header>
-        Robinhood
-      </nb-card-header>
-      <nb-card-body>
-        Connect your Robinhood account for detailed analytics, stoploss automation, and options help.
-      </nb-card-body>
-      <nb-card-footer>
-        <span class="text-info">Robinhood integration coming soon.</span>
-        <button class="btn btn-secondary pull-right" disabled="disabled">
-          Setup Robinhood
-        </button>
-      </nb-card-footer>
-    </nb-card>
-    <nb-card *ngIf='user && user.isRobinhood'>
-      <nb-card-header>
-        Robinhood
-      </nb-card-header>
-      <nb-card-body>
-        Equity: {{user.robinhoodAccount.portfolioBody.equity}}
-      </nb-card-body>
-    </nb-card>
+
+  <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
+    <ngx-electricity></ngx-electricity>
   </div>
-  <div class="col-xxl-4 col-md-6">
-      <nb-card>
-        <nb-card-header>
-          Community
-         </nb-card-header>
-        <nb-card-body id='facebook-card'>
-          <div class="fb-page" data-href="https://www.facebook.com/FreeStockMarket" data-tabs="timeline,messages" data-small-header="false"
-            data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" hide-cta="true">
-            <blockquote cite="https://www.facebook.com/FreeStockMarket" class="fb-xfbml-parse-ignore">
-              <a href="https://www.facebook.com/FreeStockMarket">Free Stock Market</a>
-            </blockquote>
-          </div>
-        </nb-card-body>
-      </nb-card>
-    </div>
-   
 </div>
-<!--<div class="row">-->
-<!--<div class="col-md-6">-->
-<!--<search></search>-->
-<!--</div>-->
-<!--</div>-->
 
-<!--<div class="row">-->
-<!--<div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">-->
-<!--<ngx-temperature></ngx-temperature>-->
-<!--</div>-->
+<div class="row">
+  <div class="col-xxxl-9 col-xl-12">
+    <ngx-rooms></ngx-rooms>
+  </div>
 
-<!--<div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">-->
-<!--<ngx-electricity></ngx-electricity>-->
-<!--</div>-->
-<!--</div>-->
+  <div class="col-xxxl-3 col-xxl-4 col-lg-7 col-md-6">
+    <ngx-contacts></ngx-contacts>
+  </div>
 
-<!--<div class="row">-->
-<!--<div class="col-xxxl-9 col-xl-12">-->
-<!--<ngx-rooms></ngx-rooms>-->
-<!--</div>-->
+  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
+    <ngx-solar [chartValue]="72"></ngx-solar>
 
-<!--<div class="col-xxxl-3 col-xxl-4 col-lg-7 col-md-6">-->
-<!--<ngx-contacts></ngx-contacts>-->
-<!--</div>-->
+    <ngx-kitten></ngx-kitten>
+  </div>
 
-<!--<div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">-->
-<!--<ngx-solar [chartValue]="72"></ngx-solar>-->
+  <div class="col-xxxl-3 col-xxl-4 col-md-5">
+    <ngx-traffic></ngx-traffic>
+    <ngx-weather></ngx-weather>
+  </div>
 
-<!--<ngx-kitten></ngx-kitten>-->
-<!--</div>-->
-
-<!--<div class="col-xxxl-3 col-xxl-4 col-md-5">-->
-<!--<ngx-traffic></ngx-traffic>-->
-<!--<ngx-weather></ngx-weather>-->
-<!--</div>-->
-
-<!--<div class="col-xxxl-6 col-xxl-12 col-md-7">-->
-<!--<ngx-security-cameras></ngx-security-cameras>-->
-<!--</div>-->
-<!--</div>-->
+  <div class="col-xxxl-6 col-xxl-12 col-md-7">
+    <ngx-security-cameras></ngx-security-cameras>
+  </div>
+</div>

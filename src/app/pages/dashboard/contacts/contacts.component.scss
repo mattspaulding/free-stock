@@ -23,6 +23,10 @@
 
     &:not(:last-child) {
       border-bottom: 1px solid nb-theme(separator);
+
+      @include nb-for-theme(corporate) {
+        border-bottom-color: nb-theme(tabs-separator);
+      }
     }
   }
 
@@ -39,11 +43,12 @@
 
   nb-user /deep/ {
     .info-container {
-      margin-left: 0.875rem;
+      @include nb-ltr(margin-left, 0.875rem);
+      @include nb-rtl(margin-right, 0.875rem);
     }
 
     .user-name {
-      font-damily: nb-theme(font-secondary);
+      font-family: nb-theme(font-secondary);
       font-weight: nb-theme(font-weight-bold);
       color: nb-theme(color-fg-heading);
       font-size: 1.25rem;
@@ -60,5 +65,3 @@
     }
   }
 }
-
-

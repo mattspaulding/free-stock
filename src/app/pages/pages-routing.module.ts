@@ -3,27 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {SubscriptionsComponent} from './subscriptions/subscriptions.component';
+import { ECommerceComponent } from './e-commerce/e-commerce.component';
+import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [{
-    path: '',
+    path: 'dashboard',
+    component: ECommerceComponent,
+  }, {
+    path: 'iot-dashboard',
     component: DashboardComponent,
   }, {
     path: 'auth',
     loadChildren: './auth/auth.module#AuthModule',
-  }, {
-    path: 'bots',
-    loadChildren: './bots/bots.module#BotsModule',
-  }, {
-    path: 'stock',
-    loadChildren: './stock/stock.module#StockModule',
-  }, {
-    path: 'subscriptions',
-    component: SubscriptionsComponent,
-  }, {
+   }, {
     path: 'ui-features',
     loadChildren: './ui-features/ui-features.module#UiFeaturesModule',
   }, {
@@ -45,9 +40,15 @@ const routes: Routes = [{
     path: 'tables',
     loadChildren: './tables/tables.module#TablesModule',
   }, {
+    path: 'miscellaneous',
+    loadChildren: './miscellaneous/miscellaneous.module#MiscellaneousModule',
+  }, {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full',
+  }, {
+    path: '**',
+    component: NotFoundComponent,
   }],
 }];
 
