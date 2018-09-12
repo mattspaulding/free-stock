@@ -1,4 +1,75 @@
-<!-- <div class="row">
+<div class="row">
+  <div class="col-xxl-3 col-md-6">
+    <ngx-bot-status-card title="Rocket Bot" type="warning" on=on pictureUrl="../../../../assets/images/rocket-outline.svg" (click)="changeRoute('rocket')">
+    </ngx-bot-status-card>
+  </div>
+  <div class="col-xxl-3 col-md-6">
+    <ngx-bot-status-card title="Put Bot" type="info"  pictureUrl="../../../../assets/images/geoffrey-outline.svg" (click)="changeRoute('put')">
+    </ngx-bot-status-card>
+  </div>
+  <div class="col-xxl-3 col-md-6">
+    <ngx-bot-status-card title="Bruno Bot" type="primary"  pictureUrl="../../../../assets/images/bruno-outline.svg" (click)="changeRoute('bruno')">
+    </ngx-bot-status-card>
+  </div>
+  <div class="col-xxl-3 col-md-6">
+    <ngx-bot-status-card title="Swing Bot" type="success" pictureUrl="../../../../assets/images/swing-outline.svg" (click)="changeRoute('swing')">
+    </ngx-bot-status-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xxl-4 col-md-6">
+    <nb-card>
+      <nb-card-header>
+        About
+      </nb-card-header>
+      <nb-card-body>
+        FreeStock is a collection of bots that manage your Robinhood portfolio. The bots are mathematical tools and not financial
+        advisers. Do not consider anything here financial advise.
+      </nb-card-body>
+    </nb-card>
+  </div>
+   <div class="col-xxl-4 col-md-6">
+    <nb-card *ngIf='!user || (user && !user.isRobinhood)'>
+      <nb-card-header>
+        Robinhood
+      </nb-card-header>
+      <nb-card-body>
+        Connect your Robinhood account for detailed analytics, stoploss automation, and options help.
+      </nb-card-body>
+      <nb-card-footer>
+        <span class="text-info">Robinhood integration coming soon.</span>
+        <button class="btn btn-secondary pull-right" disabled="disabled">
+          Setup Robinhood
+        </button>
+      </nb-card-footer>
+    </nb-card>
+    <nb-card *ngIf='user && user.isRobinhood'>
+      <nb-card-header>
+        Robinhood
+      </nb-card-header>
+      <nb-card-body>
+        Equity: {{user.robinhoodAccount.portfolioBody.equity}}
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <!-- <div class="col-xxl-4 col-md-6">
+      <nb-card>
+        <nb-card-header>
+          Community
+         </nb-card-header>
+        <nb-card-body id='facebook-card'>
+          <div class="fb-page" data-href="https://www.facebook.com/FreeStockMarket" data-tabs="timeline,messages" data-small-header="false"
+            data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" hide-cta="true">
+            <blockquote cite="https://www.facebook.com/FreeStockMarket" class="fb-xfbml-parse-ignore">
+              <a href="https://www.facebook.com/FreeStockMarket">Free Stock Market</a>
+            </blockquote>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div> -->
+   
+</div>
+<div class="row">
   <div class="col-xxl-5">
     <div class="row">
       <div class="col-md-6">
@@ -35,6 +106,6 @@
   <div class="col-xxl-3">
     <ngx-user-activity></ngx-user-activity>
   </div>
-</div> -->
+</div>
 
 Under construction. Something savage coming soon.
