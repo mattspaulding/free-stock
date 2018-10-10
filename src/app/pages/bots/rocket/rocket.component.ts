@@ -217,7 +217,7 @@ export class RocketComponent implements OnInit {
           const toast: Toast = {
             type: 'error',
             title: 'Whoops',
-            body: 'Your email was not added to the list.',
+            body: error.message,
             timeout: 3000,
             showCloseButton: true,
             bodyOutputType: BodyOutputType.TrustedHtml,
